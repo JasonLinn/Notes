@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Gulp安裝</title>
+</head>
+<style>
+	*{
+		padding: 0;
+		margin: 0;
+		/*outline: 1px solid #fa0;*/
+	}
+	header{
+		text-align: center;
+	}
+	main{
+		padding: 10px;
+		width: 70%;
+		margin: auto;
+	}
+	h3,h5{
+		display: inline-block;
+		margin-right: 20px;
+	}
+	.subTitle{
+		margin: 20px 0;
+	}
+	p{
+		margin-top: 20px;
+	}
+	.show{
+		background-color: #ccc;
+		padding: 20px;
+		margin-top: 20px;
+		border:1px solid #000;
+		border-radius: 10px;
+		width: 400px;
+	}
+	a{
+		text-decoration: none;
+	}
+</style>
+<body>
+	<header>
+		<h1><a href="index.html">JasonLinn的筆記</a></h1>	
+	</header>
+	<main>
+		<div class="title"><h2>Gulp安裝</h2></div>
+		<div class="subTitle">
+			<h3>Step1</h3>
+			<h5>安裝node.js</h5>
+			<p>安裝 node.js 也會順便把 npm 安裝進去，接著就是使用 windows 的 cmd 或 Mac 的 Termial 來安裝 Gulp，首先我們先輸入以下的指令，把 Gulp 安裝到全域的環境。( 在 Mac 要記得加 sudo 不然會裝不進去 ) npm install -g gulp</p>
+		</div>
+		<div class="subTitle">
+			<h3>Step2</h3>
+			<h5>安裝gulp(全域)</h5>
+			<p>在command輸入指令</p>
+			<div class="show">npm install -g gulp</div>
+		</div>
+		<div class="subTitle">
+			<h3>Step3</h3>
+			<h5>初始化專案</h5>
+			<p>輸入npm init之後，基本上可以填寫一些名稱或描述，不然其實也可以直接一直 enter 按下去就會建立完成。</p>
+			<div class="show">npm init</div>
+		</div>		
+		<div class="subTitle">
+			<h3>Step4</h3>
+			<h5>安裝Gulp(專案用)</h5>
+			<p>專案初始化完成之後，接著就可以來安裝這個專案的 Gulp 套件，輸入以下的指令就可以安裝 ( Mac 要加 sudo )，至於為什麼要有-save-dev呢？當我們寫-save-dev，會將這個模組添加到package.json的devDependencies裏頭，如果寫-save，就會添加到dependencies裡，這兩個的差異在於讓使用具備這個package.json專案的人，可以清楚的知道這個模組，是開發使用，還是執行專案時使用的。</p>
+			<div class="show">npm install gulp -save-dev</div>
+		</div>
+		<div class="subTitle">
+			<h3>Step4</h3>
+			<h5>安裝Gulp(專案用)</h5>
+			<p>專案初始化完成之後，接著就可以來安裝這個專案的 Gulp 套件，輸入以下的指令就可以安裝 ( Mac 要加 sudo )，至於為什麼要有-save-dev呢？當我們寫-save-dev，會將這個模組添加到package.json的devDependencies裏頭，如果寫-save，就會添加到dependencies裡，這兩個的差異在於讓使用具備這個package.json專案的人，可以清楚的知道這個模組，是開發使用，還是執行專案時使用的。</p>
+			<div class="show">npm install gulp -save-dev</div>
+		</div>
+		<div class="subTitle">
+			<h3>Step5</h3>
+			<h5>新建gulpfile.js</h5>
+			<p>其實到這個步驟，已經完成了 Gulp 的安裝，最後來安裝一個名為Gulp-webserver的套件，來測試一下我們的第一個 Gulp 專案！安裝的方法跟剛剛是一模一樣的，有興趣了解更多套件的人，可以直接上 npm 網站查詢</p>
+			<div class="show">
+				<pre>
+var gulp = require('gulp');
+var webserver = require('gulp-webserver');
+
+gulp.task('webserver', function() {
+  gulp.src('./app/')
+    .pipe(webserver({
+      port:1234,
+      livereload: true,
+      directoryListing: false,
+      open: true,
+      fallback: 'index.html'
+    }));
+});
+
+gulp.task('default',['webserver']);				
+				</pre>
+
+			</div>
+		</div>					
+		
+	</main>
+</body>
+</html>

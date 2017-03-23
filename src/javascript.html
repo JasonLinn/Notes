@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Gulp安裝</title>
+</head>
+<style>
+	*{
+		padding: 0;
+		margin: 0;
+		/*outline: 1px solid #fa0;*/
+	}
+	header{
+		text-align: center;
+	}
+	main{
+		padding: 10px;
+		width: 70%;
+		margin: auto;
+	}
+	h3,h5{
+		display: inline-block;
+		margin-right: 20px;
+	}
+	.subTitle{
+		margin: 20px 0;
+	}
+	p{
+		margin: 20px 0 0 30px;
+	}
+	.show{
+		background-color: #ccc;
+		padding: 20px;
+		margin-top: 20px;
+		margin-left: 30px;
+		border:1px solid #000;
+		border-radius: 10px;
+		width: 400px;
+	}
+	.litle{
+		color:blue;
+	}
+	a{
+		text-decoration: none;
+	}
+</style>
+<body>
+	<header>
+		<h1><a href="index.html">JasonLinn的筆記</a></h1>	
+	</header>
+	<main>
+		<div class="title"><h2>javascript筆記</h2></div>
+		<div class="subTitle">
+			<h3>1-1</h3>
+			<h5>型別</h5>
+			<p>
+				Javascript可操作的重要型別是"Object(物件)" 和 "arrays(陣列)"
+			</p>
+			<div class="item">
+				<p class="litle">物件</p>
+				<p>
+					物件是「名稱/值」對組的群集，或是字串對應至值得map(映射)
+				</p>
+				<div class="show">
+<pre>
+ex: var book = {
+		topic:"JavaScript",
+		fat:true
+	};
+</pre>
+				</div>
+				<div class="show">
+<pre>
+book.auther="flangan";
+物件.特性=值
+
+book["fat"]=true;
+物件["特性"]=boolean;
+</pre>
+				</div>								
+			</div>
+			<div class="item">
+				<p class="litle">陣列</p>
+				<div class="show">
+<pre>
+ex: var primes = [2,3,5,7];
+primes.length = 4;
+
+ex: var points = [{x:0,y:0},{x:1,y:1}];
+雙元素的陣列，每個元素都是物件
+
+ex: var data = {
+		trial1:[1,2],[3,4],
+		trial2:[2,3],[4,5]
+	};
+雙特性的物件，每個特性都是陣列，陣列中的元素也是陣列
+</pre>
+				</div>				
+			</div>
+			
+			<p>
+				如果Javascript的片語是運算試，完整的句子就稱為述句(Statement)
+			</p>
+			<div class="item">
+				<p class="litle">函式</p>
+				<p>
+					函式(function)是具有名稱與參數的JavaScript程式碼區塊，只要定義過一次，就可以重複調用(函式本身就是個物件)
+				</p>
+				<p>
+					當我們將函式與物件結合，就得到方法(methods)
+				</p>
+				<div class="show">
+<pre>
+ex: var a=[];
+	a.push(1,2,3);
+用push()方法新增一個元素至陣列			
+</pre>	
+
+				</div>
+				<p>
+					換句話說，當函式被指定給某個物件當特性，就稱他們為方法
+				</p>
+			</div>
+
+		</div>			
+	</main>
+</body>
+</html>
