@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var webserver = require('gulp-webserver');
 var compass   = require('gulp-compass');
+var bower = require('gulp-bower');
 
 gulp.task('webserver', function() {
   gulp.src('./src/')
@@ -14,18 +15,23 @@ gulp.task('webserver', function() {
 });
 
 gulp.task('compass',function(){
-    return gulp.src('./style/scss/*.scss')
+    return gulp.src('src/scss/*.scss')
         .pipe(compass({
             sourcemap: true,
             time: true,
-      css: './style/css/',
-      sass: './style/scss/',
+      css: 'src/css/',
+      sass: 'src/scss/',
       style: 'compact' //nested, expanded, compact, compressed
         }))
-        .pipe(gulp.dest('./style/css/'));
+        .pipe(gulp.dest('src/css/'));
 }); 
 gulp.task('watch',function(){
-    gulp.watch('./style//scss/*.scss',['compass']);
+    gulp.watch('src//scss/*.scss',['compass']);
+});
+
+gulp.task('bower', function() {
+  return bower('./my_bower_components')
+    .pipe(gulp.dest('libs/'))
 });
 
 gulp.task('default',['compass','watch','webserver']);
