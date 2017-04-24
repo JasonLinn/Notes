@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>prototype</title>
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+</head>
+<style>
+#demo{
+    width: 500px;
+    height: 100px;
+    background-color: #ccc;
+
+}
+li{
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+}
+.abc{
+    width: 100%;
+    height: 100%;
+    background-color: #f00;
+}
+.lightBox--{
+    width: 50%;
+    height: 50%;
+    background-color: #fa0;
+    position: fixed;
+    
+    margin:auto;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: none;
+}
+</style>
+<body>
+    <div id="demo"></div>
+    <ul>
+        <li>
+            <div class="abc"></div>
+        </li>
+        <li>
+            <div class="abc"></div>
+        </li>
+        <li>
+            <div class="abc"></div>
+        </li>
+        <li>
+            <div class="abc"></div>
+        </li>
+    </ul>
+    <div class="lightBox"></div>
+</body>
+</html>
+<script>
+$(function(){
+    console.log('aaa');
+    //函式是一個物件
+    function Person(first, last, age, eye){
+        this.firstName = first;
+        this.lastName = last;
+        this.age = age;
+        this.eyColor = eye;
+        //add methods to a Prototype
+        // this.name = function(){
+        //     return this.firstName + " " + this.lastName
+        // }
+        
+    }
+    //Using the prototype Property
+    Person.prototype.nationally = "Chiniese";
+    /*===================
+    這裡的prototype指的是，產生出來的那個東西的prototype，
+    這樣的好處是不會每new一個Person就創建一個記憶體空間，
+    而是當物件呼叫其屬性的時候才會創造        
+    ====================*/
+
+    //the Javascript prototype property also allows you to add new methods to an existing prototype
+    //JS 的原型屬性同時也允許  增加新的方法至已有的原型中
+    Person.prototype.name = function(){
+        return this.firstName + " " + this.lastName
+    };
+    var me = {"name":"Jason"};
+    me.like = "Javascript";
+    console.log(me.like,me.name);
+
+
+    var myFather = new Person("Jhon","Doe",50,"blue");
+    var myMother = new Person("Sally","Rally",48,"green");
+    // myFather.nationally = "English";
+
+    $("#demo").html(
+        // "My father is" + myFather.age + "<br>My mother is" + myMother.age + myFather.nationally
+        // "My father is" + myFather.name()
+        // "My father is" + myFather.nationally
+        myFather.name() + myMother.name()
+    );
+
+
+    for(var i = 0;i<5;i++){
+        $("body").prepend(
+            '<div class="lightBox-- lightBox--'+i+'">'+i+'</div>'
+        )
+    }
+        var choicePic = function(tagName, changeName) {
+            this.tagName = tagName; //主要選到的是誰
+            this.changeName = changeName; //需要改變的類別名
+            this.newTag;
+            this.oldTag = changeName + "0"; //
+            this.name = function(){
+                console.log("myname");
+            }
+        }
+        choicePic.prototype.popLightBox = function(){
+            // this.changeName = Number(this.changeName) + 1;
+            var box = this.changeName;
+
+            $.each($(this.tagName),function(i){
+                var a = i;
+                console.log('i',i);
+                $(this).on('click',function(){
+                    console.log(box+a);
+                    $(box+a).fadeIn(500).css("display","block");
+                    $(box).not(box+a).css("display","none");
+
+                    
+                })
+            })
+            // $(this.tagName).click(function(){
+            //     $(box).css("display","block");
+            //     console.log(box);
+            // })
+            console.log(this.changeName);
+        }
+    var contact = new choicePic(".abc",".lightBox--");
+    console.log(contact.changeName,"aaa");
+
+
+    
+    contact.name();
+    contact.popLightBox();
+})
+
+</script>
