@@ -1,7 +1,7 @@
 var gulp = require('gulp');
 var webserver = require('gulp-webserver');
 var compass   = require('gulp-compass');
-var bower = require('gulp-bower');
+// var bower = require('gulp-bower');
 
 gulp.task('webserver', function() {
   gulp.src('./src/')
@@ -29,10 +29,10 @@ gulp.task('watch',function(){
     gulp.watch('src//scss/*.scss',['compass']);
 });
 
-gulp.task('bower', function() {
-  return bower('./my_bower_components')
-    .pipe(gulp.dest('libs/'))
-});
+// gulp.task('bower', function() {
+//   return bower('./my_bower_components')
+//     .pipe(gulp.dest('libs/'))
+// });
 
 gulp.task('default',['compass','watch','webserver']);
 // gulp.task('default',['webserver']);
