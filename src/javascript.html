@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Gulp安裝</title>
+	<title>JavaScript筆記</title>
 </head>
 <style>
 	*{
@@ -121,7 +121,56 @@ ex: var a=[];
 					換句話說，當函式被指定給某個物件當特性，就稱他們為方法
 				</p>
 			</div>
+			<div class="item">
+				<p class="litle">名詞</p>
+				<p>
+					<ul>
+						<li>excution context(執行上下文 執行區域)</li>
+						<li>outer enviroment(外部環境)</li>
+						<li>Scope Chain(區域鍊)</li>
+						<li>asynchronous(異步)</li>
+						<li>event queue(事件列隊)</li>
+						<li>Precedence(優先)</li>
+						<li>Associativity(關聯)</li>
+						<li>coercion(強迫 強轉型態)</li>
+						<li>IIFEs(Immediately Invoked Functions Expressions)</li>
+						<li></li>
+						<li></li>
+					</ul>
+				</p>
+				<p>
+					簡單的來說，Scope Chain就是ㄉ在找變項的過程中，從內層找到外層，直到最外面的global environment的這條鍊，就叫做Scope Chain。按照上面的例子來說，就是先從function b()開始，在function b()裡面找myVar這個變項，可是找不到，因此便繼續往外層找，在最外層的global environment中，找到了myVar = 1。
+				</p>
+				<p>
+					JavaScript Engine會先把execution context的內容執行完畢，接著才去執行"event queue"
+				</p>
+				<p>
+					IIFEs(Immediately Invoked Functions Expressions) 其實可以就字面上直接來理解，Immediately就是立即的意思，invoked則是執行某個函式時，「執行」的意思，function expression是一種用來建立function的方法，總括來說，就是用function expression的方式建立函式後並立即執行它。
+				</p>
+				<div class="show">
+<pre>
+/*Copy from JavaScript: Understanding the weird part*/
+function waitThreeSeconds(){
+ var ms = 3000 + new Date().getTime();
+ while(new Date() < ms){}
+ console.log("finished function");
+}
 
+function clickHandler(){
+ console.log("click event!");
+}
+
+document.addEventListener('click', clickHandler);
+console.log("started execution");
+waitThreeSeconds();
+console.log("finished execution");		
+</pre>	
+
+				</div>
+				<p>
+					換句話說，當函式被指定給某個物件當特性，就稱他們為方法
+				</p>
+			</div>
 		</div>			
 	</main>
 </body>

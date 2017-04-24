@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ES6 Note</title>
+</head>
+<body>
+    <p>ES6需要Babel轉譯成ES5讓瀏覽器讀懂</p>
+    <ul>
+        <li id="letConst"></li>    
+    </ul>
+    
+</body>
+</html>
+<script>
+
+/*================
+    let,const
+=================*/
+// let是定義區域變數
+//const是定義常數
+let name = 'Jason';
+let a=`My name is ${name}!`;
+
+let long = `this is my,hahaha`;
+console.log(a);
+console.log(long);
+
+document.getElementById('letConst').innerText= a;
+
+
+
+/*================
+      解構賦值                
+=================*/
+//解構陣列
+let foo = ['one','two','three'];
+let [one,two,three] = foo;
+console.log(`${one},${two}`);
+//解構對象
+let person = {name:'Jason',age:20};
+// let {name, age} = person;
+
+
+
+
+/*================
+    class語法糖
+=================*/
+//在es6提供了class這個語法糖，他使用原來原型鏈的方式的一種語法糖，並沒有帶來新的結構
+class Animal{
+  //構造函數
+  constructor(name,age){
+      this.name = name;
+      this.age = age;
+  }
+  //方法
+  shout(){
+      return `My name is ${this.name}, age is ${this.age}`;
+  }
+  //靜態方法
+  static foo(){
+      return 'Here is a static method';  
+  }
+}
+const cow = new Animal('betty',2);
+cow.shout();
+console.log(cow.shout());
+console.log(Animal.foo());
+
+/*================
+     Dog繼承
+=================*/
+//Dog繼承Ａnimal
+class Dog extends Animal{
+    constructor(name, age = 2, color = 'black'){
+        //再構造函數中可以直接調用super方法
+        super(name,age);
+        this.color = color;
+    }
+    shout(){
+        //在非構造函數中不能直接使用super方法
+        //但是可以採用super
+        return super.shout() + `,color is ${this.color}`;
+    }
+    
+}
+const jackTheDog = new Dog('Jack');
+console.log(jackTheDog.shout());
+</script>

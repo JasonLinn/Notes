@@ -10,7 +10,7 @@ gulp.task('webserver', function() {
       livereload: true,
       directoryListing: false,
       open: true,
-      fallback: 'gulp.html'
+      fallback: '*.html'
     }));
 });
 
