@@ -76,7 +76,7 @@ console.log(Animal.foo());
 //Dog繼承Ａnimal
 class Dog extends Animal{
     constructor(name, age = 2, color = 'black'){
-        //再構造函數中可以直接調用super方法
+        //再構造函數中可以直接調用super方法，super()用的是父層的constructor
         super(name,age);
         this.color = color;
     }
