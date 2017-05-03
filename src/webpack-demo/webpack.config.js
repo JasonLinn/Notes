@@ -16,7 +16,7 @@ const component = new HtmlWebpackPlugin({
 
 
 const extractCss = new ExtractTextPlugin('css/index.css');
-const extractSass;
+const extractSass = new ExtractTextPlugin('sass/style.scss');
 module.exports ={
     entry: './js/index.js',
     output:{
