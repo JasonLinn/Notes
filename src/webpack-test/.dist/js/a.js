@@ -68,9 +68,14 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-function a(){1}
+"use strict";
+
+
+function a() {
+  1;
+}
 
 /***/ })
 /******/ ]);
