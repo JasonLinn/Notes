@@ -69,11 +69,14 @@
 /******/ ({
 
 /***/ 2:
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-function helloworld(){
+"use strict";
+
+
+function helloworld() {
     console.log('webpack run!!');
-    alert('webpack run123');
+    alert('webpack ');
 }
 helloworld();
 
