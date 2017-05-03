@@ -61,6 +61,18 @@ module.exports={
                 removeComments:false,
                 collapseWhitespace:false
             }
+        }),
+        new htmlWebpackPlugin({
+            filename:'dist/component.html',
+            //與根目錄的index.html產生連結
+            template:'index.html',
+            //可注入head,body,foot
+            inject:'head',
+            title:'this is component',
+            minify:{
+                removeComments:false,
+                collapseWhitespace:false
+            }
         })
     ],
     devServer: {
