@@ -10,7 +10,8 @@ var Hello = React.createClass({
 
 React.render(<Hello name = "World"/>,
 document.getElementById('container'));
-})
+
+})//end
 
 function testJSX(){
 
