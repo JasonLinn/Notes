@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import '../sass/main.scss';
 
 
 /*======================
@@ -8,6 +8,7 @@ import ReactDOM from 'react-dom';
 =======================*/
 class App extends React.Component {
   constructor(props) {
+    //super會抓到父層的construnctor，同時在construnctor裡面才能用
     super(props);
     this.state = {
     };
@@ -24,7 +25,7 @@ class App extends React.Component {
 ReactDOM.render(<App />, document.getElementById('app'));
 
 /*======================
-      Component
+    Component的生命週期
 =======================*/
 class MyComponent extends React.Component {
   constructor(props) {
