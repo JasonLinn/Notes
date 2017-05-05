@@ -23,7 +23,7 @@ const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
     //模板
     template: `${__dirname}/index.html`,
     inject: 'body',
-    title:'this is index',
+    title: 'this is index',
     //inlineSource:  '.(js|css)$' 
     //讓css變成inline
     inlineSource: '.(css)$'
@@ -42,7 +42,6 @@ const component = new HtmlWebpackPlugin({
     // publicPath:'http://cdn.com/'  
 })
 
-
 module.exports = {
     entry: {
         index: './js/index.js',
@@ -58,7 +57,7 @@ module.exports = {
     module: {
         // loaders 則是放欲使用的 loaders，在這邊是使用 babel-loader 將所有 .js（這邊用到正則式）相關檔案（排除了 npm 安裝的套件位置 node_modules）轉譯成瀏覽器可以閱讀的 
         //JavaScript。preset 則是使用的 babel 轉譯規則，這邊使用 react、es2015。若是已經單獨使用 .babelrc 作為 presets 設定的話，則可以省略 query
-        loaders: [{
+        rules: [{
                 test: /\.js$/,
                 //不包含node_modules裡面的js，可以增加載入速度
                 exclude: /node_modules/,
@@ -72,19 +71,54 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                loader: extractCss.extract({
-                    fallback: "style-loader",
-                    use: "css-loader"
-                })
+                use: [{
+
+                    loader: 'style-loader'
+
+                }, {
+
+                    loader: 'css-loader?importLoaders=1'
+
+                }, {
+                    loader: 'postcss-loader',
+                    options: {
+                        plugins: function () {
+                            return [require('autoprefixer')
+
+                            ];
+                        }
+                    }
+                }]
             },
             {
                 test: /\.scss$/,
                 use: extractCss.extract({
                     fallback: 'style-loader',
                     //resolve-url-loader may be chained before sass-loader if necessary 
-                    use: ['css-loader', 'sass-loader']
+                    use: [{
+                        loader:'css-loader'
+                    },{
+                    //讓sass加入前缀詞
+                    loader: 'postcss-loader',
+                    options: {
+                            plugins: function () {
+                                return [require('autoprefixer')
+
+                                ];
+                            }
+                        }
+                    },{
+                        loader:'sass-loader'
+                    }]
                 })
+            },{
+                test: /\.(svg|png|jpg|gif)$/,
+                use: [
+                { loader: 'url-loader?limit=500&mimetype=img/jpg&name=img/[name].[ext]' }
+                ]
             }
+
+
         ],
     },
     // devServer 則是 webpack-dev-server 設定
