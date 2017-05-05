@@ -29,6 +29,9 @@ ReactDOM.render(<App />, document.getElementById('app'));
     Component的生命週期
 =======================*/
 class MyComponent extends React.Component {
+  //props 是 React 父子元件間溝通的橋樑。靜態（唯讀）。
+  //父元件用屬性賦值的方式傳給子元件，子元件用 this.props 讀取。但不應於子元件內變動 （唯讀）。
+  //父元件傳入的 props 改變將造成子元件重繪。
   constructor(props) {
     super(props);
     console.log('constructor');
