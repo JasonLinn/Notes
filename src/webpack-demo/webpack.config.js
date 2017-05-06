@@ -83,6 +83,7 @@ module.exports = {
                     loader: 'postcss-loader',
                     options: {
                         plugins: function () {
+                            //自動加前綴
                             return [require('autoprefixer')
 
                             ];
@@ -114,6 +115,7 @@ module.exports = {
             },{
                 test: /\.(svg|png|jpg|gif)$/,
                 use: [
+                    //limit可以限制檔案大小到多大的時候啟用
                 { loader: 'url-loader?limit=500&mimetype=img/jpg&name=img/[name].[ext]' }
                 ]
             }

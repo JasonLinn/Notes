@@ -9,5 +9,5 @@ div {
 body {
   background-color: #ccc; }
 
-div {
+div[id="test1"] {
   background-image: url(img/123.jpg); }

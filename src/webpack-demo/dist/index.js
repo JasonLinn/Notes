@@ -9626,25 +9626,56 @@ var App = function (_React$Component) {
 }(_react2.default.Component);
 
 _reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById('app'));
+/*================
+      props
+=================*/
+//props 是 React 父子元件間溝通的橋樑。靜態（唯讀）。
+//父元件用屬性賦值的方式傳給子元件，子元件用 this.props 讀取。但不應於子元件內變動 （唯讀）。
+//父元件傳入的 props 改變將造成子元件重繪。
 
+var HelloWorldComponent = function (_React$Component2) {
+  _inherits(HelloWorldComponent, _React$Component2);
+
+  function HelloWorldComponent() {
+    _classCallCheck(this, HelloWorldComponent);
+
+    return _possibleConstructorReturn(this, (HelloWorldComponent.__proto__ || Object.getPrototypeOf(HelloWorldComponent)).apply(this, arguments));
+  }
+
+  _createClass(HelloWorldComponent, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'h1',
+        null,
+        'Hello ',
+        this.props.name
+      );
+    }
+  }]);
+
+  return HelloWorldComponent;
+}(_react2.default.Component);
+
+_react2.default.render(_react2.default.createElement(HelloWorldComponent, { name: 'Joe Schmoe' }), document.getElementById('test7'));
 /*======================
     Component的生命週期
 =======================*/
 
-var MyComponent = function (_React$Component2) {
-  _inherits(MyComponent, _React$Component2);
+var MyComponent = function (_React$Component3) {
+  _inherits(MyComponent, _React$Component3);
 
   function MyComponent(props) {
     _classCallCheck(this, MyComponent);
 
-    var _this2 = _possibleConstructorReturn(this, (MyComponent.__proto__ || Object.getPrototypeOf(MyComponent)).call(this, props));
+    var _this3 = _possibleConstructorReturn(this, (MyComponent.__proto__ || Object.getPrototypeOf(MyComponent)).call(this, props));
 
     console.log('constructor');
-    _this2.handleClick = _this2.handleClick.bind(_this2);
-    _this2.state = {
+    _this3.handleClick = _this3.handleClick.bind(_this3);
+    _this3.state = {
       name: 'Mark'
     };
-    return _this2;
+    return _this3;
   }
 
   _createClass(MyComponent, [{
@@ -9708,7 +9739,7 @@ exports = module.exports = __webpack_require__(87)(undefined);
 
 
 // module
-exports.push([module.i, "\r\na{\r\n    font-size: 50px;\r\n}", ""]);
+exports.push([module.i, "\na{\n    font-size: 50px;\n}", ""]);
 
 // exports
 
