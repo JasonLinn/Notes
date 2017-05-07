@@ -21,7 +21,7 @@ const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
     //目標檔案    
     filename: `${__dirname}/dist/index.html`,
     //模板
-    template: `${__dirname}/index.html`,
+    template: `${__dirname}/src/index.html`,
     inject: 'body',
     title: 'this is index',
     //inlineSource:  '.(js|css)$' 
@@ -33,7 +33,7 @@ const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
     產生component.html
 =======================*/
 const component = new HtmlWebpackPlugin({
-    template: `${__dirname}/index.html`,
+    template: `${__dirname}/src/index.html`,
     filename: `${__dirname}/dist/component.html`,
     inject: 'body',
     //   chunks:['a'],
@@ -44,8 +44,8 @@ const component = new HtmlWebpackPlugin({
 });
 module.exports = {
     entry: {
-        index: './js/index.js',
-        a: './js/a.js'
+        index: './src/js/index.js',
+        // a: './src/js/a.js'
 
     },
     output: {
@@ -62,7 +62,7 @@ module.exports = {
                 //不包含node_modules裡面的js，可以增加載入速度
                 exclude: /node_modules/,
                 //只包含某一區塊的js
-                // include:'.src',
+                include:/src/,
                 loader: 'babel-loader',
                 query: {
                     //轉換特性有'latest'
