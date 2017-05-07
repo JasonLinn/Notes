@@ -37,15 +37,29 @@ const component = new HtmlWebpackPlugin({
     filename: `${__dirname}/dist/component.html`,
     inject: 'body',
     //   chunks:['a'],
+    title: 'Router!',
+    excludeChunks: ['index', 'a']
+    //所有的output開頭都會被打包成這網址
+    // publicPath:'http://cdn.com/'  
+});
+/*======================
+    初始化HtmlWebpackPlugin插件
+    產生router.html
+=======================*/
+const router = new HtmlWebpackPlugin({
+    template: `${__dirname}/react-router.html`,
+    filename: `${__dirname}/dist/router.html`,
+    inject: 'body',
+    //   chunks:['a'],
     excludeChunks: ['index', 'a']
     //所有的output開頭都會被打包成這網址
     // publicPath:'http://cdn.com/'  
 })
-
 module.exports = {
     entry: {
         index: './js/index.js',
-        a: './js/a.js'
+        a: './js/a.js',
+        router:'./js/react-router.js'
 
     },
     output: {
@@ -128,8 +142,8 @@ module.exports = {
         //開啟的地方
         contentBase: "./dist",
         inline: true,
-        port: 8008,
+        port: 8009,
     },
     // plugins 放置所使用的外掛
-    plugins: [HTMLWebpackPluginConfig, component, extractCss, sourcePlugin]
+    plugins: [HTMLWebpackPluginConfig, component,router, extractCss, sourcePlugin]
 }
