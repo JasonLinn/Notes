@@ -17,6 +17,23 @@ const sourcePlugin = new HtmlWebpackInlineSourcePlugin();
     初始化HtmlWebpackPlugin插件
     產生index.html
 =======================*/
+const todoApp = new HtmlWebpackPlugin({
+    //目標檔案    
+    filename: `${__dirname}/dist/todoApp.html`,
+    //模板
+    template: `${__dirname}/index.html`,
+    inject: 'body',
+    title: 'this is todoApp',
+    chuncks:['todoApp'],
+    excludeChunks: ['index', 'a','router']
+    //inlineSource:  '.(js|css)$' 
+    //讓css變成inline
+    // inlineSource: '.(css)$'
+});
+/*======================
+    初始化HtmlWebpackPlugin插件
+    產生index.html
+=======================*/
 const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
     //目標檔案    
     filename: `${__dirname}/dist/index.html`,
@@ -59,7 +76,8 @@ module.exports = {
     entry: {
         index: './js/index.js',
         a: './js/a.js',
-        router:'./js/react-router.js'
+        router:'./js/react-router.js',
+        todoApp:'./js/list/TodoApp.js',
 
     },
     output: {
@@ -145,5 +163,5 @@ module.exports = {
         port: 8009,
     },
     // plugins 放置所使用的外掛
-    plugins: [HTMLWebpackPluginConfig, component,router, extractCss, sourcePlugin]
+    plugins: [HTMLWebpackPluginConfig, component,router,todoApp, extractCss, sourcePlugin]
 }
