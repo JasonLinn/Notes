@@ -77,7 +77,7 @@ module.exports = {
         index: './js/index.js',
         a: './js/a.js',
         router:'./js/react-router.js',
-        todoApp:'./js/list/TodoApp.js',
+        todoApp:'./js/list/TodoApp.jsx',
 
     },
     output: {
@@ -91,6 +91,17 @@ module.exports = {
         //JavaScript。preset 則是使用的 babel 轉譯規則，這邊使用 react、es2015。若是已經單獨使用 .babelrc 作為 presets 設定的話，則可以省略 query
         rules: [{
                 test: /\.js$/,
+                //不包含node_modules裡面的js，可以增加載入速度
+                exclude: /node_modules/,
+                //只包含某一區塊的js
+                // include:'.src',
+                loader: 'babel-loader',
+                query: {
+                    //轉換特性有'latest'
+                    presets: ['es2015', 'react'],
+                },
+            },{
+                test: /\.jsx$/,
                 //不包含node_modules裡面的js，可以增加載入速度
                 exclude: /node_modules/,
                 //只包含某一區塊的js
