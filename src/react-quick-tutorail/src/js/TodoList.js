@@ -6,7 +6,7 @@ export default class TodoList extends React.Component {
   }
   render() {
     // 1. 從 props 中，取得 todos (待辦清單) 陣列
-    const {todos} = this.props;
+    const {todos,onDeleteTodo,onToggleTodo,onUpdateTodo } = this.props;
     /*================
     每個子元件都必須給予唯一的 key，React 根據 key 來辨認元件是屬於哪一筆資料，而確保：
     資料重新排序時，元件會跟著重新排序，而不是破壞舊元件，以新元件顯示資料
@@ -19,6 +19,9 @@ export default class TodoList extends React.Component {
         <TodoItem
           title={todo.title}
           completed={todo.completed}
+          onDelete={() => onDeleteTodo && onDeleteTodo(todo.id)}
+          onToggle={(completed) => onToggleTodo && onToggleTodo(todo.id, completed)}
+          onUpdate={(title)=>onUpdateTodo && onUpdateTodo(todo.id, title)}
         />
       </li>
     ));

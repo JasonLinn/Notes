@@ -8,25 +8,52 @@ import TodoList from './TodoList.js';
 // 4. 將 todos 定義於上層元件中：
 //    因為資料來源有可能來自伺服器等，為了開發方便，先宣告於 TodoApp 中；
 //    並讓下層元件 (TodoList) 只需理會上層元件遞送的 props 即可！
-const todos = [
-  {
-    id: 0,
-    title: 'Item 1',
-    completed: false
-  },{
-    id: 1,
-    title: 'Item 2',
-    completed: true
-  },{
-    id: 2,
-    title: 'Item 3',
-    completed: false
-  },
-  // ...
-];
+// const todos = [
+//   {
+//     id: 0,
+//     title: 'Item 1',
+//     completed: false
+//   },{
+//     id: 1,
+//     completed: true
+//   },{
+//     id: 2,
+//     title: 'Item 3',
+//     completed: false
+//   },
+//   // ...
+// ];
 
 class TodoApp extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    // 4. 將 todos 搬到 state 中：
+    //    放在 state 的好處是當使用 this.setState() 更新 todos 後，
+    //    React 會幫你重新 render，讓使用者看到最新的畫面。
+    //
+    //    PS. React 的資料模型分兩種：props、state，
+    //    你應該盡可能讓底層元件存取資料的方式是使用 props，
+    //    所以我們將 todos 儲存在上層元件 (TodoApp) 的 state 中。
+    this.state = {
+      todos: [{
+                id: 0,
+                title: 'Item 1',
+                completed: false
+              },{
+                id: 1,
+                completed: true
+              },{
+                id: 2,
+                title: 'Item 3',
+                completed: false
+              },
+          ]
+    };
+  }
   render() {
+    // 5. 從 state 中取得 todos
+    const { todos } = this.state;
+    
     // 5. 將待辦數量和資料分別遞給 TodoHeader 和 TodoList
     return (
       <div>
@@ -36,13 +63,70 @@ class TodoApp extends React.Component {
           //這邊用es6的箭頭語法，當function內不等於true(打勾)，就表示被選
           todoCount={todos.filter((todo) => !todo.completed).length}
         />
-        <InputField willDo = "新增待辦事項" />
-        <TodoList todos={todos} />
+        <InputField 
+            placeholder = "新增待辦事項"
+            onSubmitEditing={
+            (title) => this.setState({
+              todos: _createTodo(todos, title)
+            })
+          }
+           
+         />
+        <TodoList 
+          todos={todos} 
+          // 6. 呼叫 _deleteTodo，更新 todos 狀態
+          //為每一個id註冊事件
+          onDeleteTodo={
+            //state狀態改變時，會重新render
+            (id) => this.setState({
+              todos: _deleteTodo(todos, id)
+            }) 
+          }      
+          onToggleTodo={
+            (id, completed) => this.setState({
+              todos: _toggleTodo(todos, id, completed)
+            })
+          }        
+          onUpdateTodo={
+            (id, title) => this.setState({
+              todos: _updateTodo(todos, id, title)
+            })
+          }           
+          />
       </div>
     );
   }
 }
+// 2. 將編輯邏輯抽成一個 function
+const _updateTodo = (todos, id, title) => {
+  const target = todos.find((todo) => todo.id === id);
+  if (target) target.title = title;
+  return todos;
+};
+// 2. 將新增邏輯抽成一個 function
+const _createTodo = (todos, title) => {
+  todos.push({
+    id: todos[todos.length - 1].id + 1,
+    title,
+    completed: false
+  });
+  return todos;
+};
+// 7. 將刪除邏輯抽成一個 function
+const _deleteTodo = (todos, id) => {
+  //在todo陣列中找到id等於點擊id
+  const idx = todos.findIndex((todo) => todo.id === id);
+  //如果不是-1，則刪除該項
+  if (idx !== -1) todos.splice(idx, 1);
+  return todos;
+};
 
+// 6. 將切換邏輯抽成一個 function
+const _toggleTodo = (todos, id, completed) => {
+  const target = todos.find((todo) => todo.id === id);
+  if (target) target.completed = completed;
+  return todos;
+};
 // class TodoApp extends React.Component {
 //   render() {
 //     // 2. 組合元件的觀念，與架構 HTML 元素是一樣的
