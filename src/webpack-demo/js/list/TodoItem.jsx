@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import InputField from './InputField.jsx';
-export default class TodoItem extends React.Component{
+import PropTypes from 'prop-types';
+class TodoItem extends React.Component{
 	// 若是需要"綁定 this.方法"或是需要 "在 constructor 使用" props，定義 state，
     //就需要 constructor。若是在其他方法（如 render）使用 this.props 則不用一定要定義 constructor
 	constructor(props,context) {
@@ -23,12 +24,12 @@ export default class TodoItem extends React.Component{
     }
     renderViewMode(){
         //在此可以先定義好this.props，也可以在裡面寫this.props.name
-        const {title,completed} = this.props;
+        const {title,completed,onDelete} = this.props;
         return(
             <div>
                 <input type="checkbox" checked ={completed}/>           
                 <span onDoubleClick={this.toggleEditMode}>{this.props.title}</span>
-                <button>x</button>
+                <button onClick={() => onDelete && onDelete()}>x</button>
             </div>
 
         )
@@ -39,9 +40,9 @@ export default class TodoItem extends React.Component{
             <InputField 
                 autoFocus  // 5. autoFocus 讓使用者切換到編輯模式後，可以立即編打
                 placeholder = "編輯待辦事項"
-                value = {title}
-                onBlur={this.toggleEditMode}  // 8. 當使用者點擊其他地方，則切換為「瀏覽模式」
-                onKeyDown = {(e)=>{
+                valueMove = {title}
+                onBlurMove={this.toggleEditMode}  // 8. 當使用者點擊其他地方，則切換為「瀏覽模式」
+                onKeyDownMove = {(e)=>{
                     if(e.keyCode ===27){ // 9. 當使用者按下 ESC，則切換為「瀏覽模式」
                         e.preventDefault();
                         this.toggleEditMode(); 
@@ -53,3 +54,25 @@ export default class TodoItem extends React.Component{
         )
     }
 }
+
+TodoItem.propTypes = {
+/*======================
+    目前React.PropTypes壞掉
+    用引用的PropTypes，就不會出現錯誤
+=======================*/
+//   title: React.PropTypes.string,
+//   username: React.PropTypes.string,
+//   todoCount: React.PropTypes.number
+  onDelete: PropTypes.func
+};
+
+// 2. 使用 defaultProps 定義參數的預設值
+TodoItem.defaultProps = {
+  onDelete: ()=>{
+      alert('onDelete Default'); return {}
+    },
+//   username: '預設Guest',
+//   todoCount: 0
+};
+
+export default TodoItem;

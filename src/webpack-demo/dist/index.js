@@ -22337,7 +22337,7 @@ exports = module.exports = __webpack_require__(206)(undefined);
 
 
 // module
-exports.push([module.i, "\r\na{\r\n    font-size: 50px;\r\n}", ""]);
+exports.push([module.i, "\na{\n    font-size: 50px;\n}", ""]);
 
 // exports
 
