@@ -45,7 +45,7 @@ class TodoItem extends React.Component{
             <InputField 
                 autoFocus  // 5. autoFocus 讓使用者切換到編輯模式後，可以立即編打
                 placeholder = "編輯待辦事項"
-                value = {title}
+                defaultValue = {title}
                 onBlurMove={this.toggleEditMode}  // 8. 當使用者點擊其他地方，則切換為「瀏覽模式」
                 onKeyDownMove = {(e)=>{
                     if(e.keyCode ===27){ // 9. 當使用者按下 ESC，則切換為「瀏覽模式」
@@ -53,7 +53,6 @@ class TodoItem extends React.Component{
                         this.toggleEditMode(); 
                     }
                 }
-            
 
                 }
                 // 2. 傳遞 onSubmitEditing callback，該 callback 做兩件事情：

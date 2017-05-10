@@ -4,6 +4,14 @@ import TodoHeader from './TodoHeader.jsx';
 import InputField from './InputField.jsx';
 import TodoList from './TodoList.jsx';
 import PropTypes from 'prop-types';
+
+/*======================
+基本上，當父元素想傳值給子元素時，會設定在標籤的Attribute上。子元素就能夠透過this.props.Attribute名 
+以取得父元素傳進來的值。這是一種單向的資料傳遞，也就是說，只能由父元素傳到子元素，無法由子元素傳到父元素。
+但如果因為程式架構的關係，需要由子元素傳資料到父元素時，該怎麼辦呢？在React.JS的官方Sample中，有這麼一個處理方式。
+''''就是由父元素設定一個function到一個Attribute上，子元素再把要傳給父元素的資料放到function的arguments。
+這樣父元素的function就可以取得子元素傳進來的資料了。''''''
+=======================*/
 // const todosJSON = [
 //   {
 //     id: 0,
@@ -20,8 +28,10 @@ import PropTypes from 'prop-types';
 //   },
 // ];
 class TodoApp extends React.Component {
+  
   constructor(props, context) {
     super(props, context);
+    
     // 4. 將 todos 搬到 state 中：
     //    放在 state 的好處是當使用 this.setState() 更新 todos 後，
     //    React 會幫你重新 render，讓使用者看到最新的畫面。
@@ -48,6 +58,8 @@ class TodoApp extends React.Component {
     };  
   }
     render(){
+        //用箭頭函數可以不用宣告
+        const _self = this;
         // 5. 從 state 中取得 todos
         const {todosJSON} = this.state;
         return(
@@ -61,14 +73,42 @@ class TodoApp extends React.Component {
             />
             <InputField
               placeholder = "新增待辦事項"
+              onSubmitEditing={
+                  (title) => this.setState({
+                    todosJSON: _createTodo(todosJSON, title)
+                    
+                  })
+              }
             />
             <TodoList 
                 todos={todosJSON} 
-                onDeleteTodo={
-                  (id) => this.setState({
-                    todosJSON: _deleteTodo(todosJSON,id)
+                //用一般的function上面就要宣告_self = this
+                //這邊的id是從子層傳過來的
+                //onDeleteTodo是一個物件(也是函數)，傳給子層
+                onDeleteTodo={function (id){
+                  _self.setState({
+                     todosJSON: _deleteTodo(todosJSON,id)
+                  })
+                }}
+                //用下面的箭頭函數，會綁訂父層的this，所以上面可以不用宣告
+                /*onDeleteTodo={
+                  (id)=>{
+                    this.setState({
+                      todosJSON:_deleteTodo(todosJSON,id)
+                    })
+                  }
+                }*/
+                onToggleTodo = {
+                  (id,completed)=>this.setState({
+                    todosJSON: _toggleTodo(todosJSON,id,completed)
                   })
                 }
+                // 1. 呼叫 _updateTodo，更新 todos 狀態
+                onUpdateTodo={
+                    (id, title) => this.setState({
+                      todosJSON: _updateTodo(todosJSON, id, title)
+                    })
+                }                
             />
           </div>
         )
@@ -79,11 +119,43 @@ class TodoApp extends React.Component {
 
 ReactDOM.render(<TodoApp />,document.getElementById('test1'));
 
+// 2. 將編輯邏輯抽成一個 function
+const _updateTodo = (todosJSON, id, title) => {
+  const target = todosJSON.find((todo) => todo.id === id);
+   console.log('title',title);
+  if (target) target.title = title;
+  return todosJSON;
+};
+
+const _createTodo = (todosJSON, title)=>{
+ 
+    todosJSON.push({
+      id:todosJSON[todosJSON.length-1] ? todosJSON[todosJSON.length-1].id + 1 : 0 ,
+      title,
+      completed :false
+    })
+    return todosJSON;
+}
+
+const _toggleTodo = (todosJSON, id,completed) => {
+  //找到從TodoList回傳的id跟totosJSON裡面的資料比對
+  const target = todosJSON.find((todo)=> todo.id ===id)
+  console.log(target,id);
+  //如果其值相等，則將該index刪除一筆
+  if (target) target.completed = completed;
+  
+  //回傳新的todosJSON
+  return todosJSON;
+};
+
 // 7. 將刪除邏輯抽成一個 function
-const _deleteTodo = (todos, id) => {
-  const idx = todos.findIndex((todo) => todo.id === id);
-  if (idx !== -1) todos.splice(idx, 1);
-  return todos;
+const _deleteTodo = (todosJSON, id) => {
+  //找到從TodoList回傳的id跟totosJSON裡面的資料比對
+  const idx = todosJSON.findIndex((todosJSON) => todosJSON.id === id);
+  //如果其值相等，則將該index刪除一筆
+  if (idx !== -1) todosJSON.splice(idx, 1);
+  //回傳新的todosJSON
+  return todosJSON;
 };
 
 TodoApp.propTypes = {
@@ -99,9 +171,9 @@ TodoApp.propTypes = {
 
 // 2. 使用 defaultProps 定義參數的預設值
 TodoApp.defaultProps = {
-  todosJSON: ()=>{
+  todosJSON: (()=>{
       alert('onDelete Default'); return {}
-    },
+    }),
 //   username: '預設Guest',
 //   todoCount: 0
 };
