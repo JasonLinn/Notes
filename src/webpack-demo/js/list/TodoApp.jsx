@@ -40,23 +40,19 @@ class TodoApp extends React.Component {
     //    你應該盡可能讓底層元件存取資料的方式是使用 props，
     //    所以我們將 todos 儲存在上層元件 (TodoApp) 的 state 中。
     this.state = {
-      todosJSON: [
-              {
-                id: 0,
-                title: 'Item 1',
-                completed: false
-              },{
-                id: 1,
-                title: 'Item 2',
-                completed: false
-              },{
-                id: 2,
-                title: 'Item 3',
-                completed: true
-              },
-            ]
+      todosJSON: []
     };  
   }
+    // 2. 實作 componentDidMount 方法：
+    //    該方法在元件第一次 render 後，會被呼叫；
+    //    更多細節請見[學習筆記 1]
+    componentDidMount() {
+      // 3. 使用 ajax 請求 API：
+      //    並將取回的待辦資料更新元件 state（見下一步）
+    fetch('./todos.json')                         // 1. 使用 fetch 回傳的是 promise 物件
+      .then((response) => response.json())        // 2. 解析 response 資料，將它轉成 js 物件
+      .then((todosJSON) => this.setState({ todosJSON })); // 3. 更新元件 state      
+    }  
     render(){
         //用箭頭函數可以不用宣告
         const _self = this;

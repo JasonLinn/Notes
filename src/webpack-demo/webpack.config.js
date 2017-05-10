@@ -36,6 +36,7 @@ const todoApp = new HtmlWebpackPlugin({
 =======================*/
 const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
     //目標檔案    
+    //有用inlineSource 的檔案output要跟相關的html同層，不然會錯誤
     filename: `${__dirname}/dist/index.html`,
     //模板
     template: `${__dirname}/index.html`,
@@ -43,7 +44,7 @@ const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
     title: 'this is index',
     //inlineSource:  '.(js|css)$' 
     //讓css變成inline
-    inlineSource: '.(css)$'
+    // inlineSource: '.(css)$'
 });
 /*======================
     初始化HtmlWebpackPlugin插件
@@ -77,12 +78,14 @@ module.exports = {
         index: './js/index.js',
         a: './js/a.js',
         router:'./js/react-router.js',
-        todoApp:'./js/list/TodoApp.jsx',
+        //直接改變名稱到指定資料夾
+        './components/TodoApp':'./js/list/TodoApp.jsx',
+        d3_first:'./js/d3_first.js'
 
     },
     output: {
         //resolve 的函式是為了不管在 Windows 或是 Unix 上都可以正確解析路徑
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'dist/'),
         //這邊用[name]，產出的js才會有各個entry的
         filename: '[name].js'
     },
