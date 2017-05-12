@@ -53,3 +53,6 @@ module.exports = {
   plugins: [HTMLWebpackPluginConfig],
 };
 ******
+****
+"dev": "webpack-dev-server --devtool eval --progress --colors --content-base build"
+****
