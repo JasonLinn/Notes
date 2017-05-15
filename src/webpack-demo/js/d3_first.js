@@ -3,11 +3,26 @@ const ReactDOM = require('react-dom');
 const Chart = require('react-d3-core').Chart;
 const LineChart = require('react-d3-basic').LineChart;
 import chartData from './user_sample.json';
+import ec_line from './ec_line.json';
+var echarts = require('echarts');
+// 引入柱状图
+require('echarts/lib/chart/bar');
+// 引入提示框和标题组件
+require('echarts/lib/component/tooltip');
+require('echarts/lib/component/title');
 
-(function() {
+// console.log('myFnc');
+
+// document.attachEvent("onload", 'myFunction');
+(function (){
+  console.log('myFnc123');
   // load your general data
- 
 
+
+
+/*======================
+react
+=======================*/
   const width = 700,
     height = 300,
     margins = {left: 100, right: 100, top: 50, bottom: 50},
@@ -49,22 +64,37 @@ import chartData from './user_sample.json';
     </Chart>
   , document.getElementById('test3')
   )
-}
 
 
-
-
-
-)();
+})();//function end
+/*======================
+      bar chart
+=======================*/
 did();
 function did(){
   // console.clear();
 
 class App extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    
+    // 4. 將 todos 搬到 state 中：
+    //    放在 state 的好處是當使用 this.setState() 更新 todos 後，
+    //    React 會幫你重新 render，讓使用者看到最新的畫面。
+    //
+    //    PS. React 的資料模型分兩種：props、state，
+    //    你應該盡可能讓底層元件存取資料的方式是使用 props，
+    //    所以我們將 todos 儲存在上層元件 (TodoApp) 的 state 中。
+    this.state = {
+      // ec_line: []
+    };  
+  }  
   shouldComponentUpdate() {
     return false
   }
   componentDidMount() {
+   
+        
     var x = d3.scale.linear()
       .domain([0, d3.max(this.props.data)])
       .range([0, 420]);
@@ -75,13 +105,25 @@ class App extends React.Component {
       .enter().append("div")
       .style("width", function(d) { return x(d) + "px"; })
       .text(function(d) { return d; });
+        console.log('echarts123');
+      /*======================
+              echarts
+      =======================*/
+      //先給定div長寬，寫在css裡面沒用，因為它會覆蓋其css設定
+      document.getElementById('test1').style.width = '50%';
+      document.getElementById('test1').style.height = '700px';
+      console.log(document.getElementById('test1').style.width ,'wwwwwidth');
+      var myChart = echarts.init(document.getElementById('test1'));
+      // 绘制图表
+      myChart.setOption(ec_line);        
+
   }
   render() {
     return <div ref="chart" className="chart"></div>;
   }
 }
 
-var data = [15, 22, 32, 41]
+var data = [15, 22, 32, 41,50,10]
 
 ReactDOM.render(<App data={data} />, document.querySelector('#test2'));
 }

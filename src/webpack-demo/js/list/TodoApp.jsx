@@ -113,7 +113,7 @@ class TodoApp extends React.Component {
 
 }
 
-ReactDOM.render(<TodoApp />,document.getElementById('test1'));
+ReactDOM.render(<TodoApp />,document.getElementById('test4'));
 
 // 2. 將編輯邏輯抽成一個 function
 const _updateTodo = (todosJSON, id, title) => {

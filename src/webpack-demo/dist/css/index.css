@@ -1,16 +1,13 @@
 h1 {
   color: blue; }
 
-div {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex; }
-
 body {
   background-color: #ccc; }
 
-div[id="test1"] {
-  background-image: url(img/123.jpg); }
+.div {
+  height: 500px;
+  width: 500px;
+  background-color: #fa0; }
 
 .chart {
   display: block; }

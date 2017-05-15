@@ -4,6 +4,12 @@ import ReactDOM from 'react-dom';
 import '../sass/main.scss';
 import '../css/style.css';
 import CustomButton from './a.js';
+var echarts = require('echarts');
+// 引入柱状图
+require('echarts/lib/chart/bar');
+// 引入提示框和标题组件
+require('echarts/lib/component/tooltip');
+require('echarts/lib/component/title');
 
 /*================
   引入其他頁的class
@@ -40,7 +46,7 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('test8'));
 /*================
       props
 =================*/
@@ -111,4 +117,5 @@ class MyComponent extends React.Component {
   }
 }
 
-ReactDOM.render(<MyComponent />, document.getElementById('test1'));
+ReactDOM.render(<MyComponent />, document.getElementById('test10'));
+

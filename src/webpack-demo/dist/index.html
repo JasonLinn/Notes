@@ -4,32 +4,8 @@
 	<meta charset="UTF-8">
 	<title>this is index</title>
 	<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<style type="text/css">h1 {
-  color: blue; }
-
-div {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex; }
-
-body {
-  background-color: #ccc; }
-
-div[id="test1"] {
-  background-image: url(img/123.jpg); }
-
-.chart {
-  display: block; }
-
-.chart div {
-  font: 10px sans-serif;
-  background-color: steelblue;
-  text-align: right;
-  padding: 3px;
-  margin: 1px;
-  color: white; }
-</style></head>
-<body>
+<link href="css/index.css" rel="stylesheet"></head>
+<body onload="myFunction()">
 	<!-- 欲插入 React Component 的位置 -->
 	<div id="app"></div>
     <div id="test1">1</div>
@@ -42,6 +18,9 @@ div[id="test1"] {
     <div id="test8">8</div>
     <div id="test9">9</div>
     <div id="test10">10</div>
-<script type="text/javascript" src="d3_first.js"></script><script type="text/javascript" src="router.js"></script><script type="text/javascript" src="index.js"></script><script type="text/javascript" src="./components/TodoApp.js"></script><script type="text/javascript" src="a.js"></script></body>
+<script type="text/javascript" src="d3_first.js"></script><script type="text/javascript" src="index.js"></script><script type="text/javascript" src="router.js"></script><script type="text/javascript" src="./components/TodoApp.js"></script><script type="text/javascript" src="a.js"></script></body>
 </html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/1.0.0/fetch.js"></script>
+<script>
+    window.onload="myFunction()";
+</script>
