@@ -21,30 +21,30 @@ const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
     //目標檔案    
     filename: `${__dirname}/dist/index.html`,
     //模板
-    template: `${__dirname}/src/index.html`,
+    template: `${__dirname}/app/index.html`,
     inject: 'body',
     title: 'this is index',
     //inlineSource:  '.(js|css)$' 
     //讓css變成inline
-    inlineSource: '.(css)$'
+    // inlineSource: '.(css)$'
 });
 /*======================
     初始化HtmlWebpackPlugin插件
     產生component.html
 =======================*/
 const component = new HtmlWebpackPlugin({
-    template: `${__dirname}/src/index.html`,
+    template: `${__dirname}/app/index.html`,
     filename: `${__dirname}/dist/component.html`,
     inject: 'body',
     //   chunks:['a'],
     title: 'Router!',
-    excludeChunks: ['index', 'a']
+    // excludeChunks: ['index', 'a']
     //所有的output開頭都會被打包成這網址
     // publicPath:'http://cdn.com/'  
 });
 module.exports = {
     entry: {
-        index: './src/js/index.js',
+        TodoApp: './app/components/TodoApp.js',
         // a: './src/js/a.js'
 
     },
