@@ -1,0 +1,26 @@
+h1 {
+  color: blue; }
+
+body {
+  background-color: #ccc; }
+
+.div {
+  height: 500px;
+  width: 500px;
+  background-color: #fa0; }
+
+.chart {
+  display: block; }
+
+.chart div {
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: white; }
+
+@media screen and (max-width: 960px) {
+  div {
+    height: 300px;
+    width: 300px; } }
