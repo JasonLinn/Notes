@@ -1,10 +1,16 @@
-import Flux from 'flux';
-// window.App.AppDispatcher = new Flux.Dispatcher();
+// Todo app dispatcher with actions responding to both
+// view and server actions
+import { Dispatcher } from 'flux';
 
-var Dispatcher = new Flux.Dispatcher();
-var callMe = function(e){
-    console.log('calssMe');
-};
+class DispatcherClass extends Dispatcher {
+  handleAction(action) {
+    this.dispatch({
+      type: action.type,
+      payload: action.payload,
+    });
+  }
+}
 
-var token1 = Dispatcher.register(callMe);
+const AppDispatcher = new DispatcherClass();
 
+export default AppDispatcher;

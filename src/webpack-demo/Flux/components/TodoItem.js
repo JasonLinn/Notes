@@ -1,5 +1,7 @@
-const { InputField } = window.App;
-
+// const { InputField } = window.App;
+import React from 'react';
+import ReactDOM from 'react-dom';
+import InputField from './InputField';
 class TodoItem extends React.Component {
   constructor(props, context) {
     super(props, context);
@@ -60,12 +62,12 @@ class TodoItem extends React.Component {
   }
 }
 
-TodoItem.propTypes = {
-  title: React.PropTypes.string.isRequired,
-  completed: React.PropTypes.bool.isRequired,
-  onUpdate: React.PropTypes.func,
-  onToggle: React.PropTypes.func,
-  onDelete: React.PropTypes.func
-};
-
-window.App.TodoItem = TodoItem;
+// TodoItem.propTypes = {
+//   title: React.PropTypes.string.isRequired,
+//   completed: React.PropTypes.bool.isRequired,
+//   onUpdate: React.PropTypes.func,
+//   onToggle: React.PropTypes.func,
+//   onDelete: React.PropTypes.func
+// };
+export default TodoItem;
+// window.App.TodoItem = TodoItem;

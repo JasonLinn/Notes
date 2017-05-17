@@ -1,3 +1,5 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
 class InputField extends React.Component {
   constructor(props, context) {
     super(props, context);
@@ -43,5 +45,5 @@ class InputField extends React.Component {
 InputField.propTypes = {
   onSubmitEditing: React.PropTypes.func
 };
-
-window.App.InputField = InputField;
+export default InputField;
+// window.App.InputField = InputField;

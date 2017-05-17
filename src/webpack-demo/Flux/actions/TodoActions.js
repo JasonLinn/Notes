@@ -1,41 +1,16 @@
-const {
-  ActionTypes,
-  AppDispatcher
-} = window.App;
+import AppDispatcher from '../dispatcher/AppDispatcher';
+import { ADD_TODO } from '../constants/actionTypes';
 
-window.App.TodoActions = {
-  loadTodos() {
-    fetch('./todos.json')
-      .then((response) => response.json())
-      .then((todos) => AppDispatcher.dispatch({
-        type: ActionTypes.LOAD_TODOS_SUCCESS,
-        todos
-      }));
-  },
-  createTodo(title) {
-    AppDispatcher.dispatch({
-      type: ActionTypes.CREATE_TODO,
-      title
+export const TodoActions = {
+  //action接到值後，呼叫調動器，並給予type是add_todo，加上payload值
+  addTodo(text) {
+    AppDispatcher.handleAction({
+      //區別所觸發的行為
+      type: ADD_TODO,
+      //payload是夾帶的資料
+      payload: {
+        text,
+      },
     });
   },
-  updateTodo(id, title) {
-    AppDispatcher.dispatch({
-      type: ActionTypes.UPDATE_TODO,
-      id,
-      title
-    });
-  },
-  toggleTodo(id, completed) {
-    AppDispatcher.dispatch({
-      type: ActionTypes.TOGGLE_TODO,
-      id,
-      completed
-    });
-  },
-  deleteTodo(id) {
-    AppDispatcher.dispatch({
-      type: ActionTypes.DELETE_TODO,
-      id
-    });
-  }
 };

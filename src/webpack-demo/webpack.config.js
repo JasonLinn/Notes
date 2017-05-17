@@ -98,7 +98,7 @@ module.exports = {
         //直接改變名稱到指定資料夾
         './components/TodoApp':'./js/list/TodoApp.jsx',
         d3_first:'./js/d3_first.js',
-        './flux/components/TodoApp':'./flux/components/TodoApp.jsx'
+        './flux/components/TodoApp':'./flux/components/TodoApp.js'
 
     },
     output: {
