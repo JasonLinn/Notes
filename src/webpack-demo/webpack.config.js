@@ -17,6 +17,23 @@ const sourcePlugin = new HtmlWebpackInlineSourcePlugin();
     初始化HtmlWebpackPlugin插件
     產生index.html
 =======================*/
+const flux = new HtmlWebpackPlugin({
+    //目標檔案    
+    filename: `${__dirname}/dist/flux.html`,
+    //模板
+    template: `${__dirname}/index.html`,
+    inject: 'body',
+    title: 'this is flux',
+    // chuncks:['flux'],
+    excludeChunks: ['index', 'a','router','./components/TodoApp','d3_first']
+    //inlineSource:  '.(js|css)$' 
+    //讓css變成inline
+    // inlineSource: '.(css)$'
+});
+/*======================
+    初始化HtmlWebpackPlugin插件
+    產生index.html
+=======================*/
 const todoApp = new HtmlWebpackPlugin({
     //目標檔案    
     filename: `${__dirname}/dist/todoApp.html`,
@@ -80,7 +97,8 @@ module.exports = {
         router:'./js/react-router.js',
         //直接改變名稱到指定資料夾
         './components/TodoApp':'./js/list/TodoApp.jsx',
-        d3_first:'./js/d3_first.js'
+        d3_first:'./js/d3_first.js',
+        './flux/components/TodoApp':'./flux/components/TodoApp.jsx'
 
     },
     output: {
@@ -177,5 +195,5 @@ module.exports = {
         port: 8009,
     },
     // plugins 放置所使用的外掛
-    plugins: [HTMLWebpackPluginConfig, component,router,todoApp, extractCss, sourcePlugin]
+    plugins: [HTMLWebpackPluginConfig, component,router,todoApp, extractCss, sourcePlugin,flux]
 }

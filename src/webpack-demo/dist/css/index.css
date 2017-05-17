@@ -19,3 +19,8 @@ body {
   padding: 3px;
   margin: 1px;
   color: white; }
+
+@media screen and (max-width: 960px) {
+  div {
+    height: 300px;
+    width: 300px; } }
