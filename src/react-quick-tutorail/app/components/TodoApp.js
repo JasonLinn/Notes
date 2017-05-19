@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import TodoHeader from './TodoHeader.js';
 import InputField from './InputField.js';
 import TodoList from './TodoList.js';
+import Like from './Like.js';
 
 // const todos =[
 //                 {
@@ -85,12 +86,28 @@ class TodoApp extends  React.Component{
                         })
                     }
                 />
+                <Like 
+                    /*clickLike={
+                        (like)=>this.setState({
+                            like:addLike(like)
+                        })
+                    }*/
+                />
             </div>
         )
 
         
     }
 };//component end
+  function addLike(like){
+        
+        const newLike = like+1;
+        console.log('new',newLike);
+        this.setState({
+                like:newLike
+        })
+        return like;
+    }
 const _updateTodo = (todos,id,title)=>{
     const target = todos.find((todo)=>todo.id ===id);
     if(target) target.title = title;

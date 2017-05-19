@@ -45,6 +45,7 @@ const component = new HtmlWebpackPlugin({
 module.exports = {
     entry: {
         TodoApp: './app/components/TodoApp.js',
+        AccApp:'./app/components/AccApp.js'
         // a: './src/js/a.js'
 
     },
