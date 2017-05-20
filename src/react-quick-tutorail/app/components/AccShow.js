@@ -3,14 +3,19 @@ import ReactDOM from 'react-dom';
 
 class AccShow extends React.Component{
     render(){
-        const {list} = this.props;
+        const {list,deleteAcc,total} = this.props;
         const item = list.map((item)=>(
             <li key = {item.id}>
-                <div>{list[0].name}</div>
+                <span>{item.name}{item.money}元</span>
+                <button onClick={()=>deleteAcc && deleteAcc(item.id)}>x</button>
+                
             </li>
         ))
         return(
-            <ul>{item}</ul>
+            <ul>
+                <div>Total:{total}</div>
+                <span>{item}</span>
+            </ul>
         )
     }
 }
