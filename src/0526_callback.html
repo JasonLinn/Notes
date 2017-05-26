@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    function SayHiLater(name) {
+
+        var greeting = 'Hello, ';
+
+        setTimeout(function () {
+
+            console.log(greeting + name);
+
+        }, 3000);
+    }
+
+    SayHiLater('PJCHEN');
+
+
+    /*callback function*/
+    function CallBackYourName(callback) {
+        var Greeting = 'Here is some work...';
+        callback();
+    }
+
+    CallBackYourName(function () {
+        console.log('My name is PJCHEN');
+    });
+</script>

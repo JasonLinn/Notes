@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+<body>
+    <pre>
+         1.函式的宣告，或著變數的宣告，都會被提升到函式的最前面
+         2.指的是在JavaScript中，它會把定義的變項移到最前面先執行。
+    </pre>
+</body>
+</html>
+<script>
+    //hoisting 吊裝
+    b();
+    //a會先有定義，但值是(undefine)    
+    //not define 才是錯誤
+      console.log(a);
+    
+    var a = 'Hello World';
+    /*======================
+    更精確的說，在我們定義變項的過程中，可以分成宣告(declaration)
+    和給值(initialization)的兩個過程，只有declaration的內容
+    會在逐行執行程式前先被執行並儲存在記憶體中(hoisted)；
+    給值的內容則是在hoisted後，逐行執行程式時，才會被執行到。　　
+    =======================*/
+    function b(){
+        console.log('Called b');
+    }
+    function one(){ //先被執行
+        console.log('global one');
+    }
+    function two() { //先被執行
+        console.log('global two');
+    }
+    function hoistFun(params) {
+        console.log('typeof one:',typeof one);
+        console.log('typeof two:',typeof two);
+
+        one();  
+        two();  
+    }
+    hoistFun();
+
+    function one1() {
+            console.log('global one1');
+        }
+
+    function two2() {
+        console.log('global two2');
+    }
+
+    function hoistFun() {
+        console.log('typeof one1:',typeof one1);  //one1是function
+        console.log('typeof two2:',typeof two2);  //two是undefine
+
+        one1();
+        two2();  
+
+        function one1() {
+            console.log('local one1');
+        }
+
+        var two2 = function () {
+            console.log('local two2');
+        }
+    }
+
+    hoistFun();
+</script>
