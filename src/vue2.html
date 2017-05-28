@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <title>vue2</title>
+
+</head>
+
+<body>
+    <div id="app">{{message}}</div>
+    <div id="app-2">
+        <!--這裡該指令的作用是：“將這個元素節點的title屬性和Vue實例的message屬性保持一致”。-->
+        <span v-bind:title="message">
+            滑鼠停住幾秒
+        </span>
+    </div>
+    <div id="app-3">
+        <p v-if="seen">現在你看到我了</p>
+    </div>
+    <div id="app-4">
+        <ol>
+            <li v-for="todo in todos">
+                {{ todo.text }}
+            </li>
+        </ol>
+    </div>
+    <div id="app-5">
+        <p>{{message}}</p>
+        <button v-on:click="reverseMessage">逆轉消息</button>
+    </div>
+    <div id="app-6">
+        <p>{{message}}</p>
+        <input v-model = "message">
+    </div>
+</body>
+
+</html>
+<script>
+    /*================
+        聲明渲染
+    =================*/
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue!'
+        }
+    })
+    /*================
+        條件與循環    
+    =================*/
+    var app2 = new Vue({
+        el: "#app-2",
+        data: {
+            message: '頁面加載於' + new Date()
+        }
+    })
+    app2.message = "最新消息"
+    var app3 = new Vue({
+        el: "#app-3",
+        data: {
+            seen: true
+        }
+    })
+    var app4 = new Vue({
+    el : '#app-4' ,
+    data : {
+        todos : [
+        { text : '學習JavaScript' },
+        { text : '學習Vue' },
+        { text : '整個牛項目' }
+        ]
+    }
+})
+var app5 = new Vue({
+    el:'#app-5',
+    data:{
+        message:'Hello Vue.js'
+    },
+    methods:{
+        reverseMessage:function(){
+            this.message = this.message.split('').reverse().join('')
+        }
+    }
+})
+var app6 = new Vue({
+    el:'#app-6',
+    data:{
+        message:'Hello Vue!'
+    }
+})
+</script>
