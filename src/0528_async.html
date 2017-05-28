@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>async</title>
+</head>
+<body>
+    
+</body>
+</html>
+<!--<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>-->
+<!--<script text/babel>-->
+<script>
+/*================
+    callback
+=================*/
+var ajax = function (url) {
+  return new Promise(function(resolve,reject){
+    var req = new XMLHttpRequest()
+    req.open('GET', url, true)
+    req.onreadystatechange = function (aEvt) {
+        if (req.readyState == 4) {
+        if(req.status == 200){
+            //    console.log('req:',req.responseText)
+            resolve(req.responseText);
+        }
+            // return req.responseText n'est pas possible
+            // On ne peut pas utiliser de "return" ici car on est dans la fonction 
+            // onReadyStateChange
+        else{
+                reject(req);
+        }
+            // ...
+        }
+    };
+    req.send(null)
+  })
+  
+}
+//異步回調，做完再接著下一件事
+ajax('https://jsonplaceholder.typicode.com/users')
+.then(function (response) {
+    console.log(1111)
+    ajax('https://jsonplaceholder.typicode.com/posts')
+})
+.then(function(response){
+    console.log('2222')
+})
+// Comment détecter la fin de la requête ajax ?
+/*================
+    Promise
+=================*/
+let ajax1 = function (url) {
+  // On renvoie une promesse qui prend en paramettre une fonction 
+  // avec 2 paramètres, le callback de succès et d'erreur
+  return new Promise(function (resolve, reject) {
+    // Le reste du code ressemble à la méthode précédente
+    let req = new XMLHttpRequest()
+    req.open('GET', url, true)
+    req.onreadystatechange = function (aEvt) {
+      if (req.readyState == 4) {
+         if(req.status == 200)
+           resolve(JSON.parse(req.responseText))
+         else
+           reject(req)
+      }
+    };
+    req.send(null)
+  })
+}
+
+// L'appel à la fonction peut se faire de cette manière là
+ajax1('https://jsonplaceholder.typicode.com/users')
+.then(function (response) {
+  //接上面的回傳值
+  console.log('users:',response[0])
+  return ajax1('https://jsonplaceholder.typicode.com/posts')
+}).then(function (response) {
+  // Le serveur a correctement répondu
+  console.log('posts:',response[0])
+}).catch(function (req) {
+    console.log('promise:error')
+  // Le serveur n'a pas répondu comme attendu
+})
+//all
+Promise.all([
+  //同時出去，回來的順序不一定照這個順序
+  ajax1('https://jsonplaceholder.typicode.com/users'),
+  ajax1('https://jsonplaceholder.typicode.com/posts'),
+  ajax1('https://jsonplaceholder.typicode.com/comments')
+]).then(function(response){
+    console.log('all:'+response[0])
+})
+console.log('Im not async')
+/*================
+        async
+=================*/
+// Une fonction qui renvoie une promesse peut être marqué comme "async"
+// Elle peut alors attendre la résolution d'une autre promesse avec "await"
+let getPost = async function () {
+  // Plutot que d'utilise le then on peut attendre la résolution
+  let response = await ajax('https://jsonplaceholder.typicode.com/posts')
+  // Return permettra le resolve de la promesse
+  return JSON.parse(response) 
+  // Un throw permettra de reject la promesse
+}
+
+// Cette fonction s'utilise comme précédemment
+getPost().then(posts => {
+  console.log("Async:",posts[0])
+}).catch(error => { console.log('async error:'+error)})
+/*================
+    
+=================*/
+const func = function(){
+    return new Promise((resolve,rej)=>{
+        setTimeout(function() {
+            resolve(123)
+        }, 1000);
+    })
+}
+const func2 = function(n){
+    return `resove -> ${n}`
+}
+async function run(){
+    let qq = await func() //resolve
+    // let ww = await func() //resolve
+    // let ee = await func() //resolve
+    // let rr = await func() //resolve
+    console.log('qq',qq)
+    let ww = func2(qq)
+    console.log('ww',ww)
+    
+    // console.log('ww',ww)
+    // console.log('ee',ee)
+    // console.log('rr',rr)
+}
+run()
+</script>
