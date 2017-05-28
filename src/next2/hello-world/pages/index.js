@@ -74,7 +74,7 @@ export default () => {
           <ListItem
             key='0'
             component={NavigationLink}
-            href='/'
+            href='/about'
             leftIcon={<FontIcon>inbox</FontIcon>}
             tileClassName='md-list-tile--mini'
             primaryText={'Root'}

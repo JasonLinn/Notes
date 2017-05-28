@@ -178,7 +178,7 @@ exports.default = function () {
     navItems: [_react2.default.createElement(_ListItem2.default, {
       key: '0',
       component: NavigationLink,
-      href: '/',
+      href: '/about',
       leftIcon: _react2.default.createElement(_FontIcons2.default, {
         __source: {
           fileName: _jsxFileName,
