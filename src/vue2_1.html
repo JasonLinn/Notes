@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+  <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.3/vue.min.js"></script>
+  <link href="css/vue.css" rel="stylesheet"/>
+</head>
+<body>
+  <div id="app">
+    <h1>Vue.js 使用大括號</h1>
+    <hr/>
+    <p>  我的名字叫做{{name}}，來自{{company}},<br>最近正在學習如合使用{{learn_thing}},<br>他其實就像一個{{vue_text}}</p>
+    <p>  Vue的代換也可以用物件來表示，甚至陣列跟判斷，<br>只要在裡面用 {{notation}} 刮起來就可以了!，<br>像是我的技能有:</p>
+    <ul>
+      <li v-for="skill in skills">{{skill}}</li>
+    </ul>
+    <p>  踏入前端領域已經有{{infos.year}}年</p>
+    <div>{{html}}</div>
+    <div class="block">test</div>
+  </div>
+</body>
+<script src="js/vue.js"></script>

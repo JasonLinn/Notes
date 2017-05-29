@@ -23,6 +23,7 @@
     "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
+    "gulp-pug": "^3.3.0",
     "vue": "^2.3.3"
   }
 }

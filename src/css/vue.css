@@ -1,0 +1,9 @@
+body { padding: 20px; line-height: 30px; }
+
+p { font-size: 20px; }
+
+.block { border: 1px solid #000; }
+
+li { list-style: none; padding: 5px; border: solid 1px #000; width: 300px; border-radius: 5px; margin: 5px; }
+
+/*# sourceMappingURL=vue.css.map */

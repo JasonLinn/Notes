@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+  <title>vue2</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.3/vue.min.js"></script>
+  <link href="css/vue.css" rel="stylesheet"/>
+</head>
+<body></body>
+<div id="app">
+  <h1> Vue.js 使用   v-for抓出陣列資料</h1>
+  <h3> 最簡易的陣列清單    v-for="項目 in 陣列"</h3>
+  <ul>
+    <li v-for="item in shopList">{{item}}</li>
+  </ul>
+  <h3> 陣列清單中放入一個個商品物件，有名字跟價錢</h3>
+  <hr/>
+  <ul>
+    <li v-for="(item,index) in shopList2">{{index+1}}.{{item.name}}:{{item.price}}</li>
+  </ul>
+</div>
+<script src="js/vue_2.js"></script>
