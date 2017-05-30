@@ -18,4 +18,8 @@ body
     hr
     ul
         li(v-for="(item,index) in shopList2") {{index+1}}.{{item.name}}:{{item.price}}
+            h4 {{index}}
+            .name 名稱
+            .price  {{item.name}}
+            .con    {{item.produce}}
 script(src="js/vue_2.js")

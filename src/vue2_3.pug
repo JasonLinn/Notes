@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+html(lang="en")
+head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    title Document
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.3/vue.min.js")
+    link(href="css/vue.css", rel="stylesheet")
+body
+    #app
+        h1  Vue.js使用者互動
+        h3  使用v-model="變數名稱" 即時的偵測輸入改變
+        hr
+        label 姓名：
+        input(v-model="name")
+        br
+        label 訊息：
+        input(v-model="msg")
+        br 
+        label 顏色：
+        input(v-model="color")
+        br
+        label Class：
+        input(v-model="classs")
+        div(v-for="(book,index) in books")
+            label book {{index+1}}:
+            input(v-model="book.name")
+        h4 哈囉，{{name}}
+        h5 你輸入了：{{msg}}
+        h5 下面這個方塊顏色是：{{color}}
+        h5 下面這個方塊類別是：{{classs}}
+        .block(v-bind:style="{backgroundColor: color}" v-bind:class="classs")
+        ul
+            li(v-for="book in books")   {{book.name}}
+        
+script(src="js/vue_3.js")

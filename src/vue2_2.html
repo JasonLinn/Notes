@@ -18,7 +18,12 @@
   <h3> 陣列清單中放入一個個商品物件，有名字跟價錢</h3>
   <hr/>
   <ul>
-    <li v-for="(item,index) in shopList2">{{index+1}}.{{item.name}}:{{item.price}}</li>
+    <li v-for="(item,index) in shopList2">{{index+1}}.{{item.name}}:{{item.price}}
+      <h4>{{index}}</h4>
+      <div class="name">名稱</div>
+      <div class="price"> {{item.name}}</div>
+      <div class="con">   {{item.produce}}</div>
+    </li>
   </ul>
 </div>
 <script src="js/vue_2.js"></script>
