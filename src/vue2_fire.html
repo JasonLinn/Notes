@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>fire</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.3/vue.min.js"></script>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <h1>app1</h1>
+    <div id="app">
+        {{msg+1}}
+            <div v-text="msg"></div>
+            <div v-html="msg"></div>
+            <div v-once>{{msg}}</div>
+            <!--會全不見-->
+            <div v-if="displayMe">V-if</div>
+            <!--會display none-->
+            <div v-show="displayMe">V-show</div>
+            <div>
+                <a v-bind:href="linkUrl" v-bind:title="linkTitle" :attr01="something">{{linkTitle}}</a>
+            </div>
+    </div>
+    <hr>
+    <h1>app2</h1>
+    <div id="app2">
+        <div>
+            {{counter}}
+        </div>
+        <button v-on:click="handleClick">Click Me!</button>
+        <br>
+        
+        <input v-on:input="handleKeyUp" placeholder="please type some words">
+        <div>
+            {{msg}}
+        </div>
+    </div>
+    <hr>
+    <h1>app3</h1>
+    <div id="app3">
+        <input :value="someValue">
+    </div>
+</body>
+</html>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            msg:"<div style='color:red'>Hello Vue</div>",
+            displayMe:true,
+            linkUrl:'http://vuejs.org',
+            linkTitle:'Vue.js',
+            something:'123'
+        }
+    })
+        var app2 = new Vue({
+            el: "#app2",
+            data: {
+                counter:0,
+                msg:""
+            },
+            methods:{
+                handleClick:function(){
+                    this.counter +=1;
+                },
+                handleKeyUp:function(e){
+                    console.log(e.target.value);
+                    this.msg = e.target.value;
+                }
+            }
+        })   
+    var app3= new Vue({
+        
+    }) 
+</script>

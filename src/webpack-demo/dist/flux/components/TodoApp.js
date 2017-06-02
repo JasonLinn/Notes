@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 653);
+/******/ 	return __webpack_require__(__webpack_require__.s = 652);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -2515,10 +2515,10 @@ module.exports = reactProdInvariant;
 
 
 
-var DOMNamespaces = __webpack_require__(55);
+var DOMNamespaces = __webpack_require__(53);
 var setInnerHTML = __webpack_require__(46);
 
-var createMicrosoftUnsafeLocalFunction = __webpack_require__(62);
+var createMicrosoftUnsafeLocalFunction = __webpack_require__(60);
 var setTextContent = __webpack_require__(104);
 
 var ELEMENT_NODE_TYPE = 1;
@@ -2815,7 +2815,7 @@ module.exports = ReactReconciler;
 var _assign = __webpack_require__(6);
 
 var ReactChildren = __webpack_require__(220);
-var ReactComponent = __webpack_require__(69);
+var ReactComponent = __webpack_require__(67);
 var ReactPureComponent = __webpack_require__(225);
 var ReactClass = __webpack_require__(221);
 var ReactDOMFactories = __webpack_require__(222);
@@ -2955,8 +2955,8 @@ module.exports = emptyObject;
 var _prodInvariant = __webpack_require__(5);
 
 var EventPluginRegistry = __webpack_require__(41);
-var EventPluginUtils = __webpack_require__(56);
-var ReactErrorUtils = __webpack_require__(60);
+var EventPluginUtils = __webpack_require__(54);
+var ReactErrorUtils = __webpack_require__(58);
 
 var accumulateInto = __webpack_require__(98);
 var forEachAccumulated = __webpack_require__(99);
@@ -3237,7 +3237,7 @@ module.exports = EventPluginHub;
 
 
 var EventPluginHub = __webpack_require__(34);
-var EventPluginUtils = __webpack_require__(56);
+var EventPluginUtils = __webpack_require__(54);
 
 var accumulateInto = __webpack_require__(98);
 var forEachAccumulated = __webpack_require__(99);
@@ -3431,7 +3431,7 @@ module.exports = ReactInstanceMap;
 
 var SyntheticEvent = __webpack_require__(17);
 
-var getEventTarget = __webpack_require__(65);
+var getEventTarget = __webpack_require__(63);
 
 /**
  * @interface UIEvent
@@ -3764,7 +3764,7 @@ var ReactEventEmitterMixin = __webpack_require__(180);
 var ViewportMetrics = __webpack_require__(97);
 
 var getVendorPrefixedEventName = __webpack_require__(215);
-var isEventSupported = __webpack_require__(66);
+var isEventSupported = __webpack_require__(64);
 
 /**
  * Summary of `ReactBrowserEventEmitter` event handling:
@@ -4093,7 +4093,7 @@ module.exports = ReactBrowserEventEmitter;
 var SyntheticUIEvent = __webpack_require__(37);
 var ViewportMetrics = __webpack_require__(97);
 
-var getEventModifierState = __webpack_require__(64);
+var getEventModifierState = __webpack_require__(62);
 
 /**
  * @interface MouseEvent
@@ -4527,12 +4527,12 @@ module.exports = escapeTextContentForBrowser;
 
 
 var ExecutionEnvironment = __webpack_require__(9);
-var DOMNamespaces = __webpack_require__(55);
+var DOMNamespaces = __webpack_require__(53);
 
 var WHITESPACE_TEST = /^[ \r\n\t\f]/;
 var NONVISIBLE_TEST = /<(!--|link|noscript|meta|script|style)[ \r\n\t\f\/>]/;
 
-var createMicrosoftUnsafeLocalFunction = __webpack_require__(62);
+var createMicrosoftUnsafeLocalFunction = __webpack_require__(60);
 
 // SVG temp container for IE lacking innerHTML
 var reusableSVGContainer;
@@ -4646,56 +4646,9 @@ module.exports = canDefineProperty;
 
 /***/ }),
 /* 48 */,
-/* 49 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- */
-
-if (process.env.NODE_ENV !== 'production') {
-  var REACT_ELEMENT_TYPE = (typeof Symbol === 'function' &&
-    Symbol.for &&
-    Symbol.for('react.element')) ||
-    0xeac7;
-
-  var isValidElement = function(object) {
-    return typeof object === 'object' &&
-      object !== null &&
-      object.$$typeof === REACT_ELEMENT_TYPE;
-  };
-
-  // By explicitly using `prop-types` you are opting into new development behavior.
-  // http://fb.me/prop-types-in-prod
-  var throwOnDirectAccess = true;
-  module.exports = __webpack_require__(117)(isValidElement, throwOnDirectAccess);
-} else {
-  // By explicitly using `prop-types` you are opting into new production behavior.
-  // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(326)();
-}
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 50 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = __webpack_require__(161);
-
-
-/***/ }),
-/* 51 */,
-/* 52 */,
-/* 53 */
+/* 49 */,
+/* 50 */,
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4768,7 +4721,7 @@ function shallowEqual(objA, objB) {
 module.exports = shallowEqual;
 
 /***/ }),
-/* 54 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4789,7 +4742,7 @@ var Danger = __webpack_require__(153);
 var ReactDOMComponentTree = __webpack_require__(8);
 var ReactInstrumentation = __webpack_require__(12);
 
-var createMicrosoftUnsafeLocalFunction = __webpack_require__(62);
+var createMicrosoftUnsafeLocalFunction = __webpack_require__(60);
 var setInnerHTML = __webpack_require__(46);
 var setTextContent = __webpack_require__(104);
 
@@ -4999,7 +4952,7 @@ module.exports = DOMChildrenOperations;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 55 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5024,7 +4977,7 @@ var DOMNamespaces = {
 module.exports = DOMNamespaces;
 
 /***/ }),
-/* 56 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5042,7 +4995,7 @@ module.exports = DOMNamespaces;
 
 var _prodInvariant = __webpack_require__(5);
 
-var ReactErrorUtils = __webpack_require__(60);
+var ReactErrorUtils = __webpack_require__(58);
 
 var invariant = __webpack_require__(2);
 var warning = __webpack_require__(3);
@@ -5256,7 +5209,7 @@ module.exports = EventPluginUtils;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 57 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5320,7 +5273,7 @@ var KeyEscapeUtils = {
 module.exports = KeyEscapeUtils;
 
 /***/ }),
-/* 58 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5464,7 +5417,7 @@ module.exports = LinkedValueUtils;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 59 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5516,7 +5469,7 @@ module.exports = ReactComponentEnvironment;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 60 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5598,7 +5551,7 @@ module.exports = ReactErrorUtils;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 61 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5840,7 +5793,7 @@ module.exports = ReactUpdateQueue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 62 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5877,7 +5830,7 @@ var createMicrosoftUnsafeLocalFunction = function (func) {
 module.exports = createMicrosoftUnsafeLocalFunction;
 
 /***/ }),
-/* 63 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5932,7 +5885,7 @@ function getEventCharCode(nativeEvent) {
 module.exports = getEventCharCode;
 
 /***/ }),
-/* 64 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5980,7 +5933,7 @@ function getEventModifierState(nativeEvent) {
 module.exports = getEventModifierState;
 
 /***/ }),
-/* 65 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6020,7 +5973,7 @@ function getEventTarget(nativeEvent) {
 module.exports = getEventTarget;
 
 /***/ }),
-/* 66 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6085,7 +6038,7 @@ function isEventSupported(eventNameSuffix, capture) {
 module.exports = isEventSupported;
 
 /***/ }),
-/* 67 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6132,7 +6085,7 @@ function shouldUpdateReactComponent(prevElement, nextElement) {
 module.exports = shouldUpdateReactComponent;
 
 /***/ }),
-/* 68 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6515,7 +6468,7 @@ module.exports = validateDOMNesting;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 69 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6533,7 +6486,7 @@ module.exports = validateDOMNesting;
 
 var _prodInvariant = __webpack_require__(25);
 
-var ReactNoopUpdateQueue = __webpack_require__(70);
+var ReactNoopUpdateQueue = __webpack_require__(68);
 
 var canDefineProperty = __webpack_require__(47);
 var emptyObject = __webpack_require__(33);
@@ -6639,7 +6592,7 @@ module.exports = ReactComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 70 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6739,6 +6692,17 @@ var ReactNoopUpdateQueue = {
 
 module.exports = ReactNoopUpdateQueue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 69 */,
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = __webpack_require__(161);
+
 
 /***/ }),
 /* 71 */,
@@ -6935,7 +6899,7 @@ module.exports = getActiveElement;
 // Therefore we re-export development-only version with all the PropTypes checks here.
 // However if one is migrating to the `prop-types` npm library, they will go through the
 // `index.js` entry point, and it will branch depending on the environment.
-var factory = __webpack_require__(117);
+var factory = __webpack_require__(121);
 module.exports = function(isValidElement) {
   // It is still allowed in 15.5.
   var throwOnDirectAccess = false;
@@ -7527,7 +7491,7 @@ module.exports = ReactDOMComponentFlags;
 
 var _assign = __webpack_require__(6);
 
-var LinkedValueUtils = __webpack_require__(58);
+var LinkedValueUtils = __webpack_require__(56);
 var ReactDOMComponentTree = __webpack_require__(8);
 var ReactUpdates = __webpack_require__(15);
 
@@ -8011,14 +7975,14 @@ var ReactInstanceMap = __webpack_require__(36);
 var ReactInstrumentation = __webpack_require__(12);
 var ReactMarkupChecksum = __webpack_require__(185);
 var ReactReconciler = __webpack_require__(27);
-var ReactUpdateQueue = __webpack_require__(61);
+var ReactUpdateQueue = __webpack_require__(59);
 var ReactUpdates = __webpack_require__(15);
 
 var emptyObject = __webpack_require__(33);
 var instantiateReactComponent = __webpack_require__(102);
 var invariant = __webpack_require__(2);
 var setInnerHTML = __webpack_require__(46);
-var shouldUpdateReactComponent = __webpack_require__(67);
+var shouldUpdateReactComponent = __webpack_require__(65);
 var warning = __webpack_require__(3);
 
 var ATTR_NAME = DOMProperty.ID_ATTRIBUTE_NAME;
@@ -9068,7 +9032,7 @@ var REACT_ELEMENT_TYPE = __webpack_require__(179);
 
 var getIteratorFn = __webpack_require__(213);
 var invariant = __webpack_require__(2);
-var KeyEscapeUtils = __webpack_require__(57);
+var KeyEscapeUtils = __webpack_require__(55);
 var warning = __webpack_require__(3);
 
 var SEPARATOR = '.';
@@ -9595,7 +9559,11 @@ module.exports = getIteratorFn;
 /* 114 */,
 /* 115 */,
 /* 116 */,
-/* 117 */
+/* 117 */,
+/* 118 */,
+/* 119 */,
+/* 120 */,
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10081,10 +10049,6 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 118 */,
-/* 119 */,
-/* 120 */,
-/* 121 */,
 /* 122 */,
 /* 123 */,
 /* 124 */,
@@ -11640,8 +11604,8 @@ var ReactDOMComponentTree = __webpack_require__(8);
 var ReactUpdates = __webpack_require__(15);
 var SyntheticEvent = __webpack_require__(17);
 
-var getEventTarget = __webpack_require__(65);
-var isEventSupported = __webpack_require__(66);
+var getEventTarget = __webpack_require__(63);
+var isEventSupported = __webpack_require__(64);
 var isTextInputElement = __webpack_require__(103);
 
 var eventTypes = {
@@ -12518,8 +12482,8 @@ module.exports = HTMLDOMPropertyConfig;
 var ReactReconciler = __webpack_require__(27);
 
 var instantiateReactComponent = __webpack_require__(102);
-var KeyEscapeUtils = __webpack_require__(57);
-var shouldUpdateReactComponent = __webpack_require__(67);
+var KeyEscapeUtils = __webpack_require__(55);
+var shouldUpdateReactComponent = __webpack_require__(65);
 var traverseAllChildren = __webpack_require__(105);
 var warning = __webpack_require__(3);
 
@@ -12675,7 +12639,7 @@ module.exports = ReactChildReconciler;
 
 
 
-var DOMChildrenOperations = __webpack_require__(54);
+var DOMChildrenOperations = __webpack_require__(52);
 var ReactDOMIDOperations = __webpack_require__(166);
 
 /**
@@ -12714,9 +12678,9 @@ var _prodInvariant = __webpack_require__(5),
     _assign = __webpack_require__(6);
 
 var React = __webpack_require__(28);
-var ReactComponentEnvironment = __webpack_require__(59);
+var ReactComponentEnvironment = __webpack_require__(57);
 var ReactCurrentOwner = __webpack_require__(16);
-var ReactErrorUtils = __webpack_require__(60);
+var ReactErrorUtils = __webpack_require__(58);
 var ReactInstanceMap = __webpack_require__(36);
 var ReactInstrumentation = __webpack_require__(12);
 var ReactNodeTypes = __webpack_require__(95);
@@ -12728,8 +12692,8 @@ if (process.env.NODE_ENV !== 'production') {
 
 var emptyObject = __webpack_require__(33);
 var invariant = __webpack_require__(2);
-var shallowEqual = __webpack_require__(53);
-var shouldUpdateReactComponent = __webpack_require__(67);
+var shallowEqual = __webpack_require__(51);
+var shouldUpdateReactComponent = __webpack_require__(65);
 var warning = __webpack_require__(3);
 
 var CompositeTypes = {
@@ -13743,7 +13707,7 @@ var _prodInvariant = __webpack_require__(5),
 var AutoFocusUtils = __webpack_require__(149);
 var CSSPropertyOperations = __webpack_require__(151);
 var DOMLazyTree = __webpack_require__(26);
-var DOMNamespaces = __webpack_require__(55);
+var DOMNamespaces = __webpack_require__(53);
 var DOMProperty = __webpack_require__(18);
 var DOMPropertyOperations = __webpack_require__(87);
 var EventPluginHub = __webpack_require__(34);
@@ -13762,9 +13726,9 @@ var ReactServerRenderingTransaction = __webpack_require__(191);
 var emptyFunction = __webpack_require__(13);
 var escapeTextContentForBrowser = __webpack_require__(45);
 var invariant = __webpack_require__(2);
-var isEventSupported = __webpack_require__(66);
-var shallowEqual = __webpack_require__(53);
-var validateDOMNesting = __webpack_require__(68);
+var isEventSupported = __webpack_require__(64);
+var shallowEqual = __webpack_require__(51);
+var validateDOMNesting = __webpack_require__(66);
 var warning = __webpack_require__(3);
 
 var Flags = ReactDOMComponentFlags;
@@ -14742,7 +14706,7 @@ module.exports = ReactDOMComponent;
 
 
 
-var validateDOMNesting = __webpack_require__(68);
+var validateDOMNesting = __webpack_require__(66);
 
 var DOC_NODE_TYPE = 9;
 
@@ -14870,7 +14834,7 @@ module.exports = ReactDOMFeatureFlags;
 
 
 
-var DOMChildrenOperations = __webpack_require__(54);
+var DOMChildrenOperations = __webpack_require__(52);
 var ReactDOMComponentTree = __webpack_require__(8);
 
 /**
@@ -14913,7 +14877,7 @@ var _prodInvariant = __webpack_require__(5),
     _assign = __webpack_require__(6);
 
 var DOMPropertyOperations = __webpack_require__(87);
-var LinkedValueUtils = __webpack_require__(58);
+var LinkedValueUtils = __webpack_require__(56);
 var ReactDOMComponentTree = __webpack_require__(8);
 var ReactUpdates = __webpack_require__(15);
 
@@ -15697,13 +15661,13 @@ module.exports = ReactDOMSelection;
 var _prodInvariant = __webpack_require__(5),
     _assign = __webpack_require__(6);
 
-var DOMChildrenOperations = __webpack_require__(54);
+var DOMChildrenOperations = __webpack_require__(52);
 var DOMLazyTree = __webpack_require__(26);
 var ReactDOMComponentTree = __webpack_require__(8);
 
 var escapeTextContentForBrowser = __webpack_require__(45);
 var invariant = __webpack_require__(2);
-var validateDOMNesting = __webpack_require__(68);
+var validateDOMNesting = __webpack_require__(66);
 
 /**
  * Text nodes violate a couple assumptions that React makes about components:
@@ -15867,7 +15831,7 @@ module.exports = ReactDOMTextComponent;
 var _prodInvariant = __webpack_require__(5),
     _assign = __webpack_require__(6);
 
-var LinkedValueUtils = __webpack_require__(58);
+var LinkedValueUtils = __webpack_require__(56);
 var ReactDOMComponentTree = __webpack_require__(8);
 var ReactUpdates = __webpack_require__(15);
 
@@ -16890,7 +16854,7 @@ var PooledClass = __webpack_require__(23);
 var ReactDOMComponentTree = __webpack_require__(8);
 var ReactUpdates = __webpack_require__(15);
 
-var getEventTarget = __webpack_require__(65);
+var getEventTarget = __webpack_require__(63);
 var getUnboundedScrollPosition = __webpack_require__(137);
 
 /**
@@ -17083,8 +17047,8 @@ module.exports = ReactHostOperationHistoryHook;
 
 var DOMProperty = __webpack_require__(18);
 var EventPluginHub = __webpack_require__(34);
-var EventPluginUtils = __webpack_require__(56);
-var ReactComponentEnvironment = __webpack_require__(59);
+var EventPluginUtils = __webpack_require__(54);
+var ReactComponentEnvironment = __webpack_require__(57);
 var ReactEmptyComponent = __webpack_require__(90);
 var ReactBrowserEventEmitter = __webpack_require__(42);
 var ReactHostComponent = __webpack_require__(92);
@@ -17220,7 +17184,7 @@ module.exports = ReactMarkupChecksum;
 
 var _prodInvariant = __webpack_require__(5);
 
-var ReactComponentEnvironment = __webpack_require__(59);
+var ReactComponentEnvironment = __webpack_require__(57);
 var ReactInstanceMap = __webpack_require__(36);
 var ReactInstrumentation = __webpack_require__(12);
 
@@ -17813,7 +17777,7 @@ var ReactBrowserEventEmitter = __webpack_require__(42);
 var ReactInputSelection = __webpack_require__(93);
 var ReactInstrumentation = __webpack_require__(12);
 var Transaction = __webpack_require__(44);
-var ReactUpdateQueue = __webpack_require__(61);
+var ReactUpdateQueue = __webpack_require__(59);
 
 /**
  * Ensures that, when possible, the selection range (currently selected text
@@ -18182,7 +18146,7 @@ module.exports = ReactServerRenderingTransaction;
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var ReactUpdateQueue = __webpack_require__(61);
+var ReactUpdateQueue = __webpack_require__(59);
 
 var warning = __webpack_require__(3);
 
@@ -18658,7 +18622,7 @@ var SyntheticEvent = __webpack_require__(17);
 
 var getActiveElement = __webpack_require__(82);
 var isTextInputElement = __webpack_require__(103);
-var shallowEqual = __webpack_require__(53);
+var shallowEqual = __webpack_require__(51);
 
 var skipSelectionChangeEvent = ExecutionEnvironment.canUseDOM && 'documentMode' in document && document.documentMode <= 11;
 
@@ -18865,7 +18829,7 @@ var SyntheticUIEvent = __webpack_require__(37);
 var SyntheticWheelEvent = __webpack_require__(206);
 
 var emptyFunction = __webpack_require__(13);
-var getEventCharCode = __webpack_require__(63);
+var getEventCharCode = __webpack_require__(61);
 var invariant = __webpack_require__(2);
 
 /**
@@ -19334,9 +19298,9 @@ module.exports = SyntheticInputEvent;
 
 var SyntheticUIEvent = __webpack_require__(37);
 
-var getEventCharCode = __webpack_require__(63);
+var getEventCharCode = __webpack_require__(61);
 var getEventKey = __webpack_require__(212);
-var getEventModifierState = __webpack_require__(64);
+var getEventModifierState = __webpack_require__(62);
 
 /**
  * @interface KeyboardEvent
@@ -19423,7 +19387,7 @@ module.exports = SyntheticKeyboardEvent;
 
 var SyntheticUIEvent = __webpack_require__(37);
 
-var getEventModifierState = __webpack_require__(64);
+var getEventModifierState = __webpack_require__(62);
 
 /**
  * @interface TouchEvent
@@ -19868,7 +19832,7 @@ module.exports = findDOMNode;
 
 
 
-var KeyEscapeUtils = __webpack_require__(57);
+var KeyEscapeUtils = __webpack_require__(55);
 var traverseAllChildren = __webpack_require__(105);
 var warning = __webpack_require__(3);
 
@@ -19949,7 +19913,7 @@ module.exports = flattenChildren;
 
 
 
-var getEventCharCode = __webpack_require__(63);
+var getEventCharCode = __webpack_require__(61);
 
 /**
  * Normalization of deprecated HTML5 `key` values
@@ -20720,10 +20684,10 @@ module.exports = ReactChildren;
 var _prodInvariant = __webpack_require__(25),
     _assign = __webpack_require__(6);
 
-var ReactComponent = __webpack_require__(69);
+var ReactComponent = __webpack_require__(67);
 var ReactElement = __webpack_require__(24);
 var ReactPropTypeLocationNames = __webpack_require__(108);
-var ReactNoopUpdateQueue = __webpack_require__(70);
+var ReactNoopUpdateQueue = __webpack_require__(68);
 
 var emptyObject = __webpack_require__(33);
 var invariant = __webpack_require__(2);
@@ -21670,8 +21634,8 @@ module.exports = ReactPropTypesSecret;
 
 var _assign = __webpack_require__(6);
 
-var ReactComponent = __webpack_require__(69);
-var ReactNoopUpdateQueue = __webpack_require__(70);
+var ReactComponent = __webpack_require__(67);
+var ReactNoopUpdateQueue = __webpack_require__(68);
 
 var emptyObject = __webpack_require__(33);
 
@@ -22158,67 +22122,7 @@ module.exports = traverseAllChildren;
 /* 323 */,
 /* 324 */,
 /* 325 */,
-/* 326 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- */
-
-
-
-var emptyFunction = __webpack_require__(13);
-var invariant = __webpack_require__(2);
-
-module.exports = function() {
-  // Important!
-  // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
-  function shim() {
-    invariant(
-      false,
-      'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
-      'Use PropTypes.checkPropTypes() to call them. ' +
-      'Read more at http://fb.me/use-check-prop-types'
-    );
-  };
-  shim.isRequired = shim;
-  function getShim() {
-    return shim;
-  };
-  var ReactPropTypes = {
-    array: shim,
-    bool: shim,
-    func: shim,
-    number: shim,
-    object: shim,
-    string: shim,
-    symbol: shim,
-
-    any: shim,
-    arrayOf: getShim,
-    element: shim,
-    instanceOf: getShim,
-    node: shim,
-    objectOf: getShim,
-    oneOf: getShim,
-    oneOfType: getShim,
-    shape: getShim
-  };
-
-  ReactPropTypes.checkPropTypes = emptyFunction;
-  ReactPropTypes.PropTypes = ReactPropTypes;
-
-  return ReactPropTypes;
-};
-
-
-/***/ }),
+/* 326 */,
 /* 327 */,
 /* 328 */,
 /* 329 */,
@@ -22520,132 +22424,73 @@ module.exports = function() {
 /* 625 */,
 /* 626 */,
 /* 627 */,
-/* 628 */
+/* 628 */,
+/* 629 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
+});
+var ADD_TODO = exports.ADD_TODO = 'ADD_TODO';
+
+/***/ }),
+/* 630 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(14);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(50);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _propTypes = __webpack_require__(49);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _flux = __webpack_require__(668);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Todo app dispatcher with actions responding to both
+// view and server actions
 
-var InputField = function (_React$Component) {
-    _inherits(InputField, _React$Component);
 
-    function InputField(props, context) {
-        _classCallCheck(this, InputField);
+/*======================
+　在这个范例中我们继承了 Facebook 提供的 Dispatcher API（主要是继承了 dispatch、register 和 subscribe 的方法），
+打造自己的 DispatcherClass，当使用者触发 handleAction() 会 dispatch(調度) 出事件。
+=======================*/
+var DispatcherClass = function (_Dispatcher) {
+  _inherits(DispatcherClass, _Dispatcher);
 
-        // 1. 讓上層元件傳遞的 value，初始元件狀態
-        var _this = _possibleConstructorReturn(this, (InputField.__proto__ || Object.getPrototypeOf(InputField)).call(this, props, context));
+  function DispatcherClass() {
+    _classCallCheck(this, DispatcherClass);
 
-        _this.state = { value: props.value || '' };
-        console.log(_this.state, 'this.state');
-        // 2. 手動綁定 this 給 handleChange
-        _this.handleChange = _this.handleChange.bind(_this);
-        _this.handleKeyDown = _this.handleKeyDown.bind(_this);
-        return _this;
+    return _possibleConstructorReturn(this, (DispatcherClass.__proto__ || Object.getPrototypeOf(DispatcherClass)).apply(this, arguments));
+  }
+
+  _createClass(DispatcherClass, [{
+    key: 'handleAction',
+    value: function handleAction(action) {
+      //dispatch調度出事件，這個方法是flux裡面的
+      this.dispatch({
+        type: action.type,
+        payload: action.payload
+      });
     }
-    // 3. handleChange 用來傾聽 input onChange 事件，將使用者輸入的資料更新到元件狀態中
+  }]);
 
+  return DispatcherClass;
+}(_flux.Dispatcher);
 
-    _createClass(InputField, [{
-        key: 'handleChange',
-        value: function handleChange(e) {
-            //可限制只能輸入五個字(其他的字被substr)
-            this.setState({ value: e.target.value.substr(0, 5) });
-        }
-        // 1. 傾聽使用者 keydown 事件：
-        //    當使用者按下 enter (keyCode = 13) 後，
-        //    呼叫上層傳遞的 onSubmitEditing callback，
-        //    將資料傳遞給上層元件。
+var AppDispatcher = new DispatcherClass();
 
-    }, {
-        key: 'handleKeyDown',
-        value: function handleKeyDown(e) {
-            var _props = this.props,
-                onKeyDown = _props.onKeyDown,
-                onSubmitEditing = _props.onSubmitEditing;
-            var value = e.target.value;
-
-            switch (e.keyCode) {
-                case 13:
-                    //trim()是去除空白，當裡面沒字串時，會回傳false
-                    // 2. 如果使用者沒有鍵入任何值（包括都是空白），則不會呼叫 callback
-                    if (value.trim()) {
-                        onSubmitEditing && onSubmitEditing(value);
-                        console.log('itemValue:', value);
-                    }
-                    this.setState({ value: '' });
-                    break;
-            }
-            // 4. 如果上層元件傳遞 onKeyDown callback，我們必須觸發它
-            onKeyDown && onKeyDown(e);
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            //在此可以先定義好this.props，也可以在裡面寫this.props.name
-            var _props2 = this.props,
-                placeholder = _props2.placeholder,
-                autoFocus = _props2.autoFocus,
-                defaultValue = _props2.defaultValue,
-                onBlurMove = _props2.onBlurMove;
-
-            return _react2.default.createElement(
-                'div',
-                null,
-                _react2.default.createElement('input', {
-                    type: 'text',
-                    onBlur: onBlurMove,
-                    autoFocus: true,
-                    value: this.state.value,
-                    onChange: this.handleChange,
-                    onKeyDown: this.handleKeyDown
-                    //改成defaultValue將可以改變裡面的值
-                    , defaultValue: defaultValue,
-                    placeholder: placeholder
-                })
-            );
-        }
-    }]);
-
-    return InputField;
-}(_react2.default.Component);
-// 6. 完成 onSubmitEditing 的 propTypes
-
-
-InputField.propTypes = {
-    onSubmitEditing: _propTypes2.default.func
-};
-
-exports.default = InputField;
+exports.default = AppDispatcher;
 
 /***/ }),
-/* 629 */,
-/* 630 */,
 /* 631 */,
 /* 632 */,
 /* 633 */,
@@ -22657,120 +22502,7 @@ exports.default = InputField;
 /* 639 */,
 /* 640 */,
 /* 641 */,
-/* 642 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(14);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(50);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _propTypes = __webpack_require__(49);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var TodoHeader = function (_React$Component) {
-    _inherits(TodoHeader, _React$Component);
-
-    function TodoHeader() {
-        _classCallCheck(this, TodoHeader);
-
-        return _possibleConstructorReturn(this, (TodoHeader.__proto__ || Object.getPrototypeOf(TodoHeader)).apply(this, arguments));
-    }
-
-    _createClass(TodoHeader, [{
-        key: 'render',
-
-        // 若是需要"綁定 this.方法"或是需要 "在 constructor 使用" props，定義 state，
-        //就需要 constructor。若是在其他方法（如 render）使用 this.props 則不用一定要定義 constructor
-        // constructor(props) {
-        // 	//對於 OOP 物件導向程式設計熟悉的讀者應該對於 constructor 建構子的使用不陌生，
-        //     //事實上它是 ES6 的語法糖，骨子裡還是 prototype based 物件導向程式語言。
-        //     //透過 extends 可以繼承 React.Component 父類別。super 方法可以呼叫繼承父類別的建構子
-        // 	super(props);
-        // 	this.state = {}
-        // } 
-
-        value: function render() {
-            //在此可以先定義好this.props，也可以在裡面寫this.props.name
-            var _props = this.props,
-                title = _props.title,
-                username = _props.username,
-                number = _props.number;
-
-            return _react2.default.createElement(
-                'div',
-                null,
-                _react2.default.createElement(
-                    'h1',
-                    null,
-                    title
-                ),
-                _react2.default.createElement(
-                    'h3',
-                    null,
-                    '\u54C8\u645F\uFF0C',
-                    username,
-                    ':\u4F60\u6709',
-                    number,
-                    '\u9805\u672A\u5B8C\u6210\u5F85\u8FA6\u4E8B\u9805'
-                )
-            );
-        }
-    }]);
-
-    return TodoHeader;
-}(_react2.default.Component);
-//React提供了兩個方法定義參數
-// 1. 使用 propTypes 定義參數的型別
-
-
-TodoHeader.propTypes = {
-    /*======================
-        目前React.PropTypes壞掉
-        用引用的PropTypes，就不會出現錯誤
-    =======================*/
-    //   title: React.PropTypes.string,
-    //   username: React.PropTypes.string,
-    //   todoCount: React.PropTypes.number
-    title: _propTypes2.default.string,
-    username: _propTypes2.default.string,
-    todoCount: _propTypes2.default.number
-};
-
-// 2. 使用 defaultProps 定義參數的預設值
-TodoHeader.defaultProps = {
-    title: '預設的待辦清單',
-    username: '預設Guest',
-    todoCount: 0
-};
-
-/*======================
-用了上面的propTypes定義，export default要放在最後面    
-=======================*/
-exports.default = TodoHeader;
-
-/***/ }),
+/* 642 */,
 /* 643 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22787,17 +22519,11 @@ var _react = __webpack_require__(14);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(50);
+var _reactDom = __webpack_require__(70);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _TodoItem = __webpack_require__(654);
-
-var _TodoItem2 = _interopRequireDefault(_TodoItem);
-
-var _propTypes = __webpack_require__(49);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
+var _TodoActions = __webpack_require__(651);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22807,381 +22533,87 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var TodoList = function (_React$Component) {
-  _inherits(TodoList, _React$Component);
+var TodoHeader = function (_Component) {
+  _inherits(TodoHeader, _Component);
 
-  function TodoList() {
-    _classCallCheck(this, TodoList);
+  function TodoHeader(props) {
+    _classCallCheck(this, TodoHeader);
 
-    return _possibleConstructorReturn(this, (TodoList.__proto__ || Object.getPrototypeOf(TodoList)).apply(this, arguments));
-  }
+    var _this = _possibleConstructorReturn(this, (TodoHeader.__proto__ || Object.getPrototypeOf(TodoHeader)).call(this, props));
 
-  _createClass(TodoList, [{
-    key: 'render',
-    value: function render() {
-      //在此可以先定義好this.props，也可以在裡面寫this.props.name
-      var _props = this.props,
-          todos = _props.todos,
-          onDeleteTodo = _props.onDeleteTodo,
-          onToggleTodo = _props.onToggleTodo,
-          completed = _props.completed,
-          onUpdateTodo = _props.onUpdateTodo;
-      //用todos接收父層的東西
-
-      var todoElements = todos.map(function (todo) {
-        return (
-          //用map函數會產生一個Key
-          _react2.default.createElement(
-            'li',
-            { key: todo.id },
-            _react2.default.createElement(_TodoItem2.default, {
-              title: todo.title,
-              completed: todo.completed,
-              onDelete: function onDelete() {
-                return onDeleteTodo && onDeleteTodo(todo.id);
-              }
-              //第一個completed是本層的變數，onToggleTodo function 則是從父層傳入的
-              //但裡面的參數是子層傳給父層
-              , onToggle: function onToggle(completed) {
-                return onToggleTodo && onToggleTodo(todo.id, completed);
-              },
-              onUpdate: function onUpdate(content) {
-                return onUpdateTodo && onUpdateTodo(todo.id, content);
-              }
-            })
-          )
-        );
-      });
-      return _react2.default.createElement(
-        'ul',
-        null,
-        todoElements
-      );
-    }
-  }]);
-
-  return TodoList;
-}(_react2.default.Component);
-
-TodoList.propTypes = {
-  /*======================
-      目前React.PropTypes壞掉
-      用引用的PropTypes，就不會出現錯誤
-  =======================*/
-  //   title: React.PropTypes.string,
-  //   username: React.PropTypes.string,
-  //   todoCount: React.PropTypes.number
-  onDeleteTodo: _propTypes2.default.func
-};
-
-// 2. 使用 defaultProps 定義參數的預設值
-TodoList.defaultProps = {
-  onDeleteTodo: function onDeleteTodo() {
-    alert('onDelete Default');return {};
-  }
-};
-
-exports.default = TodoList;
-
-/***/ }),
-/* 644 */,
-/* 645 */,
-/* 646 */,
-/* 647 */,
-/* 648 */,
-/* 649 */,
-/* 650 */,
-/* 651 */,
-/* 652 */,
-/* 653 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(14);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(50);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _TodoHeader = __webpack_require__(642);
-
-var _TodoHeader2 = _interopRequireDefault(_TodoHeader);
-
-var _InputField = __webpack_require__(628);
-
-var _InputField2 = _interopRequireDefault(_InputField);
-
-var _TodoList = __webpack_require__(643);
-
-var _TodoList2 = _interopRequireDefault(_TodoList);
-
-var _propTypes = __webpack_require__(49);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-/*======================
-基本上，當父元素想傳值給子元素時，會設定在標籤的Attribute上。子元素就能夠透過this.props.Attribute名 
-以取得父元素傳進來的值。這是一種單向的資料傳遞，也就是說，只能由父元素傳到子元素，無法由子元素傳到父元素。
-但如果因為程式架構的關係，需要由子元素傳資料到父元素時，該怎麼辦呢？在React.JS的官方Sample中，有這麼一個處理方式。
-''''就是由父元素設定一個function到一個Attribute上，子元素再把要傳給父元素的資料放到function的arguments。
-這樣父元素的function就可以取得子元素傳進來的資料了。''''''
-=======================*/
-// const todosJSON = [
-//   {
-//     id: 0,
-//     title: 'Item 1',
-//     completed: false
-//   },{
-//     id: 1,
-//     title: 'Item 2',
-//     completed: false
-//   },{
-//     id: 2,
-//     title: 'Item 3',
-//     completed: true
-//   },
-// ];
-var TodoApp = function (_React$Component) {
-  _inherits(TodoApp, _React$Component);
-
-  function TodoApp(props, context) {
-    _classCallCheck(this, TodoApp);
-
-    // 4. 將 todos 搬到 state 中：
-    //    放在 state 的好處是當使用 this.setState() 更新 todos 後，
-    //    React 會幫你重新 render，讓使用者看到最新的畫面。
-    //
-    //    PS. React 的資料模型分兩種：props、state，
-    //    你應該盡可能讓底層元件存取資料的方式是使用 props，
-    //    所以我們將 todos 儲存在上層元件 (TodoApp) 的 state 中。
-    var _this = _possibleConstructorReturn(this, (TodoApp.__proto__ || Object.getPrototypeOf(TodoApp)).call(this, props, context));
-
+    _this.onChange = _this.onChange.bind(_this);
+    _this.onAdd = _this.onAdd.bind(_this);
     _this.state = {
-      todosJSON: [] //將原本的todos清空
+      text: '',
+      editing: false
     };
     return _this;
   }
-  // 2. 實作 componentDidMount 方法：
-  //    該方法在元件第一次 render 後，會被呼叫；
-  //    更多細節請見[學習筆記 1]
 
-
-  _createClass(TodoApp, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      // 3. 使用 ajax 請求 API：
-      //    並將取回的待辦資料更新元件 state（見下一步）
-      fetch('./todos.json') // 1. 使用 fetch 回傳的是 promise 物件
-      .then(function (response) {
-        return response.json();
-      }) // 2. 解析 response 資料，將它轉成 js 物件
-      .then(function (todosJSON) {
-        return _this2.setState({ todosJSON: todosJSON });
-      }); // 3. 更新元件 state      
+  _createClass(TodoHeader, [{
+    key: 'onChange',
+    value: function onChange(event) {
+      this.setState({
+        text: event.target.value
+      });
+    }
+  }, {
+    key: 'onAdd',
+    value: function onAdd() {
+      //按下新增鈕後，觸發Action並把值傳給他(在函數裡面塞值，可以傳給父層)
+      _TodoActions.TodoActions.addTodo(this.state.text);
+      this.setState({
+        text: ''
+      });
     }
   }, {
     key: 'render',
     value: function render() {
-      var _this3 = this;
-
-      //用箭頭函數可以不用宣告
-      var _self = this;
-      // 5. 從 state 中取得 todos
-      var todosJSON = this.state.todosJSON;
-
-      return (
-        //要用一個大標籤刮起來
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'h1',
+          null,
+          'TodoFlux'
+        ),
         _react2.default.createElement(
           'div',
           null,
-          _react2.default.createElement(_TodoHeader2.default, {
-            title: '\u6211\u7684\u5F85\u8FA6\u4E8B\u9805',
-            username: 'Jason'
-            //filter符合function裡面條件的沒打勾
-            , number: todosJSON.filter(function (todo) {
-              return !todo.completed;
-            }).length
+          _react2.default.createElement('input', {
+            value: this.state.text,
+            type: 'text',
+            placeholder: '\u8BF7\u8F93\u5165\u4EE3\u529E\u4E8B\u9879'
+            //觸發本身的onChange事件
+            , onChange: this.onChange
           }),
-          _react2.default.createElement(_InputField2.default, {
-            placeholder: '\u65B0\u589E\u5F85\u8FA6\u4E8B\u9805',
-            onSubmitEditing: function onSubmitEditing(title) {
-              return _this3.setState({
-                todosJSON: _createTodo(todosJSON, title)
-
-              });
-            }
-          }),
-          _react2.default.createElement(_TodoList2.default, {
-            todos: todosJSON
-            //用一般的function上面就要宣告_self = this
-            //這邊的id是從子層傳過來的
-            //onDeleteTodo是一個物件(也是函數)，傳給子層
-            , onDeleteTodo: function onDeleteTodo(id) {
-              _self.setState({
-                todosJSON: _deleteTodo(todosJSON, id)
-              });
-            }
-            //用下面的箭頭函數，會綁訂父層的this，所以上面可以不用宣告
-            /*onDeleteTodo={
-              (id)=>{
-                this.setState({
-                  todosJSON:_deleteTodo(todosJSON,id)
-                })
-              }
-            }*/
-            , onToggleTodo: function onToggleTodo(id, completed) {
-              return _this3.setState({
-                todosJSON: _toggleTodo(todosJSON, id, completed)
-              });
-            }
-            // 1. 呼叫 _updateTodo，更新 todos 狀態
-            , onUpdateTodo: function onUpdateTodo(id, title) {
-              return _this3.setState({
-                todosJSON: _updateTodo(todosJSON, id, title)
-              });
-            }
-          })
+          _react2.default.createElement(
+            'button',
+            {
+              //觸發本身的onAdd
+              onClick: this.onAdd
+            },
+            '\u9001\u51FA'
+          )
         )
       );
     }
   }]);
 
-  return TodoApp;
-}(_react2.default.Component);
+  return TodoHeader;
+}(_react.Component);
 
-_reactDom2.default.render(_react2.default.createElement(TodoApp, null), document.getElementById('test4'));
-
-// 2. 將編輯邏輯抽成一個 function
-var _updateTodo = function _updateTodo(todosJSON, id, title) {
-  var target = todosJSON.find(function (todo) {
-    return todo.id === id;
-  });
-  console.log('title', title);
-  if (target) target.title = title;
-  return todosJSON;
-};
-
-var _createTodo = function _createTodo(todosJSON, title) {
-
-  todosJSON.push({
-    id: todosJSON[todosJSON.length - 1] ? todosJSON[todosJSON.length - 1].id + 1 : 0,
-    title: title,
-    completed: false
-  });
-  return todosJSON;
-};
-
-var _toggleTodo = function _toggleTodo(todosJSON, id, completed) {
-  //找到從TodoList回傳的id跟totosJSON裡面的資料比對
-  var target = todosJSON.find(function (todo) {
-    return todo.id === id;
-  });
-  console.log(target, id);
-  //如果其值相等，則將該index刪除一筆
-  if (target) target.completed = completed;
-
-  //回傳新的todosJSON
-  return todosJSON;
-};
-
-// 7. 將刪除邏輯抽成一個 function
-var _deleteTodo = function _deleteTodo(todosJSON, id) {
-  //找到從TodoList回傳的id跟totosJSON裡面的資料比對
-  var idx = todosJSON.findIndex(function (todosJSON) {
-    return todosJSON.id === id;
-  });
-  //如果其值相等，則將該index刪除一筆
-  if (idx !== -1) todosJSON.splice(idx, 1);
-  //回傳新的todosJSON
-  return todosJSON;
-};
-
-TodoApp.propTypes = {
-  /*======================
-      目前React.PropTypes壞掉
-      用引用的PropTypes，就不會出現錯誤
-  =======================*/
-  //   title: React.PropTypes.string,
-  //   username: React.PropTypes.string,
-  //   todoCount: React.PropTypes.number
-  todosJSON: _propTypes2.default.func
-};
-
-// 2. 使用 defaultProps 定義參數的預設值
-TodoApp.defaultProps = {
-  todosJSON: function todosJSON() {
-    alert('onDelete Default');return {};
-  }
-};
-
-// 1. 使用元素屬性，傳遞 props 給元件
-_reactDom2.default.render(_react2.default.createElement(_TodoHeader2.default, {
-  username: 'ken',
-  todos: ['Item1', 'Item2']
-}), document.getElementById('test6'));
-
-// 2. 使用 Object """spread"""'" properties（詳見[學習筆記 4]）
-var props = {
-  username: 'Hello',
-  number: ['Item1', 'Item2']
-};
-
-_reactDom2.default.render(_react2.default.createElement(_TodoHeader2.default, props), // 與第一種方式傳遞的參數一樣
-document.getElementById('test5'));
-
-/*======================
-        箭頭函數
-=======================*/
-// ES5 中，定義匿名函數，及將函數賦值給變數的方法
-var plus = function plus(x) {
-  return x + 1;
-};
-
-// ES6 中，箭頭函數讓匿名函數宣告語法更簡潔
-var plus1 = function plus1(x) {
-  return x + 1;
-};
-
-// ES6 中，箭頭函數會自動綁定 this
-// function Person() {
-//   this.text = 'hello';
-
-//   // Error: ES6 的匿名函數不會自動綁定 this，因此取不到 this.text
-//   setInterval(function() {
-//     console.log(this.text);
-//   }, 1000);
-
-//   // Correct
-//   setInterval(() => console.log(this.text), 1000);
-// }
-
-// new Person();
+exports.default = TodoHeader;
 
 /***/ }),
-/* 654 */
+/* 644 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -23190,17 +22622,9 @@ var _react = __webpack_require__(14);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(50);
+var _TodoStore = __webpack_require__(653);
 
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _InputField = __webpack_require__(628);
-
-var _InputField2 = _interopRequireDefault(_InputField);
-
-var _propTypes = __webpack_require__(49);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
+var _TodoStore2 = _interopRequireDefault(_TodoStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -23210,129 +22634,834 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var TodoItem = function (_React$Component) {
-    _inherits(TodoItem, _React$Component);
+function getAppState() {
+  return {
+    todos: _TodoStore2.default.getTodos()
+  };
+}
 
-    // 若是需要"綁定 this.方法"或是需要 "在 constructor 使用" props，定義 state，
-    //就需要 constructor。若是在其他方法（如 render）使用 this.props 則不用一定要定義 constructor
-    function TodoItem(props, context) {
-        _classCallCheck(this, TodoItem);
+var TodoList = function (_Component) {
+  _inherits(TodoList, _Component);
 
-        //給予初始值，他的用意是當state改變時，會重新渲染
-        var _this = _possibleConstructorReturn(this, (TodoItem.__proto__ || Object.getPrototypeOf(TodoItem)).call(this, props, context));
-        //對於 OOP 物件導向程式設計熟悉的讀者應該對於 constructor 建構子的使用不陌生，
-        //事實上它是 ES6 的語法糖，骨子裡還是 prototype based 物件導向程式語言。
-        //透過 extends 可以繼承 React.Component 父類別。super 方法可以呼叫繼承父類別的建構子
+  function TodoList(props) {
+    _classCallCheck(this, TodoList);
 
+    var _this = _possibleConstructorReturn(this, (TodoList.__proto__ || Object.getPrototypeOf(TodoList)).call(this, props));
 
-        _this.state = { editable: false };
-        // 7. 在 ES6 component class 中，你必須手動綁定 this
-        _this.toggleEditMode = _this.toggleEditMode.bind(_this);
-        return _this;
+    _this.onChange = _this.onChange.bind(_this);
+    _this.state = {
+      todos: []
+    };
+    return _this;
+  }
+
+  _createClass(TodoList, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      _TodoStore2.default.addChangeListener(this.onChange);
     }
-
-    _createClass(TodoItem, [{
-        key: 'toggleEditMode',
-        value: function toggleEditMode() {
-            // 6. 更新元件狀態來切換模式
-            this.setState({ editable: !this.state.editable });
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            return this.state.editable ? this.renderEditMode() : this.renderViewMode();
-        }
-    }, {
-        key: 'renderViewMode',
-        value: function renderViewMode() {
-            //在此可以先定義好this.props，也可以在裡面寫this.props.name
-            //這邊的props是從父層傳過來的東西
-            var _props = this.props,
-                title = _props.title,
-                completed = _props.completed,
-                onDelete = _props.onDelete,
-                onToggle = _props.onToggle;
-
+  }, {
+    key: 'onChange',
+    value: function onChange() {
+      this.setState(getAppState());
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'ul',
+          null,
+          this.state.todos.map(function (todo, key) {
             return _react2.default.createElement(
-                'div',
-                null,
-                _react2.default.createElement('input', {
-                    type: 'checkbox',
-                    checked: completed,
-                    onChange: function onChange() {
-                        return onToggle && onToggle(!completed);
-                    }
-                }),
-                _react2.default.createElement(
-                    'span',
-                    { onDoubleClick: this.toggleEditMode },
-                    this.props.title
-                ),
-                _react2.default.createElement(
-                    'button',
-                    { onClick: function onClick() {
-                            return onDelete && onDelete();
-                        } },
-                    'x'
-                )
+              'li',
+              { key: key },
+              todo
             );
-        }
-    }, {
-        key: 'renderEditMode',
-        value: function renderEditMode() {
-            var _this2 = this;
+          })
+        )
+      );
+    }
+  }]);
 
-            var _props2 = this.props,
-                title = _props2.title,
-                completed = _props2.completed,
-                onUpdate = _props2.onUpdate;
+  return TodoList;
+}(_react.Component);
 
-            return _react2.default.createElement(_InputField2.default, {
-                autoFocus: true // 5. autoFocus 讓使用者切換到編輯模式後，可以立即編打
-                , placeholder: '\u7DE8\u8F2F\u5F85\u8FA6\u4E8B\u9805',
-                value: title,
-                onBlurMove: this.toggleEditMode // 8. 當使用者點擊其他地方，則切換為「瀏覽模式」
-                , onKeyDownMove: function onKeyDownMove(e) {
-                    if (e.keyCode === 27) {
-                        // 9. 當使用者按下 ESC，則切換為「瀏覽模式」
-                        e.preventDefault();
-                        _this2.toggleEditMode();
-                    }
-                }
-                // 2. 傳遞 onSubmitEditing callback，該 callback 做兩件事情：
-                //    a. 呼叫上層元件的 onUpdate callback
-                //    b. 切換為「預覽模式」
-                , onSubmitEditing: function onSubmitEditing(content) {
-                    onUpdate && onUpdate(content);
-                    console.log('item', content);
-                    _this2.toggleEditMode();
-                }
-            });
-        }
-    }]);
+exports.default = TodoList;
 
-    return TodoItem;
+/***/ }),
+/* 645 */,
+/* 646 */,
+/* 647 */,
+/* 648 */,
+/* 649 */,
+/* 650 */,
+/* 651 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.TodoActions = undefined;
+
+var _AppDispatcher = __webpack_require__(630);
+
+var _AppDispatcher2 = _interopRequireDefault(_AppDispatcher);
+
+var _actionTypes = __webpack_require__(629);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/*======================
+以下是我们利用 AppDispatcher 打造的 Action Creator 
+由 handleAction 负责发出传入的 action 　　
+=======================*/
+var TodoActions = exports.TodoActions = {
+  //action接到值後，呼叫調動器，並給予type是add_todo，加上payload值
+  addTodo: function addTodo(text) {
+    //handleAction負責發出傳入的action
+    _AppDispatcher2.default.handleAction({
+      //區別所觸發的行為
+      type: _actionTypes.ADD_TODO,
+      //payload是夾帶的資料
+      payload: {
+        text: text
+      }
+    });
+  }
+};
+
+/***/ }),
+/* 652 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(14);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(70);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _TodoHeader = __webpack_require__(643);
+
+var _TodoHeader2 = _interopRequireDefault(_TodoHeader);
+
+var _TodoList = __webpack_require__(644);
+
+var _TodoList2 = _interopRequireDefault(_TodoList);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var App = function (_React$Component) {
+  _inherits(App, _React$Component);
+
+  function App(props) {
+    _classCallCheck(this, App);
+
+    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+    _this.state = {};
+    return _this;
+  }
+
+  _createClass(App, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(_TodoHeader2.default, null),
+        _react2.default.createElement(_TodoList2.default, null)
+      );
+    }
+  }]);
+
+  return App;
 }(_react2.default.Component);
 
-TodoItem.propTypes = {
-    /*======================
-        目前React.PropTypes壞掉
-        用引用的PropTypes，就不會出現錯誤
-    =======================*/
-    //   title: React.PropTypes.string,
-    //   username: React.PropTypes.string,
-    //   todoCount: React.PropTypes.number
-    onDelete: _propTypes2.default.func
+_reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById('app'));
+
+/***/ }),
+/* 653 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _AppDispatcher = __webpack_require__(630);
+
+var _AppDispatcher2 = _interopRequireDefault(_AppDispatcher);
+
+var _actionTypes = __webpack_require__(629);
+
+var _events = __webpack_require__(667);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+//EventEmitter是用來監聽事件
+/*======================
+在 Store 中，需要提供 API 讓 View 註冊資料改變的監聽器(listener)，
+我們使用現有的事件管理模組 - EventEmitter，讓它替我們負責監聽事件和觸發事件。　　
+=======================*/
+//events包含在flux裡面
+
+
+var store = {
+  todos: [],
+  editing: false
 };
 
-// 2. 使用 defaultProps 定義參數的預設值
-TodoItem.defaultProps = {
-    onDelete: function onDelete() {
-        alert('onDelete Default');return {};
+var TodoStoreClass = function (_EventEmitter) {
+  _inherits(TodoStoreClass, _EventEmitter);
+
+  function TodoStoreClass() {
+    _classCallCheck(this, TodoStoreClass);
+
+    return _possibleConstructorReturn(this, (TodoStoreClass.__proto__ || Object.getPrototypeOf(TodoStoreClass)).apply(this, arguments));
+  }
+
+  _createClass(TodoStoreClass, [{
+    key: 'addChangeListener',
+
+    // 1. 提供 View 註冊監聽器，使用 addListener(eventName, listener)
+    value: function addChangeListener(callback) {
+      this.on(_actionTypes.ADD_TODO, callback);
     }
+    // 2. 提供 View 註銷監聽器，使用 removeListener(eventName, listener)
+
+  }, {
+    key: 'removeChangeListener',
+    value: function removeChangeListener(callback) {
+      this.removeListener(_actionTypes.ADD_TODO, callback);
+    }
+  }, {
+    key: 'getTodos',
+    value: function getTodos() {
+      return store.todos;
+    }
+  }]);
+
+  return TodoStoreClass;
+}(_events.EventEmitter);
+
+var TodoStore = new TodoStoreClass();
+//regiser寄存器//獲得Dispatcher來的action
+_AppDispatcher2.default.register(function (action) {
+  switch (action.type) {
+    case _actionTypes.ADD_TODO:
+      store.todos.push(action.payload.text);
+      TodoStore.emit(_actionTypes.ADD_TODO);
+      break;
+    default:
+      return true;
+  }
+  return true;
+});
+
+exports.default = TodoStore;
+
+/***/ }),
+/* 654 */,
+/* 655 */,
+/* 656 */,
+/* 657 */,
+/* 658 */,
+/* 659 */,
+/* 660 */,
+/* 661 */,
+/* 662 */,
+/* 663 */,
+/* 664 */,
+/* 665 */,
+/* 666 */,
+/* 667 */
+/***/ (function(module, exports) {
+
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+function EventEmitter() {
+  this._events = this._events || {};
+  this._maxListeners = this._maxListeners || undefined;
+}
+module.exports = EventEmitter;
+
+// Backwards-compat with node 0.10.x
+EventEmitter.EventEmitter = EventEmitter;
+
+EventEmitter.prototype._events = undefined;
+EventEmitter.prototype._maxListeners = undefined;
+
+// By default EventEmitters will print a warning if more than 10 listeners are
+// added to it. This is a useful default which helps finding memory leaks.
+EventEmitter.defaultMaxListeners = 10;
+
+// Obviously not all Emitters should be limited to 10. This function allows
+// that to be increased. Set to zero for unlimited.
+EventEmitter.prototype.setMaxListeners = function(n) {
+  if (!isNumber(n) || n < 0 || isNaN(n))
+    throw TypeError('n must be a positive number');
+  this._maxListeners = n;
+  return this;
 };
 
-exports.default = TodoItem;
+EventEmitter.prototype.emit = function(type) {
+  var er, handler, len, args, i, listeners;
+
+  if (!this._events)
+    this._events = {};
+
+  // If there is no 'error' event listener then throw.
+  if (type === 'error') {
+    if (!this._events.error ||
+        (isObject(this._events.error) && !this._events.error.length)) {
+      er = arguments[1];
+      if (er instanceof Error) {
+        throw er; // Unhandled 'error' event
+      } else {
+        // At least give some kind of context to the user
+        var err = new Error('Uncaught, unspecified "error" event. (' + er + ')');
+        err.context = er;
+        throw err;
+      }
+    }
+  }
+
+  handler = this._events[type];
+
+  if (isUndefined(handler))
+    return false;
+
+  if (isFunction(handler)) {
+    switch (arguments.length) {
+      // fast cases
+      case 1:
+        handler.call(this);
+        break;
+      case 2:
+        handler.call(this, arguments[1]);
+        break;
+      case 3:
+        handler.call(this, arguments[1], arguments[2]);
+        break;
+      // slower
+      default:
+        args = Array.prototype.slice.call(arguments, 1);
+        handler.apply(this, args);
+    }
+  } else if (isObject(handler)) {
+    args = Array.prototype.slice.call(arguments, 1);
+    listeners = handler.slice();
+    len = listeners.length;
+    for (i = 0; i < len; i++)
+      listeners[i].apply(this, args);
+  }
+
+  return true;
+};
+
+EventEmitter.prototype.addListener = function(type, listener) {
+  var m;
+
+  if (!isFunction(listener))
+    throw TypeError('listener must be a function');
+
+  if (!this._events)
+    this._events = {};
+
+  // To avoid recursion in the case that type === "newListener"! Before
+  // adding it to the listeners, first emit "newListener".
+  if (this._events.newListener)
+    this.emit('newListener', type,
+              isFunction(listener.listener) ?
+              listener.listener : listener);
+
+  if (!this._events[type])
+    // Optimize the case of one listener. Don't need the extra array object.
+    this._events[type] = listener;
+  else if (isObject(this._events[type]))
+    // If we've already got an array, just append.
+    this._events[type].push(listener);
+  else
+    // Adding the second element, need to change to array.
+    this._events[type] = [this._events[type], listener];
+
+  // Check for listener leak
+  if (isObject(this._events[type]) && !this._events[type].warned) {
+    if (!isUndefined(this._maxListeners)) {
+      m = this._maxListeners;
+    } else {
+      m = EventEmitter.defaultMaxListeners;
+    }
+
+    if (m && m > 0 && this._events[type].length > m) {
+      this._events[type].warned = true;
+      console.error('(node) warning: possible EventEmitter memory ' +
+                    'leak detected. %d listeners added. ' +
+                    'Use emitter.setMaxListeners() to increase limit.',
+                    this._events[type].length);
+      if (typeof console.trace === 'function') {
+        // not supported in IE 10
+        console.trace();
+      }
+    }
+  }
+
+  return this;
+};
+
+EventEmitter.prototype.on = EventEmitter.prototype.addListener;
+
+EventEmitter.prototype.once = function(type, listener) {
+  if (!isFunction(listener))
+    throw TypeError('listener must be a function');
+
+  var fired = false;
+
+  function g() {
+    this.removeListener(type, g);
+
+    if (!fired) {
+      fired = true;
+      listener.apply(this, arguments);
+    }
+  }
+
+  g.listener = listener;
+  this.on(type, g);
+
+  return this;
+};
+
+// emits a 'removeListener' event iff the listener was removed
+EventEmitter.prototype.removeListener = function(type, listener) {
+  var list, position, length, i;
+
+  if (!isFunction(listener))
+    throw TypeError('listener must be a function');
+
+  if (!this._events || !this._events[type])
+    return this;
+
+  list = this._events[type];
+  length = list.length;
+  position = -1;
+
+  if (list === listener ||
+      (isFunction(list.listener) && list.listener === listener)) {
+    delete this._events[type];
+    if (this._events.removeListener)
+      this.emit('removeListener', type, listener);
+
+  } else if (isObject(list)) {
+    for (i = length; i-- > 0;) {
+      if (list[i] === listener ||
+          (list[i].listener && list[i].listener === listener)) {
+        position = i;
+        break;
+      }
+    }
+
+    if (position < 0)
+      return this;
+
+    if (list.length === 1) {
+      list.length = 0;
+      delete this._events[type];
+    } else {
+      list.splice(position, 1);
+    }
+
+    if (this._events.removeListener)
+      this.emit('removeListener', type, listener);
+  }
+
+  return this;
+};
+
+EventEmitter.prototype.removeAllListeners = function(type) {
+  var key, listeners;
+
+  if (!this._events)
+    return this;
+
+  // not listening for removeListener, no need to emit
+  if (!this._events.removeListener) {
+    if (arguments.length === 0)
+      this._events = {};
+    else if (this._events[type])
+      delete this._events[type];
+    return this;
+  }
+
+  // emit removeListener for all listeners on all events
+  if (arguments.length === 0) {
+    for (key in this._events) {
+      if (key === 'removeListener') continue;
+      this.removeAllListeners(key);
+    }
+    this.removeAllListeners('removeListener');
+    this._events = {};
+    return this;
+  }
+
+  listeners = this._events[type];
+
+  if (isFunction(listeners)) {
+    this.removeListener(type, listeners);
+  } else if (listeners) {
+    // LIFO order
+    while (listeners.length)
+      this.removeListener(type, listeners[listeners.length - 1]);
+  }
+  delete this._events[type];
+
+  return this;
+};
+
+EventEmitter.prototype.listeners = function(type) {
+  var ret;
+  if (!this._events || !this._events[type])
+    ret = [];
+  else if (isFunction(this._events[type]))
+    ret = [this._events[type]];
+  else
+    ret = this._events[type].slice();
+  return ret;
+};
+
+EventEmitter.prototype.listenerCount = function(type) {
+  if (this._events) {
+    var evlistener = this._events[type];
+
+    if (isFunction(evlistener))
+      return 1;
+    else if (evlistener)
+      return evlistener.length;
+  }
+  return 0;
+};
+
+EventEmitter.listenerCount = function(emitter, type) {
+  return emitter.listenerCount(type);
+};
+
+function isFunction(arg) {
+  return typeof arg === 'function';
+}
+
+function isNumber(arg) {
+  return typeof arg === 'number';
+}
+
+function isObject(arg) {
+  return typeof arg === 'object' && arg !== null;
+}
+
+function isUndefined(arg) {
+  return arg === void 0;
+}
+
+
+/***/ }),
+/* 668 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Copyright (c) 2014-2015, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ */
+
+module.exports.Dispatcher = __webpack_require__(669);
+
+
+/***/ }),
+/* 669 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright (c) 2014-2015, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule Dispatcher
+ * 
+ * @preventMunge
+ */
+
+
+
+exports.__esModule = true;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+var invariant = __webpack_require__(2);
+
+var _prefix = 'ID_';
+
+/**
+ * Dispatcher is used to broadcast payloads to registered callbacks. This is
+ * different from generic pub-sub systems in two ways:
+ *
+ *   1) Callbacks are not subscribed to particular events. Every payload is
+ *      dispatched to every registered callback.
+ *   2) Callbacks can be deferred in whole or part until other callbacks have
+ *      been executed.
+ *
+ * For example, consider this hypothetical flight destination form, which
+ * selects a default city when a country is selected:
+ *
+ *   var flightDispatcher = new Dispatcher();
+ *
+ *   // Keeps track of which country is selected
+ *   var CountryStore = {country: null};
+ *
+ *   // Keeps track of which city is selected
+ *   var CityStore = {city: null};
+ *
+ *   // Keeps track of the base flight price of the selected city
+ *   var FlightPriceStore = {price: null}
+ *
+ * When a user changes the selected city, we dispatch the payload:
+ *
+ *   flightDispatcher.dispatch({
+ *     actionType: 'city-update',
+ *     selectedCity: 'paris'
+ *   });
+ *
+ * This payload is digested by `CityStore`:
+ *
+ *   flightDispatcher.register(function(payload) {
+ *     if (payload.actionType === 'city-update') {
+ *       CityStore.city = payload.selectedCity;
+ *     }
+ *   });
+ *
+ * When the user selects a country, we dispatch the payload:
+ *
+ *   flightDispatcher.dispatch({
+ *     actionType: 'country-update',
+ *     selectedCountry: 'australia'
+ *   });
+ *
+ * This payload is digested by both stores:
+ *
+ *   CountryStore.dispatchToken = flightDispatcher.register(function(payload) {
+ *     if (payload.actionType === 'country-update') {
+ *       CountryStore.country = payload.selectedCountry;
+ *     }
+ *   });
+ *
+ * When the callback to update `CountryStore` is registered, we save a reference
+ * to the returned token. Using this token with `waitFor()`, we can guarantee
+ * that `CountryStore` is updated before the callback that updates `CityStore`
+ * needs to query its data.
+ *
+ *   CityStore.dispatchToken = flightDispatcher.register(function(payload) {
+ *     if (payload.actionType === 'country-update') {
+ *       // `CountryStore.country` may not be updated.
+ *       flightDispatcher.waitFor([CountryStore.dispatchToken]);
+ *       // `CountryStore.country` is now guaranteed to be updated.
+ *
+ *       // Select the default city for the new country
+ *       CityStore.city = getDefaultCityForCountry(CountryStore.country);
+ *     }
+ *   });
+ *
+ * The usage of `waitFor()` can be chained, for example:
+ *
+ *   FlightPriceStore.dispatchToken =
+ *     flightDispatcher.register(function(payload) {
+ *       switch (payload.actionType) {
+ *         case 'country-update':
+ *         case 'city-update':
+ *           flightDispatcher.waitFor([CityStore.dispatchToken]);
+ *           FlightPriceStore.price =
+ *             getFlightPriceStore(CountryStore.country, CityStore.city);
+ *           break;
+ *     }
+ *   });
+ *
+ * The `country-update` payload will be guaranteed to invoke the stores'
+ * registered callbacks in order: `CountryStore`, `CityStore`, then
+ * `FlightPriceStore`.
+ */
+
+var Dispatcher = (function () {
+  function Dispatcher() {
+    _classCallCheck(this, Dispatcher);
+
+    this._callbacks = {};
+    this._isDispatching = false;
+    this._isHandled = {};
+    this._isPending = {};
+    this._lastID = 1;
+  }
+
+  /**
+   * Registers a callback to be invoked with every dispatched payload. Returns
+   * a token that can be used with `waitFor()`.
+   */
+
+  Dispatcher.prototype.register = function register(callback) {
+    var id = _prefix + this._lastID++;
+    this._callbacks[id] = callback;
+    return id;
+  };
+
+  /**
+   * Removes a callback based on its token.
+   */
+
+  Dispatcher.prototype.unregister = function unregister(id) {
+    !this._callbacks[id] ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Dispatcher.unregister(...): `%s` does not map to a registered callback.', id) : invariant(false) : undefined;
+    delete this._callbacks[id];
+  };
+
+  /**
+   * Waits for the callbacks specified to be invoked before continuing execution
+   * of the current callback. This method should only be used by a callback in
+   * response to a dispatched payload.
+   */
+
+  Dispatcher.prototype.waitFor = function waitFor(ids) {
+    !this._isDispatching ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Dispatcher.waitFor(...): Must be invoked while dispatching.') : invariant(false) : undefined;
+    for (var ii = 0; ii < ids.length; ii++) {
+      var id = ids[ii];
+      if (this._isPending[id]) {
+        !this._isHandled[id] ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Dispatcher.waitFor(...): Circular dependency detected while ' + 'waiting for `%s`.', id) : invariant(false) : undefined;
+        continue;
+      }
+      !this._callbacks[id] ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Dispatcher.waitFor(...): `%s` does not map to a registered callback.', id) : invariant(false) : undefined;
+      this._invokeCallback(id);
+    }
+  };
+
+  /**
+   * Dispatches a payload to all registered callbacks.
+   */
+
+  Dispatcher.prototype.dispatch = function dispatch(payload) {
+    !!this._isDispatching ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Dispatch.dispatch(...): Cannot dispatch in the middle of a dispatch.') : invariant(false) : undefined;
+    this._startDispatching(payload);
+    try {
+      for (var id in this._callbacks) {
+        if (this._isPending[id]) {
+          continue;
+        }
+        this._invokeCallback(id);
+      }
+    } finally {
+      this._stopDispatching();
+    }
+  };
+
+  /**
+   * Is this Dispatcher currently dispatching.
+   */
+
+  Dispatcher.prototype.isDispatching = function isDispatching() {
+    return this._isDispatching;
+  };
+
+  /**
+   * Call the callback stored with the given id. Also do some internal
+   * bookkeeping.
+   *
+   * @internal
+   */
+
+  Dispatcher.prototype._invokeCallback = function _invokeCallback(id) {
+    this._isPending[id] = true;
+    this._callbacks[id](this._pendingPayload);
+    this._isHandled[id] = true;
+  };
+
+  /**
+   * Set up bookkeeping needed when dispatching.
+   *
+   * @internal
+   */
+
+  Dispatcher.prototype._startDispatching = function _startDispatching(payload) {
+    for (var id in this._callbacks) {
+      this._isPending[id] = false;
+      this._isHandled[id] = false;
+    }
+    this._pendingPayload = payload;
+    this._isDispatching = true;
+  };
+
+  /**
+   * Clear bookkeeping used for dispatching.
+   *
+   * @internal
+   */
+
+  Dispatcher.prototype._stopDispatching = function _stopDispatching() {
+    delete this._pendingPayload;
+    this._isDispatching = false;
+  };
+
+  return Dispatcher;
+})();
+
+module.exports = Dispatcher;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ })
 /******/ ]);
