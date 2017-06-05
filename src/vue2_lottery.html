@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.3/vue.min.js">
+        
+    </script>
+    <script src="./js/jquery.js">
+        
+    </script>
+    <style>
+        *{
+            list-style: none;
+            font-family: "微軟正黑體";
+            outline:none;
+            box-shadow: none;
+        }
+        ul,.block{
+            display: inline-block;
+        }
+        #submit{
+            /*margin-left: 50px;*/
+            width: 100px;
+            /*margin: auto;*/
+            background-color: #fa0;
+            padding: 10px;
+            color:#fff;
+            /*border:none;*/
+            cursor:pointer;
+        }
+        .block{
+            background-color: skyblue;
+            padding: 10px;
+            border-radius: 5px;
+            color:#fff;
+
+        }
+        li{
+            display: inline-block;
+            border:1px solid skyblue;
+            width: 50px;
+            height: 50px;
+            margin: 7px;
+            line-height: 50px;
+            text-align: center;
+            border-radius: 50%;
+            cursor:pointer;
+            transition:0.5s;
+        }
+        li:hover{
+            background-color: skyblue;
+        }
+        .current{
+            background-color: skyblue;
+        }
+        #show{
+            background-color: #eee;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!--<div id="app">
+        <ul>
+            <li class="" v-on:click="handleClick" v-for="(num,index) in number">{{num}}</li>-->
+            <!--<li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>-->
+        <!--</ul>
+        <button v-on:click="submit">添加號碼</button>
+        <ul>
+            <span id="show" v-for="show in shows" v-if="displayMe" v-once>
+                {{show}},
+            </span>
+        </ul>
+        
+    </div>-->
+<div>
+    <div class="field">
+        <div class="block">
+            萬位:
+        </div>
+        <ul>
+            <li>0</li>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+        </ul>
+    </div>
+<div class="field">
+    <div class="block">
+        千位:
+    </div>
+    <ul>
+        <li>0</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+    </ul>
+</div>
+
+    <button id="submit">添加號碼</button>
+    <div id="show">
+        當前已選:<span id="total"></span>注<span>您所選的號碼:</span>
+    </div>
+</div>
+
+
+</body>
+</html>
+<script>
+    function add(list) {
+        var tol=0;
+        $.each(list,function(obj){
+            tol +=obj * tol;
+        })
+         
+    }
+    $("li").on('click',function(){
+        if($(this).hasClass('current')){
+            $(this).removeClass('current');
+        }else{
+            $(this).attr('class', 'current');
+        }
+    })
+    $("#submit").on('click',function(){
+        var list = [];
+        $.each($("li"),function(obj){
+            
+            if($(this).hasClass('current')){
+                list.push($(this).text());
+                console.log($(this).text());
+            }
+            
+        })
+    $("#show").append(list.join(", "));
+
+    $("#total").append("2");
+        
+
+        // if ($("li").hasClass('current')) {
+        //     console.log('li', $("li").hasClass('current'));
+        //     // list.push()
+        // }
+    })
+
+    // var app = new Vue({
+    //     el:"#app",
+    //     data:{
+    //       number:[0,1,2,3,4,5,6,7,8,9],
+    //       shows:[],
+    //     //   active:true,
+    //       isActive:false,
+    //       displayMe:false
+    //     },
+    //     methods:{
+    //         handleClick:function(e){
+    //             if(e.target.className != "current"){
+    //                 e.target.className = "current";
+    //             }else{
+    //                 e.target.className = "";
+    //             }
+    //             this.shows.push(parseInt(e.target.innerText));
+    //         },
+    //         submit:function(){
+    //             console.log(this.shows);
+    //             this.displayMe=true;
+    //             // this.shows=[];
+
+    //         }
+    //     }
+    // })
+</script>
