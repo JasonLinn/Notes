@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/jquery.js">
+        
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js">
+        
+    </script>
+<!--</style>-->
+<!-- This closes the open style tag above. Just a jsFiddle thing. Please ignore. -->
+
+
+<!-- Odometr includes -->
+<link rel="stylesheet" href="http://github.hubspot.com/odometer/themes/odometer-theme-car.css" />
+<script src="http://github.hubspot.com/odometer/odometer.js"></script>
+
+<!-- Extra styles for this example -->
+<!--<style>-->
+
+    <style>
+    .odometer {
+        font-size: 100px;
+    }        
+        *{
+            font-family: "微軟正黑體";
+        }
+       .total{
+           position: relative;
+           margin-right:20px;
+           display: inline-block;
+           width: 100px;
+           height: 100px;
+           background-color: skyblue;
+           line-height: 100px;
+           text-align: center;
+           border-radius: 50%;
+           font-size: 30px;
+       }
+       span{
+           vertical-align: top;
+           overflow: hidden;
+       }
+       ul{
+           padding:0;
+           position:relative;
+           
+       }
+       li{
+           list-style: none;
+           position:relative;
+           display: block;
+           font-size:30px;
+           vertical-align: top;
+           margin: auto;
+       }
+    </style>
+</head>
+<body>
+    <div id="odometer" class="odometer">123</div>
+    <div id="box">
+        <h1>Books <br/>Reviewed</h1>
+        
+        <span class="total" id="total">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+                <li>7</li>
+                <li>8</li>
+                <li>9</li>
+                <li>10</li>
+            </ul>
+        </span>
+        <span class="total" id="total2"></span>
+        <span class="total" id="total3"></span>
+    </div>
+</body>
+</html>
+<script>
+    setTimeout(function () {
+            odometer.innerHTML = 456;
+        }, 1000);
+    //Animate my counter from 0 to set number (6)
+    var num=0;
+    $("ul").animate({ "top":"-928px" },{duration:5000}
+    )    
+    //Animate my counter from 0 to set number (6)
+    $({ counter2:10 }).animate({ counter2:100}, {
+        //Animate over a period of 2seconds
+        duration: 7000,
+        //Progress animation at constant pace using linear
+        easing: 'easeOutCubic',
+        step: function () {
+            //Every step of the animation, update the number value
+            //Use ceil to round up to the nearest whole int
+            
+            $('#total2').text(Math.ceil(this.counter2))
+            
+        },
+        complete: function () {
+            //Could add in some extra animations, like a bounc of colour change once the count up is complete.
+        }
+    })
+
+    $({counter3: 0 }).animate({counter3:10}, {
+        //Animate over a period of 2seconds
+        duration: 5000,
+        //Progress animation at constant pace using linear
+        easing: 'easeOutCubic',
+        step: function () {
+            var num = 10 * Math.random();
+            //Every step of the animation, update the number value
+            //Use ceil to round up to the nearest whole int
+            $('li').text(Math.ceil(num))
+            $('#total3').text(Math.ceil(this.counter3))
+        },
+        complete: function () {
+            //Could add in some extra animations, like a bounc of colour change once the count up is complete.
+        }
+    });    
+</script>

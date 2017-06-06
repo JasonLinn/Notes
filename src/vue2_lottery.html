@@ -1,72 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title></title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.3/vue.min.js">
-        
     </script>
     <script src="./js/jquery.js">
-        
     </script>
     <style>
-        *{
+        * {
             list-style: none;
             font-family: "微軟正黑體";
-            outline:none;
+            outline: none;
             box-shadow: none;
         }
-        ul,.block{
+
+        ul,
+        .block {
             display: inline-block;
         }
-        #submit{
+
+        #submit {
             /*margin-left: 50px;*/
             width: 100px;
             /*margin: auto;*/
             background-color: #fa0;
             padding: 10px;
-            color:#fff;
+            color: #fff;
             /*border:none;*/
-            cursor:pointer;
+            cursor: pointer;
         }
-        .block{
+
+        .block {
             background-color: skyblue;
             padding: 10px;
             border-radius: 5px;
-            color:#fff;
-
+            color: #fff;
         }
-        li{
+
+        li[class^=bits--] {
             display: inline-block;
-            border:1px solid skyblue;
-            width: 50px;
-            height: 50px;
+            border: 1px solid skyblue;
+            width: 40px;
+            height: 40px;
             margin: 7px;
-            line-height: 50px;
+            line-height: 40px;
             text-align: center;
             border-radius: 50%;
-            cursor:pointer;
-            transition:0.5s;
+            cursor: pointer;
+            transition: 0.5s;
         }
-        li:hover{
+
+        li[class^=control--] {
+            display: inline-block;
+            border: 1px solid skyblue;
+            width: 30px;
+            height: 30px;
+            margin: 4px;
+            line-height: 30px;
+            text-align: center;
+            /*border-radius: 50%;*/
+            cursor: pointer;
+            transition: 0.5s;
+        }
+
+        li:hover {
             background-color: skyblue;
         }
-        .current{
+
+        .current {
             background-color: skyblue;
         }
-        #show{
+
+        #show {
             background-color: #eee;
             margin-top: 20px;
         }
     </style>
 </head>
+
 <body>
     <!--<div id="app">
         <ul>
             <li class="" v-on:click="handleClick" v-for="(num,index) in number">{{num}}</li>-->
-            <!--<li>1</li>
+    <!--<li>1</li>
             <li>2</li>
             <li>3</li>
             <li>4</li>
@@ -75,7 +95,7 @@
             <li>7</li>
             <li>8</li>
             <li>9</li>-->
-        <!--</ul>
+    <!--</ul>
         <button v-on:click="submit">添加號碼</button>
         <ul>
             <span id="show" v-for="show in shows" v-if="displayMe" v-once>
@@ -84,7 +104,7 @@
         </ul>
         
     </div>-->
-<div>
+    <!--<div>
     <div class="field">
         <div class="block">
             萬位:
@@ -102,68 +122,274 @@
             <li>9</li>
         </ul>
     </div>
-<div class="field">
-    <div class="block">
-        千位:
+    <div class="field">
+        <div class="block">
+            千位:
+        </div>
+        <ul>
+            <li>0</li>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+        </ul>
     </div>
-    <ul>
-        <li>0</li>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-        <li>5</li>
-        <li>6</li>
-        <li>7</li>
-        <li>8</li>
-        <li>9</li>
-    </ul>
-</div>
 
     <button id="submit">添加號碼</button>
     <div id="show">
         當前已選:<span id="total"></span>注<span>您所選的號碼:</span>
     </div>
-</div>
+</div>-->
 
-
+    <div id="app"></div>
+    <div id="btnArea"></div>
+    <div id="status"></div>
+    <div id="show"></div>
 </body>
+
 </html>
 <script>
-    function add(list) {
-        var tol=0;
-        $.each(list,function(obj){
-            tol +=obj * tol;
-        })
-         
+    var selectNumber = function (areaTag, num, btnAreaTag) {
+        this.areaTag = areaTag;
+        this.num = num;
+        this.btnAreaTag = btnAreaTag;
     }
-    $("li").on('click',function(){
-        if($(this).hasClass('current')){
-            $(this).removeClass('current');
-        }else{
-            $(this).attr('class', 'current');
+    selectNumber.prototype.createNumbers = function () {
+        var areaTag = this.areaTag;
+        var num = this.num;
+        var bits = ["萬", "千", "百", "十", "個"];
+        var money = 4.00000;
+        var btnAreaTag = this.btnAreaTag;
+
+        for (var i = 0; i < num; i++) {
+            $(areaTag).append(
+                `<div class="field">
+                    <div class="block">
+                        ${bits[i]}位:
+                    </div>
+                    <ul>
+                        <li class="bits--${i}" data-bits="${i}">0</li>
+                        <li class="bits--${i}" data-bits="${i}">1</li>
+                        <li class="bits--${i}" data-bits="${i}">2</li>
+                        <li class="bits--${i}" data-bits="${i}">3</li>
+                        <li class="bits--${i}" data-bits="${i}">4</li>
+                        <li class="bits--${i}" data-bits="${i}">5</li>
+                        <li class="bits--${i}" data-bits="${i}">6</li>
+                        <li class="bits--${i}" data-bits="${i}">7</li>
+                        <li class="bits--${i}" data-bits="${i}">8</li>
+                        <li class="bits--${i}" data-bits="${i}">9</li>
+                    </ul>
+                    <ul>
+                        <li class="control--all--${i}" data-control="all" data-bits="${i}">全</li>
+                        <li class="control--large--${i}" data-control="large" data-bits="${i}">大</li>
+                        <li class="control--small--${i}" data-control="small" data-bits="${i}">小</li>
+                        <li class="control--odd--${i}" data-control="odd" data-bits="${i}">單</li>
+                        <li class="control--even--${i}" data-control="even" data-bits="${i}">雙</li>
+                        <li class="control--clean--${i}" data-control="clean" data-bits="${i}">清</li>
+                    </ul>
+                </div>`
+            )
+
+
         }
-    })
-    $("#submit").on('click',function(){
+        var total = 1;
         var list = [];
-        $.each($("li"),function(obj){
-            
-            if($(this).hasClass('current')){
-                list.push($(this).text());
-                console.log($(this).text());
+        var numList = [];
+        cleanList();
+
+        function cleanList() {
+            list = [];
+            numList = [];
+            $("#status").html(
+                `目前投注0注`
+            )
+            for (let i = 0; i < num; i++) {
+                list.push("");
+                numList.push(0);
             }
-            
+
+        }
+        $("li[class^=bits--]").on('click', function () {
+            var nowBits = $(this).data("bits");
+            if ($(this).hasClass('current')) {
+                numList[nowBits] -= 1;
+                $(this).removeClass('current');
+                console.log('numList', numList);
+                showBetting();
+            } else {
+                // console.log($(this).data("bits"), 'bits');
+                numList[nowBits] += 1;
+                $(this).addClass('current');
+                console.log('numList', numList);
+
+                showBetting();
+            }
         })
-    $("#show").append(list.join(", "));
 
-    $("#total").append("2");
-        
+        function showBetting() {
+            //計算所有注數
+            total = 1;
+            for (let i = 0; i < numList.length; i++) {
+                total = total * numList[i];
+            }
+            console.log(total);
+            if (numList.indexOf(0) == -1) {
+                var newMoney = new Number(money * total);
+                $("#status").html(
+                    `目前投注${total}注,投注金額：${newMoney.toFixed(5)}元`
+                )
+            } else {
+                $("#status").html(
+                    `目前投注0注`
+                )
+            }
+        }
 
-        // if ($("li").hasClass('current')) {
-        //     console.log('li', $("li").hasClass('current'));
-        //     // list.push()
-        // }
-    })
+
+        /*======================
+        　　      btn
+        =======================*/
+
+        $(btnAreaTag).append(
+            `
+                <button id="submit">
+                    添加號碼
+                </button>
+                `
+        )
+        $("#submit").on('click', function () {
+            // console.log('click');
+            if (numList.indexOf(0) == -1) {
+                $.each($("li[class*=current]"), function (obj) {
+                    for (var i = 0; i < num; i++) {
+
+                        if ($(this).hasClass('bits--' + i)) {
+
+                            numList[i] += 1;
+                            list[i] += " " + $(this).text();
+                            console.log($(this).text());
+                            console.log(numList, 'numlist');
+
+                        }
+                    }
+                    $(this).removeClass("current");
+
+                })
+                var totalStr = list.join(", ");
+                var leng = 15;
+                console.log(totalStr.length,'length');
+                if(totalStr.length>5){
+                    console.log('large');
+                    totalStr = totalStr.substr(0,leng)+" ...";
+                }
+                $("#show").append(
+                    `
+                    <div>
+                        <span>[複式組合]</span>
+                        ${totalStr}
+                        <span>共：${total}注</span>
+                    </div>
+                    `
+                );
+
+                cleanList();
+            } else {
+                alert('wtf')
+            }
+
+
+        })
+
+        /*======================
+            　　control
+        =======================*/
+        $("li[class^='control--']").on('click', function () {
+            // console.log($(this).data("control"));
+            var nowBits = $(this).data("bits");
+            switch ($(this).data("control")) {
+                case "all":
+                    $(".bits--" + nowBits).addClass("current")
+                    numList[nowBits] = 10;
+                    showBetting();
+                    break;
+                case "large":
+                    $(".bits--" + nowBits + ":gt(4)").addClass("current");
+                    $(".bits--" + nowBits + ":lt(5)").removeClass("current");
+                    numList[nowBits] = 5;
+                    showBetting();
+                    break;
+                case "small":
+                    $(".bits--" + nowBits + ":gt(4)").removeClass("current");
+                    $(".bits--" + nowBits + ":lt(5)").addClass("current");
+                    numList[nowBits] = 5;
+                    showBetting();
+                    break;
+                case "odd":
+                    $(".bits--" + nowBits + ":even").removeClass("current");
+                    $(".bits--" + nowBits + ":odd").addClass("current");
+                    numList[nowBits] = 5;
+                    showBetting();
+                    break;
+                case "even":
+                    $(".bits--" + nowBits + ":odd").removeClass("current");
+                    $(".bits--" + nowBits + ":even").addClass("current");
+                    numList[nowBits] = 5;
+                    showBetting();
+                    break;
+                case "clean":
+                    $(".bits--" + nowBits).removeClass("current");
+                    numList[nowBits] = 0;
+                    showBetting();
+                    break;
+                default:
+                    break;
+            }
+
+        })
+    }
+
+    var lottery = new selectNumber("#app", 5, "#btnArea");
+    lottery.createNumbers();
+    // lottery.createSubmit();
+    // function add(list) {
+    //     var tol=0;
+    //     $.each(list,function(obj){
+    //         tol +=obj * tol;
+    //     })
+
+    // }
+    // $("li").on('click',function(){
+    //     if($(this).hasClass('current')){
+    //         $(this).removeClass('current');
+    //     }else{
+    //         $(this).attr('class', 'current');
+    //     }
+    // })
+    // $("#submit").on('click',function(){
+    //     var list = [];
+    //     $.each($("li"),function(obj){
+
+    //         if($(this).hasClass('current')){
+    //             list.push($(this).text());
+    //             console.log($(this).text());
+    //         }
+
+    //     })
+    // $("#show").append(list.join(", "));
+
+    // $("#total").append("2");
+
+
+    //     // if ($("li").hasClass('current')) {
+    //     //     console.log('li', $("li").hasClass('current'));
+    //     //     // list.push()
+    //     // }
+    // })
 
     // var app = new Vue({
     //     el:"#app",
