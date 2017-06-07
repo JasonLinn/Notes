@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+  <title>Document</title>
+  <link href="css/vue.css" rel="stylesheet"/>
+</head>
+<body></body>
+<div id="app">
+  <h1>使用vue.js計算呈現資訊/v-if</h1>
+  <h3>實戰博客來排行榜資料轉換html<span><img class="bkl_icon" src="http://pk.ixpanel.com/images/pk/201108/0824/BOOKS.gif"/><a href="#">(連結網址)</a></span></h3>
+  <div class="book" v-for="book in books"><img :src="book.img"/>
+    <div class="infos">
+      <h2 class="name">{{book.name.substring(0,18)}}</h2>
+      <h4 class="author">作者:{{book.author}}</h4>
+      <h4 class="price">價錢: {{book.discount*100}}折{{parseInt(book.price*book.discount)}}元</h4>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.3/vue.min.js"></script>
+  <script src="js/vue_76.js"></script>
+</div>

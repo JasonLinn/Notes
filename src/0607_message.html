@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/jquery.js"></script>
+    <style>
+        *{
+            font-size: 20px;
+            font-family: "微軟正黑體";
+        }
+        #msg{
+            width: 500px;
+            height: 500px;
+            background-color:#eee;
+        }
+        textarea{
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div id="msg"></div>
+    <div id="typeIn">
+        <span>請輸入訊息:</span>
+        <input type="text" id="msgInput">
+        <button id="sub">送出</button>
+    </div>
+</body>
+</html>
+<script>
+    $("#sub").on('click',function(){
+        var msg = $("#msgInput").val();
+        if(msg == ""){
+            alert("請輸入訊息");
+        }else{
+            var nowTime = new Date();
+            var nowHours = nowTime.getHours();
+            $("#msg").append(`
+                <div>小明:${msg}    時間:${nowTime.getHours()}:${nowTime.getMinutes()}</div>
+            `)
+            $("#msgInput").val("");
+        }
+    })
+    
+</script>

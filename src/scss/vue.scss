@@ -1,5 +1,5 @@
 *{
-    // font-family: 微軟正黑體
+    font-family: 微軟正黑體
 }
 body{
     padding: 20px;
@@ -28,4 +28,26 @@ li{
     width: 300px;
     border-radius: 5px;
     margin: 5px;
+}
+.bkl_icon{
+    width: 100px;
+}
+.book{
+    display: inline-block;
+    padding: 10px;
+    text-align: center;
+    width: 170px;
+    border: solid 1px #bbb;
+    img{
+        width: 100%;
+    }
+    .author,.price{
+        font-weight: normal;
+        margin: 0;
+        font-size: 14px;
+        color:#555;
+    }
+    .name{
+        font-size: 18px;
+    }
 }

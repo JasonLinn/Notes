@@ -98,8 +98,15 @@
                     <section class="section2">
                         <div class="content"></div>
                         <div id="showNumber"></div>
+                        <button id="random">隨機選號</button>
                         <button id="submit">確定選號</button>
                         <div id="show"></div>
+                        <button class="btnControl" data-control="all">全</button>
+                        <button class="btnControl" data-control="large">大</button>
+                        <button class="btnControl" data-control="small">小</button>
+                        <button class="btnControl" data-control="odd">單</button>
+                        <button class="btnControl" data-control="even">雙</button>
+                        <button class="btnControl" data-control="clean">清</button>
                     </section>
                     <section class="section2">
                         <div>2</div>
@@ -270,10 +277,63 @@
             appendNumber();
 
         });
+        function getRandomArray(minNum, maxNum, n) {	//隨機產生不重覆的n個數字
+                var rdmArray = [n];		//儲存產生的陣列
+
+                for (var i = 0; i < n; i++) {
+                    var rdm = 0;		//暫存的亂數
+
+                    do {
+                        var exist = false;			//此亂數是否已存在
+                        rdm = getRandom(minNum, maxNum);	//取得亂數
+
+                        //檢查亂數是否存在於陣列中，若存在則繼續回圈
+                        if (rdmArray.indexOf(rdm) != -1) exist = true;
+
+                    } while (exist);	//產生沒出現過的亂數時離開迴圈
+
+                    rdmArray[i] = rdm;
+                }
+                return rdmArray;
+            }
+        $("#random").on('click',function(){
+            
+            
+            if(numList.length == 50){
+                return;
+            }else{
+                do {
+                    var exsit = false;
+                    var ran = Math.floor(50 * Math.random());
+
+                    if (numList.indexOf(ran) == -1) {
+                        $(".sixLottery").children("li").eq(ran).addClass("choice");
+                        numList.push(ran);
+                    } else {
+                        exsit = true;
+                    }
+                } while (exsit);
+            }
+
+            // for(var i= 0;i49;i++){
+            //     do {
+            //         var exist = false;
+            //         if (numList.indexOf(ran) !=-1) exist = true;
+            //      } while (exist);
+            // }
+
+            // console.log(ran);
+            
+        })
         //確定選號被點選
         $("#submit").on('click',function(){
-            $("#show").append(`<div>${numList.join(", ")},共:${numList.length}注</div>`);
-            cleanList();
+            if(numList.length!=0){
+                $("#show").append(`<div>${numList.join(", ")},共:${numList.length}注</div>`);
+                cleanList();
+            }else{
+                alert("請選一注號碼")
+            }
+            
         })
         function appendNumber() {
             $("#showNumber").html(`共:${numList.length}注`)
@@ -282,7 +342,54 @@
             numList = [];
             $(".number").removeClass("choice");
         }        
-    }
+            /*======================
+                  control
+            =======================*/
+        $(".btnControl").on('click', function () {
+            // console.log($(this).data("control"));
+            // var nowBits = $(this).data("bits");
+            console.log('click');
+            switch ($(this).data("control")) {
+                case "all":
+                    $(".number").addClass("choice")
+                    
+                    
+                    break;
+                case "large":
+                    $(".number" + ":gt(24)").addClass("choice");
+                    $(".number" + ":lt(25)").removeClass("choice");
+                    
+                    
+                    break;
+                case "small":
+                    $(".number" + ":gt(24)").removeClass("choice");
+                    $(".number" + ":lt(25)").addClass("choice");
+                    
+                    
+                    break;
+                case "odd":
+                    $(".number" + ":odd").removeClass("choice");
+                    $(".number" + ":even").addClass("choice");
+                    
+                    
+                    break;
+                case "even":
+                    $(".number" + ":even").removeClass("choice");
+                    $(".number" + ":odd").addClass("choice");
+                    
+                    
+                    break;
+                case "clean":
+                    $(".number").removeClass("choice");
+                    
+                    
+                    break;
+                default:
+                    break;
+            }
+
+        })        
+    }//prototype end
     //初始化內容物
     var sixLot = new sixLottery(".content");
     sixLot.createLottery();
@@ -291,7 +398,7 @@
     /*======================
     　　     countdown
     =======================*/
-    var countDownDate = new Date("Jun 7,2017 14:30:00").getTime();
+    var countDownDate = new Date("Jun 7,2017 18:02").getTime();
 
     var x = setInterval(function(){
         var now = new Date().getTime();
@@ -301,13 +408,17 @@
         var hours = Math.floor(distance % (24 * 60 * 60 * 1000) / (60 * 60 * 1000));
         var min = Math.floor(distance % ( 60 * 60 * 1000) / ( 60 * 1000));
         var sec = Math.floor(distance % ( 60 * 1000) / (1000));
-        console.log(distance);
+        // console.log(distance);
         // console.log(sec);
         document.getElementById('countDown').innerHTML = days+"day" +hours+"hr" +min+"min" + sec+"sec";
+        if(distance <10){
 
-        if(distance<0){
+        }
+        if(distance==0){
             clearInterval(x);
             alert("恭喜中獎");
+            document.location.href = "http://localhost:1234/0607_6lottery.html";
+            
         }
     },1000)
 </script>

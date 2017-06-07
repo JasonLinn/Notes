@@ -240,6 +240,7 @@
             if (numList.indexOf(0) == -1) {
                 var newMoney = new Number(money * total);
                 $("#status").html(
+                    //toFixed到幾位數
                     `目前投注${total}注,投注金額：${newMoney.toFixed(5)}元`
                 )
             } else {
