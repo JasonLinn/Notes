@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/jquery.js"></script>
+    <style>
+        *{
+            font-size: 0;
+            padding:0;
+        }
+        
+        .tab{
+            text-align: center;
+            width: 100px;
+            height: 50px;
+            background-color: #eee;
+            display:inline-block;
+            font-size: 20px;
+            line-height: 50px;
+            flex:1;
+            cursor: pointer;
+        }
+        div{
+            font-size: 16px;
+        }
+        .tab:hover{
+            background-color: skyblue;
+        }
+        .current{
+            background-color:skyblue;
+        }
+        .section{
+            width: 50%;
+            /*height: 100px;*/
+            background-color: #ccc;
+            font-size: 20px;
+        }
+        button{
+            font-size: 16px;
+        }
+        section > div{
+            width: 100%;
+            height: 100%;
+            font-size: 20px;
+            text-align: center;
+            line-height: 100px;
+            cursor: pointer;
+        }
+        .tabControl2{
+            text-align: left;
+        }
+        a{
+            font-size: 20px;
+        }
+        .sixLottery > li{
+            display: inline-block;
+            /*background-color:#fff;*/
+            border:1px solid #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+
+        }
+        .choice{
+            background-color:#fa0;
+        }
+        .sixLottery > li:hover{
+            background-color:#fa0;
+        }
+        .sixLottery > li >div{
+            width: 100%;
+            height: 100%;
+            font-size: 20px;
+            line-height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <ul class="tabControl">
+        <li class="tab">正碼</li>
+        <li class="tab">tab2</li>
+        <li class="tab">tab3</li>
+        <li class="tab">tab4</li>
+        <li class="tab">tab5</li>
+    </ul>
+    <div class="sectionControl">
+        <section class="section">
+            <div>
+                <ul class="tabControl2">
+                    <li class="tab">正碼</li>
+                    <li class="tab">2</li>
+                    <li class="tab">3</li>
+                </ul>
+                <div class="sectionControl2">
+                    <section class="section2">
+                        <div class="content"></div>
+                        <div id="showNumber"></div>
+                        <button id="submit">確定選號</button>
+                        <div id="show"></div>
+                    </section>
+                    <section class="section2">
+                        <div>2</div>
+                    </section>
+                    <section class="section2">
+                        <div>3</div>
+                    </section>
+                </div>
+
+            </div>
+        </section>
+        <section class="section">
+            <div>2</div>
+        </section>
+        <section class="section">
+            <div>3</div>
+        </section>
+        <section class="section">
+            <div>4</div>
+        </section>
+        <section class="section">
+            <div>5</div>
+        </section>
+    </div>
+    <div id="countDown">
+
+    </div>
+    <!--<div class="tab">tab1</div>
+    <div class="tab">tab2</div>
+    <div class="tab">tab3</div>
+    <div class="tab">tab4</div>
+    <div class="tab">tab5</div>-->
+</body>
+</html>
+<script>
+    /*======================
+        　　Tab切換
+    =======================*/
+    //設定option選到切換建構子
+        var optionTabCheck = function (tagName, changeName) {
+            this.tagName = tagName; //主要的select是誰
+            this.changeName = changeName; //需要改變的類別名
+            this.newTag; //存放新的option
+            this.oldTag = changeName + "0"; //存放新的option
+            this.nowTabNumber = 0; //用來裝目前誰點到
+        }
+        //變更時觸發
+        optionTabCheck.prototype.changing = function () {
+            var callChangeName = this.changeName;
+            var callOldTag = this.oldTag;
+            $(this.tagName).change(function () {
+                //目前選到option是誰
+                this.newTag = callChangeName + this.selectedIndex;
+                //判斷有無類別存在
+                if ($(this.newTag).length > 0) {
+                    $(this.newTag).css("display", "block");
+                }
+                //替換舊的並把其他隱藏
+                $(callOldTag).css("display", "none");
+                callOldTag = this.newTag;
+            })
+        }
+
+        optionTabCheck.prototype.tabChanging = function () {
+            var callTabName = this.changeName;
+            var _this = this;
+            $(">li:eq(0)", this.tagName).addClass("current");
+            $(callTabName).siblings().css("display", "none");
+            $(callTabName).eq(_this["nowTabNumber"]).css("display", "block")
+            $(this.tagName).on("click", ">li", function () {
+                _this["nowTabNumber"] = $(this).index();
+                //var nowClickNumber = $(this).parent().index();
+                $(callTabName).eq(_this["nowTabNumber"]).css("display", "block").siblings().css("display", "none");
+                $(this).addClass("current").siblings().removeClass("current");
+            });
+
+        }
+
+    //初始化第一層
+    var lotteryTab = new optionTabCheck(".tabControl",".section");
+    lotteryTab.tabChanging();
+    //初始化第二層
+    var lotteryTab = new optionTabCheck(".tabControl2", ".section2");
+    lotteryTab.tabChanging();
+    
+
+    /*======================
+        　　遊戲內容
+    =======================*/
+    var sixLottery = function(putArea){
+        this.putArea = putArea;
+    }
+    sixLottery.prototype.createLottery = function(){
+        var  putArea = this.putArea;
+        $(putArea).append(`
+            <ul class="sixLottery">
+                <li class="number"><div>1</div></li>
+                <li class="number"><div>2</div></li>
+                <li class="number"><div>3</div></li>
+                <li class="number"><div>4</div></li>
+                <li class="number"><div>5</div></li>
+                <li class="number"><div>6</div></li>
+                <li class="number"><div>7</div></li>
+                <li class="number"><div>8</div></li>
+                <li class="number"><div>9</div></li>
+                <li class="number"><div>10</div></li>
+                <li class="number"><div>11</div></li>
+                <li class="number"><div>12</div></li>
+                <li class="number"><div>13</div></li>
+                <li class="number"><div>14</div></li>
+                <li class="number"><div>15</div></li>
+                <li class="number"><div>16</div></li>
+                <li class="number"><div>17</div></li>
+                <li class="number"><div>18</div></li>
+                <li class="number"><div>19</div></li>
+                <li class="number"><div>20</div></li>
+                <li class="number"><div>21</div></li>
+                <li class="number"><div>22</div></li>
+                <li class="number"><div>23</div></li>
+                <li class="number"><div>24</div></li>
+                <li class="number"><div>25</div></li>
+                <li class="number"><div>26</div></li>
+                <li class="number"><div>27</div></li>
+                <li class="number"><div>28</div></li>
+                <li class="number"><div>29</div></li>
+                <li class="number"><div>30</div></li>
+                <li class="number"><div>31</div></li>
+                <li class="number"><div>32</div></li>
+                <li class="number"><div>33</div></li>
+                <li class="number"><div>34</div></li>
+                <li class="number"><div>35</div></li>
+                <li class="number"><div>36</div></li>
+                <li class="number"><div>37</div></li>
+                <li class="number"><div>38</div></li>
+                <li class="number"><div>39</div></li>
+                <li class="number"><div>40</div></li>
+                <li class="number"><div>41</div></li>
+                <li class="number"><div>42</div></li>
+                <li class="number"><div>43</div></li>
+                <li class="number"><div>44</div></li>
+                <li class="number"><div>45</div></li>
+                <li class="number"><div>46</div></li>
+                <li class="number"><div>47</div></li>
+                <li class="number"><div>48</div></li>
+                <li class="number"><div>49</div></li>
+            </ul>
+        `);
+
+        var numList = [];
+
+        //號碼被點選時
+        $(".number").on('click',function(){
+
+            if(!$(this).hasClass("choice")){
+                //加上choice的class
+                $(this).addClass("choice");
+                //在陣列裡放入所選數字
+                numList.push(parseInt($(this).children().text()));
+                console.log(numList);
+            }else{
+                $(this).removeClass("choice");
+                var index = numList.indexOf(parseInt($(this).children().text()));
+                if(index>-1){
+                    numList.splice(index,1);
+                }
+                console.log(numList);
+            }
+            appendNumber();
+
+        });
+        //確定選號被點選
+        $("#submit").on('click',function(){
+            $("#show").append(`<div>${numList.join(", ")},共:${numList.length}注</div>`);
+            cleanList();
+        })
+        function appendNumber() {
+            $("#showNumber").html(`共:${numList.length}注`)
+        }
+        function cleanList() {
+            numList = [];
+            $(".number").removeClass("choice");
+        }        
+    }
+    //初始化內容物
+    var sixLot = new sixLottery(".content");
+    sixLot.createLottery();
+
+
+    /*======================
+    　　     countdown
+    =======================*/
+    var countDownDate = new Date("Jun 7,2017 14:30:00").getTime();
+
+    var x = setInterval(function(){
+        var now = new Date().getTime();
+        var distance = countDownDate - now;
+
+        var days = Math.floor(distance/(24*60*60*1000));
+        var hours = Math.floor(distance % (24 * 60 * 60 * 1000) / (60 * 60 * 1000));
+        var min = Math.floor(distance % ( 60 * 60 * 1000) / ( 60 * 1000));
+        var sec = Math.floor(distance % ( 60 * 1000) / (1000));
+        console.log(distance);
+        // console.log(sec);
+        document.getElementById('countDown').innerHTML = days+"day" +hours+"hr" +min+"min" + sec+"sec";
+
+        if(distance<0){
+            clearInterval(x);
+            alert("恭喜中獎");
+        }
+    },1000)
+</script>
