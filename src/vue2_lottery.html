@@ -23,7 +23,7 @@
             display: inline-block;
         }
 
-        #submit {
+        .colorBtn {
             /*margin-left: 50px;*/
             width: 100px;
             /*margin: auto;*/
@@ -237,12 +237,14 @@
                 total = total * numList[i];
             }
             console.log(total);
+            //如果裡面有值，則將注數跟金額印出來
             if (numList.indexOf(0) == -1) {
                 var newMoney = new Number(money * total);
                 $("#status").html(
                     //toFixed到幾位數
                     `目前投注${total}注,投注金額：${newMoney.toFixed(5)}元`
                 )
+            //沒值，就印0注
             } else {
                 $("#status").html(
                     `目前投注0注`
@@ -257,13 +259,16 @@
 
         $(btnAreaTag).append(
             `
-                <button id="submit">
-                    添加號碼
-                </button>
-                `
+            <button id="submit" class="colorBtn">
+                添加號碼
+            </button>
+            <button id="random" class="colorBtn">
+                隨機選號
+            </button>
+            `
         )
         $("#submit").on('click', function () {
-            // console.log('click');
+            
             if (numList.indexOf(0) == -1) {
                 $.each($("li[class*=current]"), function (obj) {
                     for (var i = 0; i < num; i++) {
@@ -304,7 +309,51 @@
 
 
         })
+        /*======================
+               random按鈕　　
+        =======================*/
+        $("#random").on('click', function () {
 
+            //當numList滿的時候跳出
+            if (list.length == 50) {
+                return;
+            } else {
+                do {
+
+                    var exsit = false;
+                    var ran = Math.floor(50 * Math.random());
+                    $.each($("li[class*=current]"),function(obj){
+                        if(parseInt($(this).text()) == ran){
+                            exsit = true;
+                        }else{
+                            // $("li[]")
+                        }
+                        // console.log($(this).text());
+                    })
+                    
+                    //如果找不到值
+                    // if (list.indexOf(ran) == -1) {
+                    //     //在與隨機號碼一樣的數字加上class
+                    //     $(".sixLottery").children("li").eq(ran).addClass("choice");
+                    //     //並把數字放入陣列中
+                    //     list.push(ran);
+                    // } else {
+                    //     //如果找到值則exsit變成true，loop會繼續執行，直到找不到值為止
+                    //     exsit = true;
+                    // }
+                } while (exsit);
+            }
+            // appendNumber();
+            // for(var i= 0;i49;i++){
+            //     do {
+            //         var exist = false;
+            //         if (numList.indexOf(ran) !=-1) exist = true;
+            //      } while (exist);
+            // }
+
+            // console.log(ran);
+
+        })
         /*======================
             　　control
         =======================*/

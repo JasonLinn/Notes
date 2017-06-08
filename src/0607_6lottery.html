@@ -255,8 +255,8 @@
             </ul>
         `);
 
+        //儲存目前選到數字的陣列
         var numList = [];
-
         //號碼被點選時
         $(".number").on('click',function(){
 
@@ -296,25 +296,30 @@
                 }
                 return rdmArray;
             }
+        //random按鈕
         $("#random").on('click',function(){
             
-            
+            //當numList滿的時候跳出
             if(numList.length == 50){
                 return;
             }else{
                 do {
+                    
                     var exsit = false;
                     var ran = Math.floor(50 * Math.random());
-
+                    //如果找不到值
                     if (numList.indexOf(ran) == -1) {
+                        //在與隨機號碼一樣的數字加上class
                         $(".sixLottery").children("li").eq(ran).addClass("choice");
+                        //並把數字放入陣列中
                         numList.push(ran);
                     } else {
+                        //如果找到值則exsit變成true，loop會繼續執行，直到找不到值為止
                         exsit = true;
                     }
                 } while (exsit);
             }
-
+            appendNumber();
             // for(var i= 0;i49;i++){
             //     do {
             //         var exist = false;
@@ -327,8 +332,10 @@
         })
         //確定選號被點選
         $("#submit").on('click',function(){
+            //numList長度不等於0時，在會append的資料到下方
             if(numList.length!=0){
                 $("#show").append(`<div>${numList.join(", ")},共:${numList.length}注</div>`);
+                //append完後清空陣列
                 cleanList();
             }else{
                 alert("請選一注號碼")
@@ -342,6 +349,14 @@
             numList = [];
             $(".number").removeClass("choice");
         }        
+
+
+
+        function pushNumber(min,max){
+            for (var i = min; i <= max; i++) {
+                numList.push(i);
+            }
+        }
             /*======================
                   control
             =======================*/
@@ -351,38 +366,56 @@
             console.log('click');
             switch ($(this).data("control")) {
                 case "all":
+                    cleanList();
                     $(".number").addClass("choice")
-                    
-                    
+                    pushNumber(1,49);
+                    appendNumber(); 
                     break;
                 case "large":
+                    cleanList();
                     $(".number" + ":gt(24)").addClass("choice");
                     $(".number" + ":lt(25)").removeClass("choice");
-                    
+                    pushNumber(26, 49);
+                    appendNumber();         
                     
                     break;
                 case "small":
+                    cleanList();
                     $(".number" + ":gt(24)").removeClass("choice");
                     $(".number" + ":lt(25)").addClass("choice");
-                    
+                    pushNumber(1, 25);
+                    appendNumber();
                     
                     break;
                 case "odd":
+                    cleanList();
                     $(".number" + ":odd").removeClass("choice");
                     $(".number" + ":even").addClass("choice");
+                    //選奇數
+                    for(var i =1;i<50;i++){
+                        if(i%2 != 0){
+                            numList.push(i);
+                        }
+                    }
                     
-                    
+                    appendNumber();
                     break;
                 case "even":
+                    cleanList();
                     $(".number" + ":even").removeClass("choice");
                     $(".number" + ":odd").addClass("choice");
-                    
+                    //選偶數
+                    for (var i = 1; i < 50; i++) {
+                            if (i % 2 == 0) {
+                                numList.push(i);
+                            }
+                        }
+                        appendNumber();
                     
                     break;
                 case "clean":
-                    $(".number").removeClass("choice");
-                    
-                    
+                    cleanList();
+                    appendNumber();
                     break;
                 default:
                     break;
@@ -398,27 +431,32 @@
     /*======================
     　　     countdown
     =======================*/
-    var countDownDate = new Date("Jun 7,2017 18:02").getTime();
-
-    var x = setInterval(function(){
+    var countDownDate = new Date("Jun 8,2017 11:33").getTime();
+   
+    function count(){
+        document.getElementById('submit').disabled = false;
         var now = new Date().getTime();
         var distance = countDownDate - now;
 
-        var days = Math.floor(distance/(24*60*60*1000));
+        var days = Math.floor(distance / (24 * 60 * 60 * 1000));
         var hours = Math.floor(distance % (24 * 60 * 60 * 1000) / (60 * 60 * 1000));
-        var min = Math.floor(distance % ( 60 * 60 * 1000) / ( 60 * 1000));
-        var sec = Math.floor(distance % ( 60 * 1000) / (1000));
+        var min = Math.floor(distance % (60 * 60 * 1000) / (60 * 1000));
+        var sec = Math.floor(distance % (60 * 1000) / (1000));
         // console.log(distance);
         // console.log(sec);
-        document.getElementById('countDown').innerHTML = days+"day" +hours+"hr" +min+"min" + sec+"sec";
-        if(distance <10){
+        document.getElementById('countDown').innerHTML = days + "day" + hours + "hr" + min + "min" + sec + "sec";
+        if (distance < 10000) {
+            document.getElementById('submit').disabled = true;
+        }
+
+        if (distance < 0) {
+            clearInterval(x);
+            console.log("恭喜中獎");
+            countDownDate += 60000;
+            setInterval(count, 1000);
+            // document.location.href = "http://localhost:1234/0607_6lottery.html";
 
         }
-        if(distance==0){
-            clearInterval(x);
-            alert("恭喜中獎");
-            document.location.href = "http://localhost:1234/0607_6lottery.html";
-            
-        }
-    },1000)
+    }
+    var x = setInterval(count,1000)
 </script>
