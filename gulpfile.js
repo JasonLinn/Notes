@@ -18,7 +18,7 @@ gulp.task('webserver', function() {
       livereload: true,
       directoryListing: false,
       open: true,
-      fallback: '*.html'
+      fallback: ['*.html']
     }));
 });
 
