@@ -197,52 +197,101 @@
 
 
         }
-        var total = 1;
+        /*======================
+                btn
+        =======================*/
+
+        $(btnAreaTag).append(
+            `
+        <button id="submit" class="colorBtn">
+            添加號碼
+        </button>
+        <button id="random" class="colorBtn">
+            隨機選號
+        </button>
+        `
+        )        
+        var bettingTotal = 1;
         var list = [];
         var numList = [];
+        
         cleanList();
         function cleanList() {
-            list = [];
-            numList = [];
+            // list = [];
+            // numList = [];
             $("#status").html(
                 `目前投注0注`
             )
-            for (let i = 0; i < num; i++) {
-                list.push("");
-                numList.push(0);
+            // for (let i = 0; i < num; i++) {
+            //     list.push("");
+            //     numList.push(0);
+            // }
+            //根據所要產生的行數決定第二層陣列要幾個
+            for (var i = 0; i < num; i++) {
+                numList[i] = [];
             }
-
         }
         $("li[class^=bits--]").on('click', function () {
-            var nowBits = $(this).data("bits");
+            // var nowBits = $(this).data("bits");
+            //抓取目前是第幾行
+            var nowBits = $(this).data("bits");            
             if ($(this).hasClass('current')) {
-                numList[nowBits] -= 1;
+                // numList[nowBits] -= 1;
                 $(this).removeClass('current');
-                console.log('numList', numList);
-                showBetting();
+                //看該行是否有與按到的值相等，若有則回傳該值得index，若無則回傳-1
+                var index = numList[nowBits].indexOf(parseInt($(this).text()));
+                if(index>-1){
+                    numList[nowBits].splice(index,1);
+                }
+                // console.log('numList', numList);
+                // showBetting();
             } else {
                 // console.log($(this).data("bits"), 'bits');
-                numList[nowBits] += 1;
+                // numList[nowBits] += 1;
                 $(this).addClass('current');
+                numList[nowBits].push(parseInt($(this).text()));
                 console.log('numList', numList);
 
-                showBetting();
+                // showBetting();
             }
-        })
+ 
+            
+            // console.log('numList', numList);
+            showBetting();
 
+                
+                     
+            
+        })
+        //預設還不夠一注
+        var notAll = true;
         function showBetting() {
             //計算所有注數
-            total = 1;
-            for (let i = 0; i < numList.length; i++) {
-                total = total * numList[i];
+            // bettingTotal = 1;
+            // for (let i = 0; i < numList.length; i++) {
+            //     bettingTotal = bettingTotal * numList[i];
+            // }
+            // console.log(bettingTotal);
+
+            //計算陣列裡面的物件是否每一行的長度為0
+            notAll = numList.some(function (value, index, array) {
+                // console.log(value, index, array);
+                //陣列裡面物件的長度是否為0
+                return value.length == 0 ? true : false;
+            });
+            //所有注數預設為一
+            bettingTotal =1 ;
+            for(var i=0;i<numList.length;i++){
+                //將陣列裡每個物件的長度相乘
+                bettingTotal = bettingTotal * parseInt(numList[i].length);
+                // console.log(bettingTotal);
             }
-            console.log(total);
             //如果裡面有值，則將注數跟金額印出來
-            if (numList.indexOf(0) == -1) {
-                var newMoney = new Number(money * total);
+            if (!notAll) {
+                var newMoney = new Number(money * bettingTotal);
                 $("#status").html(
                     //toFixed到幾位數
-                    `目前投注${total}注,投注金額：${newMoney.toFixed(5)}元`
+                    `目前投注${bettingTotal}注,投注金額：${newMoney.toFixed(5)}元`
                 )
             //沒值，就印0注
             } else {
@@ -250,62 +299,72 @@
                     `目前投注0注`
                 )
             }
+
         }
 
 
-        /*======================
-        　　      btn
-        =======================*/
 
-        $(btnAreaTag).append(
-            `
-            <button id="submit" class="colorBtn">
-                添加號碼
-            </button>
-            <button id="random" class="colorBtn">
-                隨機選號
-            </button>
-            `
-        )
         $("#submit").on('click', function () {
             
-            if (numList.indexOf(0) == -1) {
-                $.each($("li[class*=current]"), function (obj) {
-                    for (var i = 0; i < num; i++) {
-
-                        if ($(this).hasClass('bits--' + i)) {
-
-                            numList[i] += 1;
-                            list[i] += " " + $(this).text();
-                            console.log($(this).text());
-                            console.log(numList, 'numlist');
-
-                        }
-                    }
-                    $(this).removeClass("current");
-
-                })
-                var totalStr = list.join(", ");
-                var leng = 15;
-                console.log(totalStr.length,'length');
-                if(totalStr.length>5){
-                    console.log('large');
-                    totalStr = totalStr.substr(0,leng)+" ...";
-                }
+            if(notAll){
+                alert('不夠一注');
+            }else{
+                //宣告一個最後呈現的陣列
+                var totalList = [];
+                for (var i = 0; i < numList.length; i++) {
+                    //把原本陣列裡的值放入要呈現的陣列中，並用空白分開
+                    totalList.push(numList[i].join(" "));
+                }                            
                 $("#show").append(
                     `
-                    <div>
-                        <span>[複式組合]</span>
-                        ${totalStr}
-                        <span>共：${total}注</span>
-                    </div>
-                    `
+                <div>
+                    <span>[複式組合]</span>
+                    ${totalList}
+                    <span>共：${bettingTotal}注</span>
+                </div>
+                `
                 );
-
-                cleanList();
-            } else {
-                alert('不夠一注')
+                $("li[class*=current]").removeClass("current");
+                cleanList();   
             }
+
+            // if (numList.indexOf(0) == -1) {
+            //     $.each($("li[class*=current]"), function (obj) {
+            //         for (var i = 0; i < num; i++) {
+
+            //             if ($(this).hasClass('bits--' + i)) {
+
+            //                 numList[i] += 1;
+            //                 list[i] += " " + $(this).text();
+            //                 console.log($(this).text());
+            //                 console.log(numList, 'numlist');
+
+            //             }
+            //         }
+            //         $(this).removeClass("current");
+
+            //     })
+            //     var totalStr = list.join(", ");
+            //     var leng = 15;
+            //     console.log(totalStr.length,'length');
+            //     if(totalStr.length>5){
+            //         console.log('large');
+            //         totalStr = totalStr.substr(0,leng)+" ...";
+            //     }
+            //     $("#show").append(
+            //         `
+            //         <div>
+            //             <span>[複式組合]</span>
+            //             ${totalStr}
+            //             <span>共：${total}注</span>
+            //         </div>
+            //         `
+            //     );
+
+            //     cleanList();
+            // } else {
+            //     alert('不夠一注')
+            // }
 
 
         })
@@ -313,23 +372,49 @@
                random按鈕　　
         =======================*/
         $("#random").on('click', function () {
+            console.log('click');
+             //當numList滿的時候跳出
 
-            //當numList滿的時候跳出
-            if (list.length == 50) {
-                return;
-            } else {
-                do {
-
-                    var exsit = false;
-                    var ran = Math.floor(50 * Math.random());
-                    $.each($("li[class*=current]"),function(obj){
-                        if(parseInt($(this).text()) == ran){
-                            exsit = true;
-                        }else{
-                            // $("li[]")
-                        }
-                        // console.log($(this).text());
-                    })
+               var isAll = numList.some(function (value, index, array) {
+                        console.log(value, index, array,'some');
+                        //陣列裡面物件的長度是否為0
+                        return value.length == 10 ? true : false;
+                    });
+                console.log(isAll,'isAll');
+                    for (var i = 0; i < num; i++) {
+                        // if(isAll){
+                        //     return;
+                        // }else{
+                        if(numList[i].length != 10){
+                            do {
+                                var ran = Math.floor(10 * Math.random());
+                                // console.log(numList[i].indexOf(ran));
+                                // console.log('do');
+                                var exsit = false;
+                                //如果找不到值
+                                console.log(ran);
+                                //找不到
+                                if (numList[i].indexOf(ran) == -1) {
+                                    //在與隨機號碼一樣的數字加上class
+                                    $(".bits--" + i).eq(ran).addClass("current");
+                                    // console.log($(".bits--" + i).eq(ran));
+                                    //並把數字放入陣列中
+                                    numList[i].push(ran);
+                                    // console.log(numList);
+                                } else {
+                                    //如果找到值則exsit變成true，loop會繼續執行，直到找不到值為止
+                                    exsit = true;
+                                }
+                                //當exsit 等於true就會繼續執行
+                            } while (exsit);  
+                        }    
+ 
+                        // }
+                 
+                    }
+            showBetting();
+               
+            
                     
                     //如果找不到值
                     // if (list.indexOf(ran) == -1) {
@@ -341,8 +426,8 @@
                     //     //如果找到值則exsit變成true，loop會繼續執行，直到找不到值為止
                     //     exsit = true;
                     // }
-                } while (exsit);
-            }
+                // } while (exsit);
+            // }
             // appendNumber();
             // for(var i= 0;i49;i++){
             //     do {
@@ -354,45 +439,68 @@
             // console.log(ran);
 
         })
+        
+        function pushNumber(nowBits,min, max) {
+            //先清空該行
+            numList[nowBits] = [];
+            for (var i = min; i <= max; i++) {
+                numList[nowBits].push(i);
+            }
+            console.log(numList);
+        }    
+
         /*======================
             　　control
         =======================*/
         $("li[class^='control--']").on('click', function () {
             // console.log($(this).data("control"));
+
             var nowBits = $(this).data("bits");
             switch ($(this).data("control")) {
                 case "all":
                     $(".bits--" + nowBits).addClass("current")
-                    numList[nowBits] = 10;
+                    pushNumber(nowBits,0,9);
                     showBetting();
                     break;
                 case "large":
                     $(".bits--" + nowBits + ":gt(4)").addClass("current");
                     $(".bits--" + nowBits + ":lt(5)").removeClass("current");
-                    numList[nowBits] = 5;
+                    pushNumber(nowBits,5,9);
                     showBetting();
                     break;
                 case "small":
                     $(".bits--" + nowBits + ":gt(4)").removeClass("current");
                     $(".bits--" + nowBits + ":lt(5)").addClass("current");
-                    numList[nowBits] = 5;
+                    pushNumber(nowBits,0,4);
                     showBetting();
                     break;
                 case "odd":
                     $(".bits--" + nowBits + ":even").removeClass("current");
                     $(".bits--" + nowBits + ":odd").addClass("current");
-                    numList[nowBits] = 5;
+                    numList[nowBits] = [];
+                    for (var i = 0; i < 10; i++) {
+                            if (i % 2 != 0) {
+                                numList[nowBits].push(i);
+                            }
+                        }
                     showBetting();
+                    console.log(numList);
                     break;
                 case "even":
                     $(".bits--" + nowBits + ":odd").removeClass("current");
                     $(".bits--" + nowBits + ":even").addClass("current");
-                    numList[nowBits] = 5;
-                    showBetting();
+                    numList[nowBits] = [];
+                    for (var i = 0; i < 10; i++) {
+                            if (i % 2 == 0) {
+                                numList[nowBits].push(i);
+                            }
+                        }
+                    showBetting();                        
+                    console.log(numList);
                     break;
                 case "clean":
                     $(".bits--" + nowBits).removeClass("current");
-                    numList[nowBits] = 0;
+                    numList[nowBits] = [];
                     showBetting();
                     break;
                 default:
@@ -400,9 +508,9 @@
             }
 
         })
-    }
+    }//structor end
 
-    var lottery = new selectNumber("#app", 3, "#btnArea");
+    var lottery = new selectNumber("#app", 5, "#btnArea");
     lottery.createNumbers();
     // lottery.createSubmit();
     // function add(list) {
