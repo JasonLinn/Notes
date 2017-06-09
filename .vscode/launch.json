@@ -2,18 +2,15 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Launch Chrome against localhost, with sourcemaps",
             "type": "chrome",
             "request": "launch",
-            "name": "Launch Chrome against localhost",
-            "url": "http://localhost:1234",
-            "webRoot": "${workspaceRoot}\\vue2_lottery.html"
-        },
-        {
-            "type": "chrome",
-            "request": "attach",
-            "name": "Attach to Chrome",
-            "port": 9222,
-            "webRoot": "${workspaceRoot}"
+            "url": "http://localhost:1234/0608_creatJQuery.html", // 前端URL
+            "port": 9222, // Chrome port 後續會設定
+            "sourceMaps": true, //開啟sourceMaps對應模式
+            "userDataDir": "${workspaceRoot}/.vscode/chrome", // 專案目錄的Extension的設定檔路徑
+            "diagnosticLogging": true, // 開啟Debugger for Chrome 的log紀錄
+            "webRoot": "${workspaceRoot}/src/js/greetr.js" //實體的開發js目錄
         }
     ]
 }

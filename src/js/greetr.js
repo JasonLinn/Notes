@@ -1,5 +1,5 @@
 //IIFEs
-(function (global) {
+(function (global,$) {
     console.log('123');
     var Greetr = function(firstName,lastName,language){
         return new Greetr.init(firstName,lastName,language);
@@ -16,4 +16,4 @@
 
 
     console.log(G$('Jason','Lin'));
-})(window)
+})(window,jQuery)

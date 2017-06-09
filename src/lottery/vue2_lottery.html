@@ -154,6 +154,7 @@
 
 </html>
 <script>
+    (function(){
     var selectNumber = function (areaTag, num, btnAreaTag) {
         this.areaTag = areaTag;
         this.num = num;
@@ -197,9 +198,9 @@
 
 
         }
-        
+
         /*======================
-                btn
+                放置btn
         =======================*/
 
         $(btnAreaTag).append(
@@ -211,15 +212,21 @@
             隨機選號
         </button>
         `
-        )        
+        )
+        /*
+            變數說明
+            bettingTotal   總注數(預設為1，因為要相乘)
+            numList        存放所有數字變數
+        */
         var bettingTotal = 1;
-        var list = [];
         var numList = [];
+
+
         
-        cleanList();
-        function cleanList() {
-            // list = [];
-            // numList = [];
+        cleanList(); //先執行一次
+
+        function cleanList() { //在畫面顯示目前0注，新增第二層陣列
+            
             $("#status").html(
                 `目前投注0注`
             )
@@ -227,22 +234,25 @@
             //     list.push("");
             //     numList.push(0);
             // }
+
+
             //根據所要產生的行數決定第二層陣列要幾個
             for (var i = 0; i < num; i++) {
                 numList[i] = [];
             }
         }
+        
         $("li[class^=bits--]").on('click', function () {
             // var nowBits = $(this).data("bits");
             //抓取目前是第幾行
-            var nowBits = $(this).data("bits");            
+            var nowBits = $(this).data("bits");
             if ($(this).hasClass('current')) {
                 // numList[nowBits] -= 1;
                 $(this).removeClass('current');
                 //看該行是否有與按到的值相等，若有則回傳該值得index，若無則回傳-1
                 var index = numList[nowBits].indexOf(parseInt($(this).text()));
-                if(index>-1){
-                    numList[nowBits].splice(index,1);
+                if (index > -1) {
+                    numList[nowBits].splice(index, 1);
                 }
                 // console.log('numList', numList);
                 // showBetting();
@@ -255,18 +265,18 @@
 
                 // showBetting();
             }
- 
-            
+
+
             // console.log('numList', numList);
             showBetting();
 
-                
-                     
-            
+
+
+
         })
         //預設還不夠一注
         var notAll = true;
-        function showBetting() {
+        function showBetting() {  //動態顯示目前投了幾注+
             //計算所有注數
             // bettingTotal = 1;
             // for (let i = 0; i < numList.length; i++) {
@@ -281,8 +291,8 @@
                 return value.length == 0 ? true : false;
             });
             //所有注數預設為一
-            bettingTotal =1 ;
-            for(var i=0;i<numList.length;i++){
+            bettingTotal = 1;
+            for (var i = 0; i < numList.length; i++) {
                 //將陣列裡每個物件的長度相乘
                 bettingTotal = bettingTotal * parseInt(numList[i].length);
                 // console.log(bettingTotal);
@@ -294,7 +304,7 @@
                     //toFixed到幾位數
                     `目前投注${bettingTotal}注,投注金額：${newMoney.toFixed(5)}元`
                 )
-            //沒值，就印0注
+                //沒值，就印0注
             } else {
                 $("#status").html(
                     `目前投注0注`
@@ -306,16 +316,16 @@
 
 
         $("#submit").on('click', function () {
-            
-            if(notAll){
+
+            if (notAll) {
                 alert('不夠一注');
-            }else{
+            } else {
                 //宣告一個最後呈現的陣列
                 var totalList = [];
                 for (var i = 0; i < numList.length; i++) {
                     //把原本陣列裡的值放入要呈現的陣列中，並用空白分開
                     totalList.push(numList[i].join(" "));
-                }                            
+                }
                 $("#show").append(
                     `
                 <div>
@@ -326,7 +336,7 @@
                 `
                 );
                 $("li[class*=current]").removeClass("current");
-                cleanList();   
+                cleanList();
             }
 
             // if (numList.indexOf(0) == -1) {
@@ -374,60 +384,60 @@
         =======================*/
         $("#random").on('click', function () {
             console.log('click');
-             //當numList滿的時候跳出
+            //當numList滿的時候跳出
 
-               var isAll = numList.some(function (value, index, array) {
-                        console.log(value, index, array,'some');
-                        //陣列裡面物件的長度是否為0
-                        return value.length == 10 ? true : false;
-                    });
-                console.log(isAll,'isAll');
-                    for (var i = 0; i < num; i++) {
-                        // if(isAll){
-                        //     return;
-                        // }else{
-                        if(numList[i].length != 10){
-                            do {
-                                var ran = Math.floor(10 * Math.random());
-                                // console.log(numList[i].indexOf(ran));
-                                // console.log('do');
-                                var exsit = false;
-                                //如果找不到值
-                                console.log(ran);
-                                //找不到
-                                if (numList[i].indexOf(ran) == -1) {
-                                    //在與隨機號碼一樣的數字加上class
-                                    $(".bits--" + i).eq(ran).addClass("current");
-                                    // console.log($(".bits--" + i).eq(ran));
-                                    //並把數字放入陣列中
-                                    numList[i].push(ran);
-                                    // console.log(numList);
-                                } else {
-                                    //如果找到值則exsit變成true，loop會繼續執行，直到找不到值為止
-                                    exsit = true;
-                                }
-                                //當exsit 等於true就會繼續執行
-                            } while (exsit);  
-                        }    
- 
-                        // }
-                 
-                    }
+            var isAll = numList.some(function (value, index, array) {
+                console.log(value, index, array, 'some');
+                //陣列裡面物件的長度是否為0
+                return value.length == 10 ? true : false;
+            });
+            console.log(isAll, 'isAll');
+            for (var i = 0; i < num; i++) {
+                // if(isAll){
+                //     return;
+                // }else{
+                if (numList[i].length != 10) {
+                    do {
+                        var ran = Math.floor(10 * Math.random());
+                        // console.log(numList[i].indexOf(ran));
+                        // console.log('do');
+                        var exsit = false;
+                        //如果找不到值
+                        console.log(ran);
+                        //找不到
+                        if (numList[i].indexOf(ran) == -1) {
+                            //在與隨機號碼一樣的數字加上class
+                            $(".bits--" + i).eq(ran).addClass("current");
+                            // console.log($(".bits--" + i).eq(ran));
+                            //並把數字放入陣列中
+                            numList[i].push(ran);
+                            // console.log(numList);
+                        } else {
+                            //如果找到值則exsit變成true，loop會繼續執行，直到找不到值為止
+                            exsit = true;
+                        }
+                        //當exsit 等於true就會繼續執行
+                    } while (exsit);
+                }
+
+                // }
+
+            }
             showBetting();
-               
-            
-                    
-                    //如果找不到值
-                    // if (list.indexOf(ran) == -1) {
-                    //     //在與隨機號碼一樣的數字加上class
-                    //     $(".sixLottery").children("li").eq(ran).addClass("choice");
-                    //     //並把數字放入陣列中
-                    //     list.push(ran);
-                    // } else {
-                    //     //如果找到值則exsit變成true，loop會繼續執行，直到找不到值為止
-                    //     exsit = true;
-                    // }
-                // } while (exsit);
+
+
+
+            //如果找不到值
+            // if (list.indexOf(ran) == -1) {
+            //     //在與隨機號碼一樣的數字加上class
+            //     $(".sixLottery").children("li").eq(ran).addClass("choice");
+            //     //並把數字放入陣列中
+            //     list.push(ran);
+            // } else {
+            //     //如果找到值則exsit變成true，loop會繼續執行，直到找不到值為止
+            //     exsit = true;
+            // }
+            // } while (exsit);
             // }
             // appendNumber();
             // for(var i= 0;i49;i++){
@@ -440,15 +450,17 @@
             // console.log(ran);
 
         })
-        
-        function pushNumber(nowBits,min, max) {
+        /*======================
+         在某行放置一個範圍的數字
+        =======================*/
+        function pushNumber(nowBits, min, max) {
             //先清空該行
             numList[nowBits] = [];
             for (var i = min; i <= max; i++) {
                 numList[nowBits].push(i);
             }
             console.log(numList);
-        }    
+        }
 
         /*======================
             　　control
@@ -460,19 +472,19 @@
             switch ($(this).data("control")) {
                 case "all":
                     $(".bits--" + nowBits).addClass("current")
-                    pushNumber(nowBits,0,9);
+                    pushNumber(nowBits, 0, 9);
                     showBetting();
                     break;
                 case "large":
                     $(".bits--" + nowBits + ":gt(4)").addClass("current");
                     $(".bits--" + nowBits + ":lt(5)").removeClass("current");
-                    pushNumber(nowBits,5,9);
+                    pushNumber(nowBits, 5, 9);
                     showBetting();
                     break;
                 case "small":
                     $(".bits--" + nowBits + ":gt(4)").removeClass("current");
                     $(".bits--" + nowBits + ":lt(5)").addClass("current");
-                    pushNumber(nowBits,0,4);
+                    pushNumber(nowBits, 0, 4);
                     showBetting();
                     break;
                 case "odd":
@@ -480,10 +492,10 @@
                     $(".bits--" + nowBits + ":odd").addClass("current");
                     numList[nowBits] = [];
                     for (var i = 0; i < 10; i++) {
-                            if (i % 2 != 0) {
-                                numList[nowBits].push(i);
-                            }
+                        if (i % 2 != 0) {
+                            numList[nowBits].push(i);
                         }
+                    }
                     showBetting();
                     console.log(numList);
                     break;
@@ -492,11 +504,11 @@
                     $(".bits--" + nowBits + ":even").addClass("current");
                     numList[nowBits] = [];
                     for (var i = 0; i < 10; i++) {
-                            if (i % 2 == 0) {
-                                numList[nowBits].push(i);
-                            }
+                        if (i % 2 == 0) {
+                            numList[nowBits].push(i);
                         }
-                    showBetting();                        
+                    }
+                    showBetting();
                     console.log(numList);
                     break;
                 case "clean":
@@ -509,7 +521,8 @@
             }
 
         })
-    }//structor end
+    } //structor end
+
 
     var lottery = new selectNumber("#app", 5, "#btnArea");
     lottery.createNumbers();
@@ -575,4 +588,6 @@
     //         }
     //     }
     // })
+ }())
+
 </script>
