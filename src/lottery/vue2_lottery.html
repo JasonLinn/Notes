@@ -79,6 +79,49 @@
             background-color: #eee;
             margin-top: 20px;
         }
+        .moneyMutiple{
+            display: inline-block;
+            background-color:#fa0;
+            font-size: 20px;
+            line-height: 30px;
+            text-align: center;
+            width:30px;
+            height: 30px;
+            cursor:pointer;
+        }
+        #mutipleNum{
+            display: inline-block;
+            width: 30px;
+            text-align: center;
+        }
+        #controls{
+            margin-bottom: 20px;
+        }
+        #unit{
+            margin: 0;
+        }
+        #unit > li{
+            display: inline-block;
+            border:1px solid #fa0;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            cursor: pointer;
+        }
+        #unit > li:hover{
+            background-color:#fa0;
+        }
+        #bonusRatio{
+            vertical-align: middle;
+        }
+        #bonusBackRatio{
+            display: inline-block;
+            width: 100px;
+        }
+        .choice{
+            background-color:#fa0;
+        }
     </style>
 </head>
 
@@ -147,6 +190,22 @@
 </div>-->
 
     <div id="app"></div>
+    <div id="controls">
+        倍數:
+        <span id="less" class="moneyMutiple">-</span>
+        <span id="mutipleNum"></span>
+        <span id="more" class="moneyMutiple">+</span>
+        倍
+        <ul id="unit">
+            
+            <li class="unit--dallar choice" data-persent=1>元</li>
+            <li class="unit--angle" data-persent=0.1>角</li>
+            <li class="unit--cent" data-persent=0.01>分</li>
+             當前返點:<span id="bonusBackRatio"></span>
+        </ul>
+        <input type="range" max="70" min = "0" value="0" id="bonusRatio">
+        獎金:<span id="bonus"></span>
+    </div>
     <div id="btnArea"></div>
     <div id="status"></div>
     <div id="show"></div>
@@ -155,7 +214,7 @@
 </html>
 <script>
     (function(){
-    var selectNumber = function (areaTag, num, btnAreaTag) {
+    var selectNumber = function (areaTag, num, btnAreaTag,controlArea) {
         this.areaTag = areaTag;
         this.num = num;
         this.btnAreaTag = btnAreaTag;
@@ -198,6 +257,83 @@
 
 
         }
+        
+        $("li[class^=unit]").on('click',function(){
+            if($(this).not(".choice")){
+                $(this).addClass("choice");
+                $(this).siblings().removeClass("choice")
+            }
+            
+            
+        })
+        var unit = 1;
+        $("li[class^=unit--]").on('click',function(){
+            switch ($(this).data("persent")) {
+                case 1:
+                    unit =1;
+                    showBonusBackRatio();
+                    break;
+                case 0.1:
+                        unit = 0.1;
+                        showBonusBackRatio();
+                        break;
+                case 0.01:
+                        unit = 0.01;
+                        showBonusBackRatio();
+                        break;
+                default:
+                    break;
+            }
+            console.log(unit,'unit');
+            showBetting();
+        })
+        // showBonus();
+        var bonus = 17;
+        var showBonus = function (bonusBackRatio){
+           $("#bonus").text(((bonus-bonus* bonusBackRatio/100) * unit).toFixed(3) )
+           console.log('111');
+        }
+        console.log(bonusBackRatio);
+        showBonusBackRatio();
+        function showBonusBackRatio(callback){
+            var bonusBackRatio = parseInt($("#bonusRatio").val())*unit;
+            $("#bonusBackRatio").html((bonusBackRatio/10).toFixed(3)+"%");
+            console.log(bonusBackRatio);
+            showBonus(bonusBackRatio);
+        }
+        $("#bonusRatio").on('change',function(){
+
+            console.log($(this).val());
+            showBonusBackRatio();
+            
+        })
+        /*======================
+            　放置金錢控制
+        ======================*/
+        var mutipleNum = 1;
+        showMutiple();
+        function showMutiple(){
+            $("#mutipleNum").text(mutipleNum);
+        }
+        $("#more").on('click',function(){
+            if (mutipleNum >= 1) {
+                mutipleNum += 1;
+                showMutiple();
+                showBetting();
+            } else if (mutipleNum < 1) {
+                alert('請選擇正確倍數')
+            }            
+        })
+        $("#less").on('click',function(){
+            if(mutipleNum >1){
+                mutipleNum -= 1;
+                showMutiple();
+                showBetting();
+            }else if(mutipleNum <1){
+                alert('請選擇正確倍數')
+            }
+            
+        })
 
         /*======================
                 放置btn
@@ -302,7 +438,7 @@
                 var newMoney = new Number(money * bettingTotal);
                 $("#status").html(
                     //toFixed到幾位數
-                    `目前投注${bettingTotal}注,投注金額：${newMoney.toFixed(5)}元`
+                    `目前投注${bettingTotal}注,投注金額：${(mutipleNum*newMoney * unit).toFixed(5)}元`
                 )
                 //沒值，就印0注
             } else {
@@ -524,7 +660,7 @@
     } //structor end
 
 
-    var lottery = new selectNumber("#app", 5, "#btnArea");
+    var lottery = new selectNumber("#app", 5, "#btnArea","controls");
     lottery.createNumbers();
     // lottery.createSubmit();
     // function add(list) {
