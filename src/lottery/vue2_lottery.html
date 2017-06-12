@@ -122,6 +122,35 @@
         .choice{
             background-color:#fa0;
         }
+#show{
+    overflow-y:scroll;
+    height: 200px;
+    /*width: 400px;*/
+}
+input[type="range"]{
+  -webkit-appearance: none;
+  border-radius:2px;
+  width:200px;
+  height:3px;
+  background-image:-webkit-linear-gradient(left ,#fa0 0%,#fa0 0%,#fff 0%, #fff 100%);
+  box-shadow:inset #abb 0 0 5px;
+  outline : none;
+  transition:.1s;
+}
+input[type="range"]::-webkit-slider-thumb{
+  -webkit-appearance: none;
+  width:14px;
+  height:14px;
+  background:#fa0;
+  border-radius:50%;
+  transition:.1s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover,
+input[type="range"]::-webkit-slider-thumb:active{
+  width:16px;
+  height:16px;
+}
     </style>
 </head>
 
@@ -191,20 +220,7 @@
 
     <div id="app"></div>
     <div id="controls">
-        倍數:
-        <span id="less" class="moneyMutiple">-</span>
-        <span id="mutipleNum"></span>
-        <span id="more" class="moneyMutiple">+</span>
-        倍
-        <ul id="unit">
-            
-            <li class="unit--dallar choice" data-persent=1>元</li>
-            <li class="unit--angle" data-persent=0.1>角</li>
-            <li class="unit--cent" data-persent=0.01>分</li>
-             當前返點:<span id="bonusBackRatio"></span>
-        </ul>
-        <input type="range" max="70" min = "0" value="0" id="bonusRatio">
-        獎金:<span id="bonus"></span>
+
     </div>
     <div id="btnArea"></div>
     <div id="status"></div>
@@ -213,21 +229,50 @@
 
 </html>
 <script>
-    (function(){
-    var selectNumber = function (areaTag, num, btnAreaTag,controlArea) {
-        this.areaTag = areaTag;
+
+    // (function(){
+    
+    /*
+        變數說明
+        numArea         數字列放置的位置
+        btnArea         按鈕放置位置
+        controlArea     控制條放置位置
+        num             想顯示的行數
+        bits            位數陣列
+        money           一注多少錢
+    */
+    //建立建構式
+    var selectNumber = function (numArea, btnArea,controlArea, num,bits,money,controlBtn,controlTag) {
+        this.numArea = numArea;
         this.num = num;
-        this.btnAreaTag = btnAreaTag;
+        this.btnArea = btnArea;
+        this.controlArea =controlArea;
+        this.bits = bits;
+        this.money = money;
+        this.controlBtn =controlBtn;
+        this.controlTag =controlTag;
+        
     }
     selectNumber.prototype.createNumbers = function () {
-        var areaTag = this.areaTag;
+        var numArea = this.numArea;
         var num = this.num;
-        var bits = ["萬", "千", "百", "十", "個"];
-        var money = 4.00000;
-        var btnAreaTag = this.btnAreaTag;
+        var bits = this.bits;
+        var money = this.money;
+        var btnArea = this.btnArea;
+        var controlArea = this.controlArea;
+        var money = this.money;
+        var controlBtn = this.controlBtn;
+        var controlTag = this.controlTag;        
+        /*
+            變數說明
+            bettingTotal   總注數(預設為1，因為要相乘)
+            numList        存放所有數字變數
+        */
+        var bettingTotal = 1;
+        var numList = [];
 
         for (var i = 0; i < num; i++) {
-            $(areaTag).append(
+            $(numArea).append(
                 `<div class="field">
                     <div class="block">
                         ${bits[i]}位:
@@ -257,7 +302,26 @@
 
 
         }
-        
+            /*======================
+              放置controls
+            =======================*/
+                $(controlArea).append(`        倍數:
+        <span id="less" class="moneyMutiple">-</span>
+        <span id="mutipleNum"></span>
+        <span id="more" class="moneyMutiple">+</span>
+        倍
+        <ul id="unit">
+            
+            <li class="unit--dallar choice" data-persent=1>元</li>
+            <li class="unit--angle" data-persent=0.1>角</li>
+            <li class="unit--cent" data-persent=0.01>分</li>
+             當前返點:<span id="bonusBackRatio"></span>
+        </ul>
+        <input type="range" max="70" min = "0" value="0" id="bonusRatio">
+        獎金:<span id="bonus"></span>`)            
+        /*======================
+            　　元、角、分
+        =======================*/
         $("li[class^=unit]").on('click',function(){
             if($(this).not(".choice")){
                 $(this).addClass("choice");
@@ -266,7 +330,8 @@
             
             
         })
-        var unit = 1;
+
+        var unit = 1;//設初始值為"元"
         $("li[class^=unit--]").on('click',function(){
             switch ($(this).data("persent")) {
                 case 1:
@@ -287,30 +352,28 @@
             console.log(unit,'unit');
             showBetting();
         })
-        // showBonus();
-        var bonus = 17;
+        
+        
+        var bonus = 17; //獎金可能為後端傳送
         var showBonus = function (bonusBackRatio){
-           $("#bonus").text(((bonus-bonus* bonusBackRatio/100) * unit).toFixed(3) )
-           console.log('111');
+           $("#bonus").text(((bonus-bonus* bonusBackRatio/100) * unit).toFixed(3) );
         }
         console.log(bonusBackRatio);
+        /*======================
+            　　顯示反點%數
+        =======================*/
         showBonusBackRatio();
-        function showBonusBackRatio(callback){
+        function showBonusBackRatio(){
             var bonusBackRatio = parseInt($("#bonusRatio").val())*unit;
             $("#bonusBackRatio").html((bonusBackRatio/10).toFixed(3)+"%");
             console.log(bonusBackRatio);
             showBonus(bonusBackRatio);
         }
-        $("#bonusRatio").on('change',function(){
-
-            console.log($(this).val());
-            showBonusBackRatio();
-            
-        })
+        $("#bonusRatio").on('input', showBonusBackRatio)
         /*======================
             　放置金錢控制
         ======================*/
-        var mutipleNum = 1;
+        var mutipleNum = 1; //預設一倍
         showMutiple();
         function showMutiple(){
             $("#mutipleNum").text(mutipleNum);
@@ -318,9 +381,9 @@
         $("#more").on('click',function(){
             if (mutipleNum >= 1) {
                 mutipleNum += 1;
-                showMutiple();
+                showMutiple();  //顯示倍數
                 showBetting();
-            } else if (mutipleNum < 1) {
+            } else{
                 alert('請選擇正確倍數')
             }            
         })
@@ -329,7 +392,7 @@
                 mutipleNum -= 1;
                 showMutiple();
                 showBetting();
-            }else if(mutipleNum <1){
+            }else{
                 alert('請選擇正確倍數')
             }
             
@@ -339,7 +402,7 @@
                 放置btn
         =======================*/
 
-        $(btnAreaTag).append(
+        $(btnArea).append(
             `
         <button id="submit" class="colorBtn">
             添加號碼
@@ -349,16 +412,11 @@
         </button>
         `
         )
-        /*
-            變數說明
-            bettingTotal   總注數(預設為1，因為要相乘)
-            numList        存放所有數字變數
-        */
-        var bettingTotal = 1;
-        var numList = [];
 
 
-        
+        /*======================
+        印出0注、清空陣列並產生二維
+        =======================*/        
         cleanList(); //先執行一次
 
         function cleanList() { //在畫面顯示目前0注，新增第二層陣列
@@ -378,14 +436,15 @@
             }
         }
         
+        /*======================
+            　　數字按鈕
+        =======================*/
         $("li[class^=bits--]").on('click', function () {
-            // var nowBits = $(this).data("bits");
             //抓取目前是第幾行
             var nowBits = $(this).data("bits");
             if ($(this).hasClass('current')) {
-                // numList[nowBits] -= 1;
                 $(this).removeClass('current');
-                //看該行是否有與按到的值相等，若有則回傳該值得index，若無則回傳-1
+                //計算所按的數字按鈕是第幾號，如果找的到，即刪除該號
                 var index = numList[nowBits].indexOf(parseInt($(this).text()));
                 if (index > -1) {
                     numList[nowBits].splice(index, 1);
@@ -395,9 +454,10 @@
             } else {
                 // console.log($(this).data("bits"), 'bits');
                 // numList[nowBits] += 1;
+                
                 $(this).addClass('current');
+                //把所按的數字放入該行陣列
                 numList[nowBits].push(parseInt($(this).text()));
-                console.log('numList', numList);
 
                 // showBetting();
             }
@@ -410,9 +470,12 @@
 
 
         })
+        /*======================
+        　　 顯示目前投了幾注
+        =======================*/
         //預設還不夠一注
         var notAll = true;
-        function showBetting() {  //動態顯示目前投了幾注+
+        function showBetting() {
             //計算所有注數
             // bettingTotal = 1;
             // for (let i = 0; i < numList.length; i++) {
@@ -450,31 +513,44 @@
         }
 
 
-
+        var finalList = [];
         $("#submit").on('click', function () {
-
+            //宣告一個最後呈現的陣列
+            var totalList = [];
+            for (var i = 0; i < numList.length; i++) {
+                //把原本陣列裡的值放入要呈現的陣列中，並用空白分開
+                totalList.push(numList[i].join(" "));
+            }
             if (notAll) {
                 alert('不夠一注');
-            } else {
-                //宣告一個最後呈現的陣列
-                var totalList = [];
-                for (var i = 0; i < numList.length; i++) {
-                    //把原本陣列裡的值放入要呈現的陣列中，並用空白分開
-                    totalList.push(numList[i].join(" "));
-                }
-                $("#show").append(
-                    `
-                <div>
-                    <span>[複式組合]</span>
-                    ${totalList}
-                    <span>共：${bettingTotal}注</span>
-                </div>
-                `
-                );
-                $("li[class*=current]").removeClass("current");
-                cleanList();
             }
+            else if(!notAll) {
 
+                if (finalList.toString().indexOf(totalList.toString()) >-1) {
+                    alert("彩票號已重複，無須添加");
+                }else{
+                    console.log(totalList);
+                    finalList.push(totalList);
+                    $("#show").append(
+                        `
+                        <div>
+                            <span>[複式組合]</span>
+                            ${totalList}
+                            <span>共：${bettingTotal}注</span>
+                            <span>${mutipleNum}倍</span>
+                            <span></span>
+                            <button class="deleteBtn">x</button>
+                        </div>
+                        `
+                    );
+                    deleteArr();
+                    $("li[class*=current]").removeClass("current");
+                    cleanList();
+                    console.log(finalList);
+                }                
+
+            }
+            showBetting();
             // if (numList.indexOf(0) == -1) {
             //     $.each($("li[class*=current]"), function (obj) {
             //         for (var i = 0; i < num; i++) {
@@ -515,6 +591,16 @@
 
 
         })
+        /*======================
+            　　刪除按鈕
+        =======================*/
+        function deleteArr(){
+            $(".deleteBtn").on('click', function () {
+                console.log('click');
+                $(this).parent().remove();
+            })
+        }
+
         /*======================
                random按鈕　　
         =======================*/
@@ -586,82 +672,90 @@
             // console.log(ran);
 
         })
-        /*======================
-         在某行放置一個範圍的數字
-        =======================*/
-        function pushNumber(nowBits, min, max) {
-            //先清空該行
-            numList[nowBits] = [];
-            for (var i = min; i <= max; i++) {
-                numList[nowBits].push(i);
-            }
-            console.log(numList);
-        }
 
-        /*======================
-            　　control
-        =======================*/
-        $("li[class^='control--']").on('click', function () {
-            // console.log($(this).data("control"));
-
-            var nowBits = $(this).data("bits");
-            switch ($(this).data("control")) {
-                case "all":
-                    $(".bits--" + nowBits).addClass("current")
-                    pushNumber(nowBits, 0, 9);
-                    showBetting();
-                    break;
-                case "large":
-                    $(".bits--" + nowBits + ":gt(4)").addClass("current");
-                    $(".bits--" + nowBits + ":lt(5)").removeClass("current");
-                    pushNumber(nowBits, 5, 9);
-                    showBetting();
-                    break;
-                case "small":
-                    $(".bits--" + nowBits + ":gt(4)").removeClass("current");
-                    $(".bits--" + nowBits + ":lt(5)").addClass("current");
-                    pushNumber(nowBits, 0, 4);
-                    showBetting();
-                    break;
-                case "odd":
-                    $(".bits--" + nowBits + ":even").removeClass("current");
-                    $(".bits--" + nowBits + ":odd").addClass("current");
-                    numList[nowBits] = [];
-                    for (var i = 0; i < 10; i++) {
-                        if (i % 2 != 0) {
-                            numList[nowBits].push(i);
-                        }
-                    }
-                    showBetting();
-                    console.log(numList);
-                    break;
-                case "even":
-                    $(".bits--" + nowBits + ":odd").removeClass("current");
-                    $(".bits--" + nowBits + ":even").addClass("current");
-                    numList[nowBits] = [];
-                    for (var i = 0; i < 10; i++) {
-                        if (i % 2 == 0) {
-                            numList[nowBits].push(i);
-                        }
-                    }
-                    showBetting();
-                    console.log(numList);
-                    break;
-                case "clean":
-                    $(".bits--" + nowBits).removeClass("current");
-                    numList[nowBits] = [];
-                    showBetting();
-                    break;
-                default:
-                    break;
+            /*======================
+             在某行放置一個範圍的數字
+            =======================*/
+            function pushNumber(nowBits, min, max) {
+                //先清空該行
+                numList[nowBits] = [];
+                for (var i = min; i <= max; i++) {
+                    numList[nowBits].push(i);
+                }
+                console.log(numList);
             }
 
-        })
+            /*======================
+                  control
+            =======================*/
+            $(controlBtn).on('click', function () {
+                // console.log($(this).data("control"));
+
+                var nowBits = $(this).data("bits");
+                switch ($(this).data("control")) {
+                    case "all":
+                        $(controlTag + nowBits).addClass("current")
+                        pushNumber(nowBits, 0, 9);
+                        showBetting();
+                        break;
+                    case "large":
+                        $(controlTag + nowBits + ":gt(4)").addClass("current");
+                        $(controlTag + nowBits + ":lt(5)").removeClass("current");
+                        pushNumber(nowBits, 5, 9);
+                        showBetting();
+                        break;
+                    case "small":
+                        $(controlTag + nowBits + ":gt(4)").removeClass("current");
+                        $(controlTag + nowBits + ":lt(5)").addClass("current");
+                        pushNumber(nowBits, 0, 4);
+                        showBetting();
+                        break;
+                    case "odd":
+                        $(controlTag + nowBits + ":even").removeClass("current");
+                        $(controlTag + nowBits + ":odd").addClass("current");
+                        numList[nowBits] = [];
+                        for (var i = 0; i < 10; i++) {
+                            if (i % 2 != 0) {
+                                numList[nowBits].push(i);
+                            }
+                        }
+                        showBetting();
+                        console.log(numList);
+                        break;
+                    case "even":
+                        $(controlTag + nowBits + ":odd").removeClass("current");
+                        $(controlTag + nowBits + ":even").addClass("current");
+                        numList[nowBits] = [];
+                        for (var i = 0; i < 10; i++) {
+                            if (i % 2 == 0) {
+                                numList[nowBits].push(i);
+                            }
+                        }
+                        showBetting();
+                        console.log(numList);
+                        break;
+                    case "clean":
+                        $(controlTag + nowBits).removeClass("current");
+                        numList[nowBits] = [];
+                        showBetting();
+                        break;
+                    default:
+                        break;
+                }
+
+            })        
+
     } //structor end
+    selectNumber.prototype.choiceNumbers = function(){
 
-
-    var lottery = new selectNumber("#app", 5, "#btnArea","controls");
+    }
+    var money = 4.00000;
+    var bits = ["萬", "千", "百", "十", "個"];
+    var controlBtn = "li[class^='control--']";
+    var controlTag= ".bits--";
+    var lottery = new selectNumber("#app", "#btnArea","#controls", 5,bits,money,controlBtn,controlTag);
     lottery.createNumbers();
+    // lottery.choiceNumbers();
     // lottery.createSubmit();
     // function add(list) {
     //     var tol=0;
@@ -724,6 +818,6 @@
     //         }
     //     }
     // })
- }())
+//  }())
 
 </script>
