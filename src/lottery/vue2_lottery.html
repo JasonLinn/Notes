@@ -527,9 +527,10 @@ input[type="range"]::-webkit-slider-thumb:active{
             else if(!notAll) {
 
                 if (finalList.toString().indexOf(totalList.toString()) >-1) {
+                    totalList = [];
                     alert("彩票號已重複，無須添加");
                 }else{
-                    console.log(totalList);
+                    // console.log(totalList);
                     finalList.push(totalList);
                     $("#show").append(
                         `
@@ -546,10 +547,11 @@ input[type="range"]::-webkit-slider-thumb:active{
                     deleteArr();
                     $("li[class*=current]").removeClass("current");
                     cleanList();
-                    console.log(finalList);
+                    console.log(numList);
                 }                
 
             }
+            console.log(finalList,totalList,'total');
             showBetting();
             // if (numList.indexOf(0) == -1) {
             //     $.each($("li[class*=current]"), function (obj) {
@@ -597,7 +599,10 @@ input[type="range"]::-webkit-slider-thumb:active{
         function deleteArr(){
             $(".deleteBtn").on('click', function () {
                 console.log('click');
+
                 $(this).parent().remove();
+                var index = $(this)
+                // finalList.toString().indexOf
             })
         }
 
