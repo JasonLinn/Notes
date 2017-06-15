@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Object and function (物件與函數)</h2>
+    <p>在JS裡兩個東西是很相近的，物件有屬性跟方法</p>
+    <ul>
+        <li>primitive 'property</li>
+        <li>Object 'property'</li>
+        <li>function 'method'</li>
+    </ul>
+
+    <p></p>
+    <hr>
+    <h2>Object and Object literals物件與物件實體語法</h2>
+</body>
+</html>
+<script>
+    /*======================
+        new 物件
+    =======================*/
+    var person = new Object(); //他會存在記憶體裡
+
+    person["firstName"] = "Jason"; //其中一種設定方法,中括號是一個函數
+    person["lastName"] = "Lin";
+    console.log(person);
+    console.log(person.firstName);  //.是一種運算子，優先順序在第二
+    console.log(person["lastName"]);
+
+    person.address = new Object();
+    person.address.street = "111 Main St.";
+    person.address.city = "New York";
+    person.address.state = "NY";
+    console.log(person.address);
+    console.log(person["address"]["city"]);
+    /*======================
+    　　  物件實體語法
+    =======================*/
+</script>
