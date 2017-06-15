@@ -41,4 +41,25 @@
     /*======================
     　　  物件實體語法
     =======================*/
+    console.log(`literal:`)
+    //這是比較快的做法
+    var Tony = { 
+        firstName:'Tony',
+        lastName:'Alicea',
+        address:{
+            street:'111 Main St.',
+            city:'New York',
+            state: 'NY'
+        }
+    };
+    function greet(person){
+        console.log(`hi ${person.firstName}`)
+    }
+    greet(Tony);
+    greet({firstName:'Mary',lastName:'Doe'});
+    console.log(person);
+    Tony.address2 = {
+        street:'333 Second S.',
+    }
+    console.log(Tony.address2);
 </script>
