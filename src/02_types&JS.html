@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Dynamic typing(動態型別)</h2>
+    <p>javascript不同於其他語言，你不用在程式中寫出是什麼語言，在程式執行後你才知道他的型別</p>
+    <h2>Primitive types(基本型別)</h2>
+    <p>JS有六種純值稱為基本型別，純值是一種資料的型別，表示一個值，<b>不是物件</b></p>
+    <p>六種純值:</p>
+    <ul>
+        <li>undefined(表示還不存在，直到你給定變數一個值)</li>
+        <li>null(也表示不純在，變數沒有值，不要用undefined，但你可以用null，當你希望變數是空值)</li>
+        <li>boolean</li>
+        <li>number(int,float只有一種數值型態)</li>
+        <li>string(可以用"",'')</li>
+        <li>symbol(這是新的，被使用在es6，還不完全被支援)</li>
+    </ul>
+    <hr>
+    <h2>Operators (運算子)</h2>
+    <p>operator是一個特殊的函數，和其他你自己寫的函數不同，運算子需要兩個參數來回傳一個結果</p>
+    <p>+號是一個運算子，是一個函數，他用中輟表示法(把函數名稱寫在兩個參數中間)</p>
+    <hr>
+    <h2>Operators precedence and associativity(運算子的優先性和相依性)</h2>
+    <p><b>優先性</b>:當程式有多個運算子，會先執行優先性高的</p>
+    <p><b>相依性</b>:運算子計算的順序(在JS是左相依性)</p>
+    <hr>
+    <h2>coercion強制轉型</h2>
+    <p>轉換一個值的型別</p>
+    <hr>
+    <h2>comparison operators(比較運算子)</h2>
+    <p></p>
+    <h2>Existence and Booleans(存在與布林)</h2>
+    <h2>Defalt value(預設值)</h2>
+    <p>name = name || "your name here";</p>
+</body>
+</html>
+<script>
+    /*======================
+        　　operator
+    =======================*/
+    //語法解析器看到加號就會把兩個數字相加
+    var a = 3 + 4;
+    // + 3 4;  前墜
+    // 3 4+; 後墜
+    console.log(a);
+    // > 是一個運算子也是一種函數
+    var b = 4 > 3;
+    console.log(b);
+    /*======================
+        優先性　　相依性 
+    =======================*/
+    //乘法優先性會比較高
+    //可以在MDN查到precedence
+    var t = 3+4*5;
+    console.log(t);
+    var x = 2,y =3 ,z = 4;
+    //=的相依性是右相依，在程式碼他們的優先性一樣，就看他是右相依
+    //會先看到y = z(4)，再來是x = y(4)
+    x = y = z;
+    console.log(x,y,z);
+    console.log(y = z);  //4
+
+    //() group  優先性最高，會先執行裡面的東西
+    var a = (3+4)*5
+    console.log(a);
+    /*======================
+        　　強制轉型
+    =======================*/
+    //他會把2轉成字串
+    var a = 'hello'+2;
+    console.log(typeof(a));
+    /*======================
+        　　比較運算子
+    =======================*/
+    console.log(1<2<3); //true
+    console.log(3<2<1); //true (左相依性)
+    //3<2 false    ->     false < 1  會強制轉型boolean:false 為 0  ->  0 <  1
+    console.log('ull:');
+    console.log(Number(null));//0
+    console.log(null == 0);//false
+    console.log(null < 1 );//true
+     
+     console.log("" == 0); //true
+     console.log("" == false); //true
+
+     console.log('3' ==="3");//true
+
+    /*======================
+        　　存在與布林
+    =======================*/
+    console.log('存在與布林:');
+    console.log(Boolean(undefined)); //false
+    console.log(Boolean(null)); //false
+    console.log(Boolean(""));//false
+    // console.log('goes to internet and looks for a value');
+    var d =0;
+    // d=0 在if裡面是false
+    //這個被用在很多框架裡，因為它會強制轉型
+    if(d || d===0){
+        console.log('somthing is there');
+    }else{
+        console.log('nothing');
+    }
+    /*======================
+    　　  預設值
+    =======================*/
+    console.log('預設值:');
+    function greet(name){
+        name = name || "<your name here>";
+        //name 在函數被創造，但沒有值
+        console.log('Hello' + name);
+    }
+    greet('Jason'); //hello Jason
+    greet(); //Hello <your name here>
+    
+</script>
