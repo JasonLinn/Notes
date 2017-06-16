@@ -18,6 +18,25 @@
     <p></p>
     <hr>
     <h2>Object and Object literals物件與物件實體語法</h2>
+    <h2>fake namespace(偽命名空間)</h2>
+    <p>因為javascript沒有命名空間這種功能，所以透過物件包覆成一個自己的空間</p>
+    <h2>JSON(javascript object notation)js物件符號</h2>
+    <p>JSON要用括號包起來</p>
+    <h2>Function are Object</h2>
+    <p>在JS函數就是物件，他是一級函數，例如可以像字串一樣當成參數傳給別人</p>
+    <p>function 就像其他變數一樣存在記憶體，函數可以有屬性和方法，就像物件一樣</p>
+    <p>function兩個隱藏屬性</p>
+    <ul>
+        <li>code propery</li>
+        <li>Name(不一定要有)</li>
+    </ul>
+    <p>function裡面有很多屬性，你寫的code只是其中一種屬性，同時你可以叫出他</p>
+    <h2>function statements and function expressions(函數陳述句和函數表達式)</h2>
+    <p>表達試是程式碼的單位，會形成一個值</p>
+    <p>表達式回傳一個值</p>
+    <h2>by value by reference(傳值和傳參考)</h2>
+    <p>by value:會傳入或設定這個值為另一個值得拷貝，兩個值就會一樣了</p>
+    <p>純值:by value 物件:by reference</p>
 </body>
 </html>
 <script>
@@ -63,6 +82,109 @@
     }
     console.log(Tony.address2);
     /*================
-        
+        偽命名空間
     =================*/
+    var greets = 'Hello!';
+    var greets = 'Hola!';
+
+    console.log(greets);
+    var eng = {
+
+    };
+    var spn = {};
+
+    
+    eng.greets = 'Hello';
+    spn.greets = 'Hola';
+
+    console.log(eng);
+    /*======================
+        　　JSON
+    =======================*/
+    var objLiteral = {
+        firstName :"Mary",
+        inAProgrammer:true
+    }
+    console.log(objLiteral);
+    /*======================
+    　　函數就是物件
+    =======================*/
+    function gree() {
+        console.log('HI');
+    }
+    gree.lan = 'English';
+    console.log(gree.lan);
+    /*======================
+  　　函數陳述句和函數表達式
+    =======================*/
+    var j = 3;  //表達式
+
+    if(j ===3){ //if是陳述句，陳述句會做其他事
+
+    }
+    //infocable
+    function statement(){  //陳述句
+        console.log('im statment');
+    }
+
+
+    // anonymousGreet()
+    //他沒有名稱，但已經有一個變數儲存它的位置
+    var anonymousGreet = function(){   //表達式(會回傳一個值),匿名函數
+        console.log('hi');
+        return 'ha';
+    }
+    var k = anonymousGreet();
+    console.log(k);
+
+
+    function log(a){
+        console.log(a);
+
+    }
+    log('hello');
+    log({
+        greeting:'hi'
+    })
+
+    function cb(cb){
+        cb();
+    }
+    //一級函數可以跟變數一樣當參數
+    cb(function(){
+        console.log('im callback');
+    })
+    /*======================
+   　　by value byreference
+    =======================*/
+    //都是討論變數之間的關係
+
+    //by value(primitives)   拷貝另一個值
+    var a =1;  //純值Number
+    var b;
+    b = a;   //by value這個拷貝的地點，會被填上相同的值，a和b在不同的記憶體位置
+
+
+    //by reference(all objects (including functions)) 兩個變數都指向同一個記憶體位置
+    //所有物件都是by reference的  參考Object
+    var c = {greeting:'hi'};
+    var d ;
+    //c已經存在，d只要指向c的記憶體位置
+    d =c;  //物件是by reference，指向同一個記憶體位置
+    console.log(d);
+    c.greeting = 'hello'; // mutate 改變一樣東西 immutable 不能改變
+    console.log(d);
+    console.log(Object());
+
+    //by reference (even as parameters)
+    function changeGreeting(obj) {
+        obj.greeting = 'Hola'; //mutate
+    }
+    changeGreeting(d);
+    console.log(c,d);
+
+    // equals operator sets up new memory space (new address)
+    //等於運算子設置新的記憶體空間
+    c ={greeting:'howdy'};  //他必須創造一個新空間
+    console.log(c,d);
 </script>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>物件函數與this</h2>
+    <p>函數被呼叫時，會創造新的執行環境，執行後被放進執行堆</p>
+    <p>在某些情況this會依據函數何時被呼叫而改變</p>
+    <p>在function裡的this會指向windows，在物件裡的this會指向物件本身</p>
+    <h2>Arrays</h2>
+    <p>任何東西的集合</p>
+    <h2>arguments and spread(參數)</h2>
+    <p>引擎在你執行的函數時，自動幫你設定好</p>
+    <p>這裡指的是傳入函數的參數</p>
+    <h2>function overloading(重載函數)</h2>
+    <p>讓同一個函數能夠有不同數量的參數</p>
+    <h2>syntax parers(語法解析器)</h2>
+    <p>你寫的程式碼並不會被電腦直接執行，而是有個中介程式在你的程式碼和電腦中間，轉換你的程式讓電腦讀得懂</p>
+    <p>例如瀏覽器裡的javascript引擎做這件事，它包含很多東西，也包含語法解析器</p>
+    <h2>危險小叮嚀automatic semicolon insertion(自動插入分號)</h2>
+    <h2>white space(空格)</h2>
+    <p>創造看不見的字元</p>
+    <h2>immediately invoked function expression(IIFEs 立即呼叫函數表達式)</h2>
+</body>
+</html>
+<script>
+    /*======================
+        　　this
+    =======================*/
+    function a(){   //陳述句
+        console.log(this);    
+        this.newvar = 'hello'
+    }
+    var b = function (){ //表達式 
+        console.log(this);
+    }
+    a();  //指向windows
+    console.log(newvar);
+    b();  //指向windows
+
+    var c = {
+        name:'The c object',
+        log:function(){
+            var self = this;
+
+            console.log(this);
+            var setname = function (newname){
+                // this.name = newname;  //this 指到全域
+                self.name = newname;
+            }
+            setname('Updated again! The c object');
+            console.log(this);
+        }
+    }
+    c.log();
+    /*======================
+        　　 Array
+    =======================*/
+    //js的動態型別可以在array放各種型別的東西
+    var arr = [
+        1,
+        false,
+        {
+            name:'Tony',
+            address:'111 Main St.'
+        },
+        function(name){
+            var greeting = 'Hello';
+            console.log(greeting + name);
+        },
+        'hello'
+    ];
+    console.log(arr);
+    arr[3]('Jason');
+    /*======================
+　　  arguments & spread
+    =======================*/
+    
+    function greet(firstName,lastName,language='en',...other){
+        if(arguments.length ===0){
+            console.log('Missing parameters');
+            return;
+        }
+        lastName = lastName || 'ha';
+        //js會自動幫你建好arguments
+        console.log(firstName);
+        console.log(lastName);
+        console.log(language);
+        console.log(arguments);
+        console.log(arguments[0]);
+        console.log('------------');
+    }
+    greet();
+    greet('John');
+    greet('John','Doe','en');
+    /*======================
+        　　重載函數
+    =======================*/
+    //在JS函數就是物件，所以她沒有重載函數
+    function greet(firstName,lastName,language){
+        language =language || 'en';
+
+        if(language ==='en'){
+            console.log('Hello ' + firstName + '' + lastName);
+        }
+        if(language === 'es'){
+            console.log('Hola ' + firstName + '' +lastName);
+        }
+    }
+    function greetEnglish(firstName,lastName){
+        greet(firstName,lastName,'en')
+    }
+    function greetSpanish(firstName,lastName){
+        greet(firstName,lastName,'es')
+    }
+    greetEnglish('John','Doe');
+    greetSpanish('John','Doe');
+    /*======================
+    　　自動插入分號
+    =======================*/
+    function getPerson(){
+        return{
+            firstName:'Tony'
+        }
+    }
+    console.log(getPerson());
+    /*======================
+    　　IIFEs
+    =======================*/
+    //using a function statments
+    function greet(name){  //陳述句
+        console.log('Hello ' + name);
+    }
+    greet('Jason');
+
+    //Using a function expression
+    //表達式`,裡面的function再呼叫變數的時候才會被創造
+    var greetFunc = function (name){  //表達式
+        console.log('Hello ' + name);
+    }
+    greetFunc('Tony');
+
+    //using an Immediately Invoked Function Expression (IIFE)
+    //在我創造函數就執行
+    var greeting = function (name) {  //表達式
+            console.log('Hello ' + name);
+    }('Amy');
+
+
+    //括號在JS中是個運算子，這是群組運算子，
+    //在括號裡的東西一定是表達式
+    (function(name){  //expression 變成表達式
+        console.log('Hello ' + name);
+    })('IIFE');  //IIFE
+
+    
+</script>
