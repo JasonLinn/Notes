@@ -25,6 +25,8 @@
     <h2>white space(空格)</h2>
     <p>創造看不見的字元</p>
     <h2>immediately invoked function expression(IIFEs 立即呼叫函數表達式)</h2>
+    <h2>closures(閉包)</h2>
+    <p></p>
 </body>
 </html>
 <script>
@@ -157,5 +159,39 @@
         console.log('Hello ' + name);
     })('IIFE');  //IIFE
 
-    
+    /*================
+      IIFE與安全程式碼
+    =================*/
+    //整個IIFE會創造函數物件記憶體，他是匿名的
+    /*================
+            閉包
+    =================*/
+    function greets(whatToSay) {
+        return function(name){
+            console.log(`${whatToSay} ${name}`)
+        }
+    }
+    // greets('Hi')('Tony');
+    console.log(`closure:`)
+    var sayHi = greets('hi');
+    sayHi('Tony');
+
+    function buildFunctions(){
+        var arr = [];
+        for(var i = 0;i<3 ; i++){
+            let j = i ;
+            arr.push(
+                function(){
+                    console.log(j);
+                }
+            )
+        }
+        return arr;
+    }
+
+    var fs =buildFunctions();
+
+    fs[0]();
+    fs[1]();
+    fs[2]();
 </script>
