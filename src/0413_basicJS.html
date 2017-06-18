@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BasicJS</title>
+</head>
+<body>
+    <h2>Global</h2>
+    <p>當在全域宣告一個變數，Javascript會創造兩個東西，一個是全域物件和this，基本的全域是window，是javascript 引擎建的 在node是不一樣的全域</p>
+    <strong>全域的意思就是不在function(函數)裡面</strong>
+    <p>有一種東西是你不用寫的，就是環境，javascript engin會幫你執行</p>
+    <hr>
+    <h2>Hoisting(提升)</h2>
+    <p>執行環境被分成<strong>兩個階段:</strong></p>
+    <p>第一個階段是:創造階段</p>
+    <p>global object 和 this  被創造，this永遠在執行環境裡，還會創造外部環境，設定變數和函數會先被定義(創造一個空間)</p>
+
+    <p>函數裡面的程式碼已經被執行，但變數有些不同，<b>他會先存在記憶體</b>，但他裡面的值要等執行後再會知道，所以會先賦予一個<strong>undefine</strong></p>
+    <hr>
+    <h2>Undefine</h2>
+    <p>undefined是一個特殊值，代表這個值還沒被設定，與not define不一樣</p>
+    <p>在創造環境，在記憶體找不到var c ，則會顯示not defined</p>
+    <hr>
+    <h2>Execution Context(執行環境)</h2>
+    <p>第二階冠是執行，js會逐步執行</p>
+    <h2>Single threaded & Synchronous execution(單執行緒，同步執行)</h2>
+    <p>單執行緒:一次只執行一個指令</p>
+    <p>同步執行:一次執行一行，且按照順序</p>
+    <hr>
+    <h2>function invocation(函數呼叫)、excution stack(執行堆)</h2>
+    <p>當讀到e();時，會創造一個執行環境，會被放進執行堆裡</p>
+    <h2>Scope</h2>
+    
+</body>
+</html>
+<script>
+    /*======================
+        　　global
+    =======================*/
+    console.log(this);
+    console.log(window);
+    console.log(this.b(),'this');
+    console.log(window.b(),'window');
+    /*======================
+        　　hoisting
+    =======================*/
+    //function會先被執行
+    b();
+    //a會先被宣告，有一個值是undefine
+    console.log(a);
+    var a = 'hello world';
+    console.log(a);
+    function b(){
+        console.log('called b!');
+    }
+    /*======================
+        　　undefine
+    =======================*/
+    var c;
+    console.log(c);
+    if(c === undefined){
+        console.log('c is undefined!');
+    }else{
+        console.log('c is defined!');
+    }
+    /*======================
+    　　execute context
+    =======================*/
+    //逐行執行
+    /*======================
+    　　single threaded
+        (單執行緒)
+    =======================*/
+    /*======================
+    　 functioninvocation(呼叫)
+    =======================*/
+    //代表執行或呼叫函數
+  
+    function e(){
+        
+        d();
+        console.log('im e');
+    }
+    function d() {
+        console.log('im d');
+    }
+    //創造一個執行環境，會被放進執行堆裡
+    e();
+    /*======================
+        　環境變數,scope
+    =======================*/
+    function f() {
+        var myVar;
+        console.log(`${myVar} f`)
+    }
+    function g() {
+        var myVar = 2;
+        f();
+        console.log(`${myVar}`)
+    }
+    var myVar = 1;
+    console.log(`${myVar}`)
+    g();
+    
+</script>
