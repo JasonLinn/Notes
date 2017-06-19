@@ -27,6 +27,10 @@
     <h2>immediately invoked function expression(IIFEs 立即呼叫函數表達式)</h2>
     <h2>closures(閉包)</h2>
     <p></p>
+    <h2>closures and callback(閉包與回呼)</h2>
+    <p>回乎函數是當某個函數執行完，你給他執行的函數(當一開始的函數結束，那個函數回乎你給他的函數)</p>
+    <h2>call,apply and bind</h2>
+    <p></p>
 </body>
 </html>
 <script>
@@ -179,10 +183,10 @@
     function buildFunctions(){
         var arr = [];
         for(var i = 0;i<3 ; i++){
-            let j = i ;
+            // let j = i ;
             arr.push(
                 function(){
-                    console.log(j);
+                    console.log(i);
                 }
             )
         }
@@ -194,4 +198,53 @@
     fs[0]();
     fs[1]();
     fs[2]();
+
+    /*======================
+        　　閉包工廠
+    =======================*/
+    function makeGreeting(language){
+        return function(firstName,lastName){
+            if(language == 'en'){
+                console.log(`Hello ${firstName} ${lastName}`);
+            }
+            if(language == 'es'){
+                console.log(`Hola ${firstName} ${lastName}`);
+            }
+        }
+    }
+
+    var greetsEnglish = makeGreeting('en');
+    var greetsSpanish = makeGreeting('es');
+
+    greetsEnglish('Jason','Lin');
+    greetsSpanish('Jason','Lin');
+    /*======================
+        　　閉包與回呼
+    =======================*/
+    function sayHiLater(){
+        var greeting = "Hi";
+
+        //有clousure所以greeting 還找的到greeting
+        setTimeout(function(){
+            console.log(greeting);
+        },3000)
+    }
+    sayHiLater();
+
+    function tellMeWhenDone(callback){
+        var a = 1000; //some work
+        var b = 2000; //some work
+
+        callback();
+    }
+
+    tellMeWhenDone(function(){
+        console.log('I am done!');
+    });
+    tellMeWhenDone(function(){
+        console.log('I am done!');
+    });
+    /*======================
+    　　call,apply and bind
+    =======================*/
 </script>
