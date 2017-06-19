@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            height: 100vh;
+        }
+      .box{
+        height: 400px;
+        width: 800px;
+        background-color:#fa0;
+        
+          /*overflow: auto;*/
+      }
+      img{
+          /*height: 100%;*/
+      }
+      /*.item{
+          height: 0;
+          box-sizing: border-box;
+          width: 100%;
+          padding-bottom:20%;
+          
+          background-color:#ccc;          
+      }*/
+    </style>
+</head>
+<body>
+    <div class="box">
+        <!--<img src="http://lorempixel.com/640/480/food" alt="">-->
+        
+        <div class="item"></div>
+    </div>
+</body>
+</html>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+  crossorigin="anonymous"></script>
+<script>
+    $(window).resize(function(){
+        var rate = 400/800;
+        var nowRate = $(this).height()/$(this).width();
+        
+        if(nowRate<rate){
+            $(".box").width($(".box").width()*nowRate)
+            console.log('small:','rate:',rate,'nowRate:',nowRate,)   
+        }else{
+            $(".box").width($(".box").width()*nowRate)
+            console.log(`bigger`)
+        }
+        
+    })
+</script>
