@@ -30,7 +30,8 @@
     <h2>closures and callback(閉包與回呼)</h2>
     <p>回乎函數是當某個函數執行完，你給他執行的函數(當一開始的函數結束，那個函數回乎你給他的函數)</p>
     <h2>call,apply and bind</h2>
-    <p></p>
+    <p>函數就是物件，所有的函數都可以有屬性和方法，包括call(),apply(),bind()方法，這三個都跟this和你傳入的參數有關</p>
+    <p>function currying:建立一個函數的拷貝，並設定預設的參數，這個數學運算很有用</p>
 </body>
 </html>
 <script>
@@ -247,4 +248,58 @@
     /*======================
     　　call,apply and bind
     =======================*/
+    var person = {
+        firstName:'Jason',
+        lastName:'Lin',
+        getFullName:function(){
+            var fullName = this.firstName + ' ' +this.lastName;
+            return fullName;
+        }
+    }
+    var logName = function (lang1,lang2){
+        
+        console.log('Logged:' + this.getFullName());
+        console.log('Arguments:'+lang1+lang2);
+        console.log('----------');
+    }
+    // logName();
+    //bind 會創造一個logName 的新拷貝
+    //person物件就會是this變數指向的東西
+    var logPersonName = logName.bind(person);
+    logPersonName('english ','span');
+
+    //我傳入call的第一個東西是this要指向的東西
+    //call會執行，第一傳入this想指定的東西，接下來輸入參數
+    logName.call(person,'english ','spanish');
+    //call跟apply的差別是apply只接受陣列
+    logName.apply(person,['english ', 'spanish']);
+
+    (logName = function (lang1, lang2) {
+
+        console.log('Logged:' + this.getFullName());
+        console.log('Arguments:' + lang1 + lang2);
+        console.log('----------');
+    }).apply(person,['en ','esss']);
+
+
+    /*======================
+        　　函數借用
+    =======================*/
+    //function borrowing
+    var person2 ={
+        firstName:'Jane',
+        lastName:'Doe'
+    }
+    //可以用其他物件的方法，因為傳入person2，person裡的this會指向person2這個物件
+    console.log(person.getFullName.apply(person2));  
+    /*======================
+        　　函數攜帶
+    =======================*/
+    //function currying
+    function  multiply(a,b) {
+        return a*b;
+    }
+    //給他參數，會設定為拷貝函數的永久設定值
+    var multiplyByTwo = multiply.bind(this,2,5);
+    console.log(multiplyByTwo(4)); 
 </script>
