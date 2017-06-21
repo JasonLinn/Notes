@@ -4,14 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js">
+        
+    </script>
     <title>Document</title>
 </head>
 <body>
     <h2>
         functional programing</h2>
+    <h2>prototype</h2>
+    <h2>Everything is an object(or a primitive)所有東西都是物件或是純值</h2>
+    <h2>Reflection and Extend</h2>
+    <p>Reflection:一個物件可以看到自己的東西，然後改變自己的屬性和方法</p>
+    <p>可以藉由extend的模式</p>
+    <h2>building object函數建構子</h2>
+    <p>(function constructors)函數建構子:一個正常的函數用來建立物件，當你在呼叫函數前面放了new關鍵字，在執行環境的創造階段被產生的this變數會指向新物件</p>
+    <p>當函數結束執行時，該物件會被函數自動回傳</p>
 </body>
 </html>
 <script>
+    /*======================
+    　　functional
+    =======================*/
+    function mapForEach(arr,fn){
+        var newArr = [];
+        for (var i = 0; i < arr1.length; i++) {
+            
+        }
+    }
     var arr1 = [1,2,3];
     console.log(arr1);
 
@@ -20,4 +40,101 @@
         arr2.push(arr1[i]*2);
     }
     console.log(arr2);
+    /*======================
+        　　prototype
+    =======================*/
+    var person = {
+        firstName : 'Default',
+        lastName : 'Default',
+        getFullName :function(){
+            return this.firstName + ' ' + this.lastName;
+        }
+    }
+    var john ={
+        firstName:'John',
+        lastName:'Doe'
+    }
+
+    //don't do this ever! for demo purposes only!!
+    john.__proto__ = person;
+    console.log(john);
+    console.log(john.getFullName());
+    console.log(john.firstName);
+
+
+    var jane = {
+        firstName:'Jane'
+    }
+    //無論何時我們需要屬性，他就會搜尋原型鏈
+    jane.__proto__ = person;
+    console.log(jane.getFullName());
+    /*======================
+    　　所有東西都是物件或純值
+    =======================*/
+    //最底層的叫做Object
+    var a = {};
+    var b = function(){};
+    var c = [];
+    /*======================
+    　 Reflection and extend
+    =======================*/
+    //for in 陳述句statement
+    //for in 不只在物件本身，還會到原型上找
+    for(var prop in john){
+        if(john.hasOwnProperty(prop)){
+            console.log(prop +':' + john[prop]);
+        }
+        
+    }
+
+    var jane = {
+        address:'111 Main St.',
+        getFormalFullName:function(){
+            return this.lastName+ ','+this.firstName;
+        }
+    }
+    var jim = {
+        getFirstName:function(){
+            return firstName;
+        }
+    }
+// var _ = function(obj) { if (obj instanceof _) return obj; if (!(this instanceof _)) return new _(obj); this._wrapped = obj;
+// };
+    _.extend(john, jane, jim);
+    console.log(john);
+    /*======================
+            函數建構子
+    =======================*/
+    function Persons(firstName,lastName){
+        console.log(this);  
+        this.firstName = 'Jason';
+        this.lastName = 'Doe';
+        console.log('this function is invoked.');
+        // return {
+        //     greeting:'i got in the way'
+        // }
+    }
+    Persons.prototype.getFullName = function(){
+        return this.lastName+ ','+this.firstName;
+    }
+    //new 是個運算子，用new時一個空物件被產生了，他呼叫函數
+    //用new這個關鍵字後，會改變在function中this指向新的空物件
+
+    //new不會回傳值，js引擎會回傳被new運算子建立的物件
+
+    //每個函數都有prototype屬性，只有當你把它作為函數運算子才會用到(用new的時候)，
+    var john = new Persons();
+    console.log(john);
+    /*======================
+  　　JS引擎內建的函數建構子
+    =======================*/
+    //new 出來的是一個物件
+    String.prototype.isLengthGreaterThan = function(limit){
+        return this.length >limit;
+    }
+    console.log("John".isLengthGreaterThan(2));
+
+    Number.prototype.isPositive =function(){
+        return this > 0;
+    }
 </script>
