@@ -20,6 +20,7 @@
     <h2>building object函數建構子</h2>
     <p>(function constructors)函數建構子:一個正常的函數用來建立物件，當你在呼叫函數前面放了new關鍵字，在執行環境的創造階段被產生的this變數會指向新物件</p>
     <p>當函數結束執行時，該物件會被函數自動回傳</p>
+    <h2>Object.create純粹的原型繼承</h2>
 </body>
 </html>
 <script>
@@ -137,4 +138,19 @@
     Number.prototype.isPositive =function(){
         return this > 0;
     }
+    /*================
+      Object.create
+    =================*/
+    var people = {
+        firstName:'Default',
+        lastName:'Default',
+        greet:function(){
+            return 'Hi ' + this.firstName;
+        }
+    }
+
+    var jason = Object.create(people);
+    jason.firstName = 'Jason';
+    jason.lastName = 'Lin';
+    console.log(jason)
 </script>
