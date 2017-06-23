@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="logindiv">
+        <select name="" id="lang">
+            <option value="en">English</option>
+            <option value="es">Spanish</option>
+        </select>
+        <input type="button" id="login" value="login">
+    </div>
+    <h1 id="greeting"></h1>
+</body>
+</html>
+<script src="js/jquery-1.11.js"></script>
+<script src="js/greet.js"></script>
+<script>
+var g = G$('Jason','Lin');
+g.greet().setLang('es').greet(true).log();
+$("#login").click(function(){
+    var loginGrtr = G$('John','Doe');
+    $('#logindiv').hide();
+
+    loginGrtr.setLang($('#lang').val()).HTMLGreeting('#greeting',true).log();
+    console.log('click');
+})
+console.log(g);
+</script>
