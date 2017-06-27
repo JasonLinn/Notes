@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>what node.js have solve the questions</h2>
+    <p>1.Better ways to organize our code into reusable pieces</p>
+    <p>2.Ways to Deal with Files</p>
+    <p>3.Ways to deal with database</p>
+    <p>4.The Ability to communicate over the internet</p>
+    <p>5.The ability to accept requests and send responses(in the standard format)</p>
+    <p>6.A way to deal with work that takes a long time</p>
+    <h2>with c++</h2>
+    <p>
+        在lib裡面的檔案都是js，其中zlib.js中的process.binding('zlib')是用來綁定c++的功能
+    </p>
+    <h2>commonjs modules</h2>
+    <p>an agreed upon standard for how code modules should be structured</p>
+    <p>follow this standard</p>
+    <h2>Let's build a module</h2>
+    <p>在創造module.exprots後，會創造出</p>
+    <ul>
+        <li>__dirname</li>
+        <li>__filename</li>
+        <li>exports(obj)</li>
+        <li>greet(fn)</li>
+        <li>module(module)</li>
+        <li>require(fn)</li>
+        <li>this</li>
+    
+    </ul>
+    <p>這是由很多組織最後制定出來的，例如v8 engine , ecmascript,itself</p>
+    <ul>
+        <li>require:is a function,that you pass a 'path' too</li>
+        <li>module.exports: is what the require function returns</li>
+        <li>this works because your code is actually wrapped in a function that is given these things as function parameters</li>
+        <li></li>
+    </ul>
+    <h2>module patterns</h2>
+    <p>Revealing module pattern:</p>
+    <p>只暴露你想回傳的物件，裡面包括屬性、方法</p>
+    <p>用揭示模塊模式對於建構和保護程式，是一種很常見且乾淨的方法</p>
+
+</body>
+</html>
