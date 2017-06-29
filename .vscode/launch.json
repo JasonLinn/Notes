@@ -1,11 +1,12 @@
 {
     "version": "0.2.0",
     "configurations": [
+
         {
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceRoot}/src/Nodejs/03_modulePatterns/app.js"
+            "program": "${workspaceRoot}/src/Nodejs/06_eventEmitter/person.js"
         }
         // {
         //     "name": "Launch Chrome against localhost, with sourcemaps",
