@@ -23,6 +23,7 @@
     "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
+    "express": "^4.15.3",
     "gulp-pug": "^3.3.0",
     "jquery": "^3.2.1",
     "vue": "^2.3.3",

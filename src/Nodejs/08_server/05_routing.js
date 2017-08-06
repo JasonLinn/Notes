@@ -1,8 +1,9 @@
 var http = require('http');
 var fs = require('fs');
 http.createServer(function (req, res) {
-    if(req.url ==='/'){
-
+    console.log(req.url)
+    if(req.url ==='/' ){
+        var html = 'replaced';
         fs.createReadStream(__dirname + '/index.html').pipe(res);
     }
     
@@ -16,7 +17,7 @@ http.createServer(function (req, res) {
     }
 
     // res.writeHead(404);
-    res.end('not found');
+    // res.end();
     
     
 
