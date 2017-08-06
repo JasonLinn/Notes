@@ -1,17 +1,16 @@
-# Notes
+React環境建置
 
-*******
-first step
 
-安裝node.js
+first step:
 
-npm init
+`npm init`
 
+second step:
+```
 npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es2015 babel-preset-react html-webpack-plugin webpack webpack-dev-server
-*******
-
-
-******
+```
+Webpack基本設定:
+```
 // 這邊使用 HtmlWebpackPlugin，將 bundle 好的 <script> 插入到 body。${__dirname} 為 ES6 語法對應到 __dirname  
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -52,7 +51,8 @@ module.exports = {
   // plugins 放置所使用的外掛
   plugins: [HTMLWebpackPluginConfig],
 };
-******
-****
-"dev": "webpack-dev-server --devtool eval --progress --colors --content-base build"
-****
+
+```
+package設定:
+
+`"dev": "webpack-dev-server --devtool eval --progress --colors --content-base build"`
